@@ -28,11 +28,15 @@ public class CityDao {
                 city.setId(rs.getString("id"));
                 city.setName(rs.getString("name"));
                 arrayList.add(city);
-                
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
         return arrayList;
-    } 
+    }
+    
+    public static void delete(String id){
+        String query ="delete from city where id='"+id+"'";
+        DbOperations.setDataOrDelete(query, "City Deleted Successfully!");
+    }
 }

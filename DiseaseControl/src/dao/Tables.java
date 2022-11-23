@@ -16,10 +16,10 @@ public class Tables {
         try{
             String userTable="create table user(id int AUTO_INCREMENT primary key,name varchar(200),email varchar(200),mobileNumber varchar(10),password varchar(200),city varchar(200),organization varchar(200),carrier varchar(200),location varchar(200),status varchar(20),UNIQUE(email))";
             DbOperations.setDataOrDelete(userTable, "User Table Created Successfully");
-//            
-////            added admin account information
-//            String adminDetails = "insert into user(name,email,mobileNumber,password,status) values('Admin','admin@gmail.com','1234567890','admin','true')";
-//            DbOperations.setDataOrDelete(adminDetails, "Admin Detials Added Successfully");
+            
+//            added admin account information
+            String adminDetails = "insert into user(name,email,mobileNumber,password,status) values('Admin','admin@gmail.com','1234567890','admin','true')";
+            DbOperations.setDataOrDelete(adminDetails, "Admin Detials Added Successfully");
 ////            
 //            String hospitalTable="create table hospital(id int AUTO_INCREMENT primary key,name varchar(200),community varchar(200),city varchar(200),UNIQUE(name))";
 //            DbOperations.setDataOrDelete(hospitalTable, "Hospital Table Created Successfully");
@@ -39,8 +39,8 @@ public class Tables {
             String cityTable="create table city(id int AUTO_INCREMENT primary key,name varchar(200),UNIQUE(name))";
             DbOperations.setDataOrDelete(cityTable, "City Table Created Successfully");
 //            
-//            String houseTable="create table house(id int AUTO_INCREMENT primary key,name varchar(200),community varchar(200),UNIQUE(name))";
-//            DbOperations.setDataOrDelete(houseTable, "House Table Created Successfully");
+            String enterpriseTable="create table enterprise(id int AUTO_INCREMENT primary key,name varchar(200),city varchar(200),type varchar(200),UNIQUE(name))";
+            DbOperations.setDataOrDelete(enterpriseTable, "House Table Created Successfully");
 
 //            String encounterTable="create table encounter(id int AUTO_INCREMENT primary key,patientId varchar(20),name varchar(200),gender varchar(20),age varchar(20),email varchar(200),house varchar(200),community varchar(200),heartBeat varchar(200),bloodPressure varchar(200),diagnose varchar(200),doctor varchar(20),specialty varchar(200),positionTitle varchar(200),status varchar(20),date varchar(200))";
 //            DbOperations.setDataOrDelete(encounterTable, "Encounter Table Created Successfully");

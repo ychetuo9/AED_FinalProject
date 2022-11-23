@@ -200,9 +200,9 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"<html><b>Wait for Admin Approval</b></html>","Message",JOptionPane.INFORMATION_MESSAGE,icon);
                 clear();
             }
-            if(user.getStatus().equals("true")&&user.getOrganization().equals("")){
+            if(user.getStatus().equals("true")){
                 setVisible(false);
-                new Login().setVisible(true);
+                new SystemAdminPage().setVisible(true);
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
