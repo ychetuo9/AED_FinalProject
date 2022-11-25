@@ -9,5 +9,10 @@ package model;
  * @author oooo
  */
 public class Doctor {
+    String name;
+
+    public String getName() {
+        return name;
+    }
     
 }
