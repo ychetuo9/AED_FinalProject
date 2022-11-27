@@ -15,6 +15,7 @@ public class Hospital {
     String name;
     String address;
     City city;
+    String id;
     List<Doctor> doctors;
 
     public String getName() {
@@ -55,6 +56,14 @@ public class Hospital {
     
     public void deleteDoctor(Doctor d) {
         this.doctors.remove(d);
+    }
+    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     
 }
