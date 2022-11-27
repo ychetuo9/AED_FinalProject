@@ -8,14 +8,13 @@ package model;
  *
  * @author oooo
  */
-public class Organisation {
+public class Driver {
     String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
     
-    public String getName() {
-        return name;
+    public void drive(EmergencyVehicle v, Hotel h) {
+        for (Patient p : v.getPatients()) {
+            h.accommodate(p);
+        }
+        v.getPatients().clear();
     }
 }

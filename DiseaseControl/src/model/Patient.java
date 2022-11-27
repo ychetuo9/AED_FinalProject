@@ -8,14 +8,11 @@ package model;
  *
  * @author oooo
  */
-public class Organisation {
+public class Patient {
     String name;
 
-    public void setName(String name) {
+    public Patient(String name) {
         this.name = name;
     }
     
-    public String getName() {
-        return name;
-    }
 }

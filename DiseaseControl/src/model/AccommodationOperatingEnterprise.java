@@ -3,19 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-
+import java.util.*;
 /**
  *
  * @author oooo
  */
-public class Organisation {
-    String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public String getName() {
-        return name;
-    }
+public class AccommodationOperatingEnterprise extends Enterprise{
+    List<Hotel> hotels;
 }
