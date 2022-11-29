@@ -49,5 +49,5 @@ Enterprise 4: Accommodation Operating Enterprise
 For accommodating person who is the source of infection or suspected infected person
 
 —————————————————————————————————————————————————————————
+![INFO5100-FinalProject drawio (1)](https://user-images.githubusercontent.com/113945707/204662713-7e8bc549-9e78-4e77-9168-ce9d06afb5fd.png)
 
-![INFO5100-FinalProject drawio](https://user-images.githubusercontent.com/113945707/202808116-fed3db21-10a4-4888-9038-abac576272cb.png)
