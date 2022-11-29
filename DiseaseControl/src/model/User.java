@@ -15,10 +15,19 @@ public class User {
     private String mobileNumber;
     private String password;
     private String status;
+    private String role;
     private String city;
     private String organization;
     private String carrier;
     private String location;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getCity() {
         return city;

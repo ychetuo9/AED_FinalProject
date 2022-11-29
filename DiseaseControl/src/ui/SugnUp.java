@@ -75,6 +75,8 @@ public class SugnUp extends javax.swing.JFrame {
         cbbCity = new javax.swing.JComboBox<>();
         lblRight = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+        jLabel10 = new javax.swing.JLabel();
+        cbbRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,23 +99,23 @@ public class SugnUp extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel5.setText("City");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Organization");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Carrier");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel8.setText("MobileNumber");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setText("Location");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 550, -1, -1));
 
         txtName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -138,7 +140,7 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbOrganizationKeyReleased(evt);
             }
         });
-        getContentPane().add(cbbOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 280, -1));
+        getContentPane().add(cbbOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 280, -1));
 
         cbbCarrier.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCarrier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AT&T", "Verizon", "T-Mobile" }));
@@ -147,7 +149,7 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbCarrierKeyReleased(evt);
             }
         });
-        getContentPane().add(cbbCarrier, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 280, -1));
+        getContentPane().add(cbbCarrier, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 280, -1));
 
         txtMobileNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtMobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -155,7 +157,7 @@ public class SugnUp extends javax.swing.JFrame {
                 txtMobileNumberKeyReleased(evt);
             }
         });
-        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 280, -1));
+        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 280, -1));
 
         txtLocation.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtLocation.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -163,11 +165,11 @@ public class SugnUp extends javax.swing.JFrame {
                 txtLocationKeyReleased(evt);
             }
         });
-        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 280, -1));
+        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, 280, -1));
 
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton1.setText("Set Location");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 480, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
 
         btnSignUp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnSignUp.setText("Sign Up");
@@ -176,7 +178,7 @@ public class SugnUp extends javax.swing.JFrame {
                 btnSignUpActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 153, -1));
+        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 600, 153, -1));
 
         cbbCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
@@ -185,7 +187,7 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbCityKeyReleased(evt);
             }
         });
-        getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 280, -1));
+        getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 280, -1));
 
         lblRight.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
@@ -198,6 +200,19 @@ public class SugnUp extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 280, -1));
+
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel10.setText("Role");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, -1, -1));
+
+        cbbRole.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car Admin", "Hospital Admin", "Hotel Head", "Vaccinate Head", "Driver", "Doctor", "Community Head" }));
+        cbbRole.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cbbRoleKeyReleased(evt);
+            }
+        });
+        getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -218,12 +233,12 @@ public class SugnUp extends javax.swing.JFrame {
         User user = new User();
         user.setName(txtName.getText());
         user.setEmail(txtEmail.getText());
-        user.setMobileNumber(txtMobileNumber.getText());
         user.setPassword(txtPassword.getText());
         user.setCity((String)cbbCity.getSelectedItem());
-        user.setCarrier((String)cbbCity.getSelectedItem());
         user.setOrganization((String)cbbOrganization.getSelectedItem());
-        user.setCarrier((String)cbbCarrier.getSelectedItem());
+        user.setRole((String)cbbRole.getSelectedItem());
+        user.setCarrier((String)cbbCity.getSelectedItem());
+        user.setMobileNumber(txtMobileNumber.getText());
         user.setLocation(txtLocation.getText());
         user.setStatus("false");
         
@@ -267,6 +282,10 @@ public class SugnUp extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_txtLocationKeyReleased
 
+    private void cbbRoleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbRoleKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbRoleKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -307,8 +326,10 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbCarrier;
     private javax.swing.JComboBox<String> cbbCity;
     private javax.swing.JComboBox<String> cbbOrganization;
+    private javax.swing.JComboBox<String> cbbRole;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

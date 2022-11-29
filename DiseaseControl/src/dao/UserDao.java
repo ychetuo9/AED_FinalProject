@@ -15,18 +15,18 @@ import java.util.ArrayList;
  */
 public class UserDao {
     public static void save(User user){
-        String query = "insert into user(name,email,mobileNumber,password,status) values('"+user.getName()+"','"+user.getEmail()+"','"+user.getMobileNumber()+"','"+user.getPassword()+"','false')";
+        String query = "insert into user(name,email,password,city,organization,role,carrier,mobileNumber,location,status) values('"+user.getName()+"','"+user.getEmail()+"','"+user.getPassword()+"','"+user.getCity()+"','"+user.getOrganization()+"','"+user.getRole()+"','"+user.getCarrier()+"','"+user.getMobileNumber()+"','"+user.getLocation()+"','false')";
         DbOperations.setDataOrDelete(query, "Registered Successfully! Wait for Admin Approval!");
     }
     
-    public static User login(String email,String password){
+    public static User login(String name,String password){
         User user = null;
         try{
-            ResultSet rs = DbOperations.getData("select *from user where email='"+email+"' and password='"+password+"'");
+            ResultSet rs = DbOperations.getData("select *from user where name='"+name+"' and password='"+password+"'");
             while(rs.next()){
                 user = new User();
                 user.setStatus(rs.getString("status"));
-                user.setOrganization(rs.getString("organization"));
+                user.setRole(rs.getString("role"));
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);

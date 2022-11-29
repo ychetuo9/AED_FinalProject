@@ -14,11 +14,11 @@ import java.sql.*;
 public class Tables {
     public static void main(String[] args){
         try{
-            String userTable="create table user(id int AUTO_INCREMENT primary key,name varchar(200),email varchar(200),mobileNumber varchar(10),password varchar(200),city varchar(200),organization varchar(200),carrier varchar(200),location varchar(200),status varchar(20),UNIQUE(email))";
+            String userTable="create table user(id int AUTO_INCREMENT primary key,name varchar(200),email varchar(200),mobileNumber varchar(10),password varchar(200),city varchar(200),organization varchar(200),carrier varchar(200),location varchar(200),status varchar(20),role varchar(100),UNIQUE(email),UNIQUE(name))";
             DbOperations.setDataOrDelete(userTable, "User Table Created Successfully");
             
 //            added admin account information
-            String adminDetails = "insert into user(name,email,mobileNumber,password,status) values('Admin','admin@gmail.com','1234567890','admin','true')";
+            String adminDetails = "insert into user(name,email,mobileNumber,password,status,role) values('Admin','admin@gmail.com','1234567890','admin','true','System Admin')";
             DbOperations.setDataOrDelete(adminDetails, "Admin Detials Added Successfully");
 ////            
 //            String hospitalTable="create table hospital(id int AUTO_INCREMENT primary key,name varchar(200),community varchar(200),city varchar(200),UNIQUE(name))";
