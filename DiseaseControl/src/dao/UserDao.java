@@ -54,6 +54,20 @@ public class UserDao {
         return arrayList;
     }
     
+    public static ArrayList<User> getAllUsername(){
+        ArrayList<User> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs1 = DbOperations.getData("select name from user");
+            while(rs1.next()){
+                User user = new User();
+                user.setName(rs1.getString("name"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    
     public static void changeStatus(String email,String status){
         String query = "update user set status='"+status+"' where email='"+email+"'";
         DbOperations.setDataOrDelete(query, "Status Changed Successfully!");

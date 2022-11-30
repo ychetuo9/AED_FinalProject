@@ -16,6 +16,11 @@ public class SystemAdminPage extends javax.swing.JFrame {
     public SystemAdminPage() {
         initComponents();
     }
+    
+    public SystemAdminPage(String name) {
+        initComponents();
+        lblUsername.setText(name);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,8 +34,16 @@ public class SystemAdminPage extends javax.swing.JFrame {
         btnCityManage = new javax.swing.JButton();
         btnEnterpriseManage = new javax.swing.JButton();
         btnUserManage = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        txtTestField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         btnCityManage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCityManage.setText("Manage City");
@@ -56,6 +69,12 @@ public class SystemAdminPage extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setText("Hello,");
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblUsername.setText("--");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,21 +82,36 @@ public class SystemAdminPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(321, 321, 321)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCityManage, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCityManage, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(193, 193, 193)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblUsername))
                     .addComponent(btnEnterpriseManage, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUserManage, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTestField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(223, 223, 223))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(btnCityManage, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCityManage, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(lblUsername)))
                 .addGap(61, 61, 61)
                 .addComponent(btnEnterpriseManage, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(btnUserManage, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addComponent(txtTestField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,6 +135,12 @@ public class SystemAdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_btnUserManageActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        String t=lblUsername.getText();
+        txtTestField.setText(t);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -141,5 +181,8 @@ public class SystemAdminPage extends javax.swing.JFrame {
     private javax.swing.JButton btnCityManage;
     private javax.swing.JButton btnEnterpriseManage;
     private javax.swing.JButton btnUserManage;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JTextField txtTestField;
     // End of variables declaration//GEN-END:variables
 }

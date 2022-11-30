@@ -192,35 +192,35 @@ public class Login extends javax.swing.JFrame {
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("System Admin")){
                 setVisible(false);
-                new SystemAdminPage().setVisible(true);
+                new SystemAdminPage(name).setVisible(true);
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("Car Admin")){
                 setVisible(false);
-                new CarAdminWorkArea().setVisible(true);
+                new CarAdminWorkArea(name).setVisible(true);
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("Hospital Admin")){
                 setVisible(false);
-                new HospitalAdminWorkArea().setVisible(true);
+                new HospitalAdminWorkArea(name).setVisible(true);
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("Hotel Head")){
                 setVisible(false);
-                new HotelHeadWrokArea().setVisible(true);
+                new HotelHeadWrokArea(name).setVisible(true);
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("Vaccinate Head")){
                 setVisible(false);
-                new VaccinateHeadWorkArea().setVisible(true);
+                new VaccinateHeadWorkArea(name).setVisible(true);
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("Driver")){
                 setVisible(false);
-                new DriverWorkArea().setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("Doctor")){
                 setVisible(false);
-                new DoctorWorkArea().setVisible(true);
+                new DoctorWorkArea(name).setVisible(true);
             }
             if(user.getStatus().equals("true")&&user.getRole().equals("Community Head")){
                 setVisible(false);
-                new CommunityWorkArea().setVisible(true);
+                new CommunityWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed

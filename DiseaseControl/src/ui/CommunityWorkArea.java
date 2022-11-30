@@ -4,17 +4,57 @@
  */
 package ui;
 
+import dao.UserDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.table.TableModel;
+import model.Request;
+import model.User;
+
 /**
  *
  * @author yanyanchen
  */
 public class CommunityWorkArea extends javax.swing.JFrame {
 
+    public String numberPattern="^[0-9]*$";
+    public String namePattern="^\\w+$";
+    
     /**
      * Creates new form CommunityWorkArea
      */
     public CommunityWorkArea() {
         initComponents();
+        btnSave.setEnabled(false);
+        lblRight.setVisible(false);
+        lblWrongHint.setVisible(false);
+    }
+    
+    public CommunityWorkArea(String name) {
+        initComponents();
+        btnSave.setEnabled(false);
+        lblUsername.setText(name);
+        lblRight.setVisible(false);
+        lblWrongHint.setVisible(false);
+    }
+    
+    public void validateFields(){
+        String name = txtName.getText();
+        String date=dataChooser1.getDateFormatString();
+        String patientNumber=txtPatientNumber.getText();
+        String victim=txtVictim.getText();
+        String location=txtLocation.getText();
+        String descriiption=txtDescription.getText();
+        
+        
+        String requestObject=(String)cbbRequestObject.getSelectedItem();
+        
+        
+        if(name.matches(namePattern)&&victim.matches(numberPattern)&&patientNumber.matches(numberPattern)&&!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
+            btnSave.setEnabled(true);
+
+        else
+            btnSave.setEnabled(false);
     }
 
     /**
@@ -26,65 +66,113 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtPatientNumber = new javax.swing.JTextField();
+        txtVictim = new javax.swing.JTextField();
+        txtLocation = new javax.swing.JTextField();
+        txtDescription = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        cbbRequestObject = new javax.swing.JComboBox<>();
+        btnSave = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        dataChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel17 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        lblRight = new javax.swing.JLabel();
+        lblWrongHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        txtPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtPatientNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPatientNumberKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 296, -1));
 
-        jTextField2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        txtVictim.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtVictim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtVictimKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 296, -1));
 
-        jTextField3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        txtLocation.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtLocation.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLocationKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 450, 296, -1));
 
-        jTextField4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        txtDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtDescription.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescriptionKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 520, 296, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Community Admin Work Area");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 21, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("Patient Number");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel3.setText("# of Potentially infected");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setText("Location");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel5.setText("Condition");
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel5.setText("Description");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 520, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hotel", "Car", "Hospital", "Vaccinate" }));
+        cbbRequestObject.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        cbbRequestObject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Hotel", "Car", "Hospital", "Vaccinate" }));
+        cbbRequestObject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbRequestObjectItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(cbbRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 580, 296, -1));
 
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton1.setText("Save");
+        btnSave.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 650, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel6.setText("Request Object");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Condition", "Request Object", "Status"
+                "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,181 +186,201 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        jButton2.setText("Set Location");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 78, 1296, 140));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(415, 415, 415)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(93, 93, 93)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(93, 93, 93)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jButton2))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(jButton1)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jButton2.setText("Set Location");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 450, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel7.setText("Hello,");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1023, 39, -1, -1));
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblUsername.setText("--");
+        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1084, 39, -1, -1));
+
+        dataChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dataChooser1KeyReleased(evt);
+            }
+        });
+        getContentPane().add(dataChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 300, -1));
+
+        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel17.setText("Date");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
+
+        txtName.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 296, -1));
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel8.setText("User Name");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
+
+        lblRight.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
+        lblRight.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                lblRightComponentShown(evt);
+            }
+        });
+        getContentPane().add(lblRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, -1, -1));
+
+        lblWrongHint.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        lblWrongHint.setText("Your input should consist of numbers, letters or underscores ");
+        getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 250, -1, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        //        int index = jTable1.getSelectedRow();
-        //        TableModel model=jTable1.getModel();
-        //        String id = (String)model.getValueAt(index,0).toString();
-        //        String status = model.getValueAt(index,14).toString();
-        //        if(status.equals("true"))
-        //            status="false";
-        //        else
-        //            status="true";
-        //        int a =JOptionPane.showConfirmDialog(null,"Do you want to change status of "+id+"?","Select",JOptionPane.YES_NO_OPTION);
-        //        if(a==0){
-            //            EncounterDao.changeStatus(id,status);
-            //            setVisible(false);
-            //            new ViewEncounter().setVisible(true);
-            //        }
+        
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
-        String id = model.getValueAt(index,1).toString();
-        lblPatientId.setText(id);
+        String date = model.getValueAt(index,1).toString();
+        dataChooser1.setDateFormatString(date);
         String name = model.getValueAt(index,2).toString();
-        lblName.setText(name);
-        String gender = model.getValueAt(index,3).toString();
-        lblGender.setText(gender);
-        String age = model.getValueAt(index,4).toString();
-        lblAge.setText(age);
-        String email = model.getValueAt(index,5).toString();
-        lblEmail.setText(email);
-        String house = model.getValueAt(index,6).toString();
-        lblHouse.setText(house);
-        String community = model.getValueAt(index, 7).toString();
-        lblCommunity.setText(community);
-        String heartBeat = model.getValueAt(index, 8).toString();
-        lblHeartBeat.setText(heartBeat);
-        String bloodPressure = model.getValueAt(index, 9).toString();
-        lblPressure.setText(bloodPressure);
-        String diagnose = model.getValueAt(index, 10).toString();
-        lblDiagnose.setText(diagnose);
-        String docotor = model.getValueAt(index, 11).toString();
-        lblDoctor.setText(docotor);
-        String specialty = model.getValueAt(index, 12).toString();
-        lblSpecialty.setText(specialty);
-        String position = model.getValueAt(index, 13).toString();
-        lblPosition.setText(position);
-        String date = (String)model.getValueAt(index, 15).toString();
-        lblDate.setText(date);
-        String status = model.getValueAt(index, 14).toString();
-        lblStatus.setText(status);
+        txtName.setText(name);
+        String patientNumber = model.getValueAt(index,3).toString();
+        txtPatientNumber.setText(patientNumber);
+        String victim = model.getValueAt(index,4).toString();
+        txtVictim.setText(victim);
+        String location = model.getValueAt(index,5).toString();
+        txtLocation.setText(location);
+        String description = model.getValueAt(index,6).toString();
+        txtDescription.setText(description);
+        String requestObject = model.getValueAt(index, 7).toString();
+        
+        cbbRequestObject.removeAllItems();
+        cbbRequestObject.addItem(requestObject);
+        
+        ArrayList<User> usernameList = UserDao.getAllUsername();
+        Iterator<User> usernameItr=usernameList.iterator();
+        while(usernameItr.hasNext()){
+            User userObj = usernameItr.next();
+            if(!userObj.getName().equals(requestObject))
+                cbbRequestObject.addItem(userObj.getName());
+        }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void dataChooser1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dataChooser1KeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_dataChooser1KeyReleased
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+        String name=txtName.getText();
+        if(!name.matches(namePattern)){
+            lblWrongHint.setVisible(true);
+            lblRight.setVisible(false);
+        }else{
+            lblWrongHint.setVisible(false);
+            lblRight.setVisible(true);
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtPatientNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPatientNumberKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPatientNumberKeyReleased
+
+    private void txtVictimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVictimKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtVictimKeyReleased
+
+    private void txtLocationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocationKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtLocationKeyReleased
+
+    private void txtDescriptionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescriptionKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtDescriptionKeyReleased
+
+    private void cbbRequestObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbRequestObjectItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbRequestObjectItemStateChanged
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void lblRightComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lblRightComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblRightComponentShown
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CommunityWorkArea().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(CommunityWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CommunityWorkArea().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cbbRequestObject;
+    private com.toedter.calendar.JDateChooser dataChooser;
+    private com.toedter.calendar.JDateChooser dataChooser1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblRight;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblWrongHint;
+    private javax.swing.JTextField txtDescription;
+    private javax.swing.JTextField txtLocation;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPatientNumber;
+    private javax.swing.JTextField txtVictim;
     // End of variables declaration//GEN-END:variables
 }

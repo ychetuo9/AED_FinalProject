@@ -79,6 +79,11 @@ public class SugnUp extends javax.swing.JFrame {
         cbbRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -102,12 +107,12 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel6.setText("Organization");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, -1, -1));
+        jLabel6.setText("Enterprise");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Carrier");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel8.setText("MobileNumber");
@@ -134,7 +139,7 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 280, -1));
 
         cbbOrganization.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         cbbOrganization.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cbbOrganizationKeyReleased(evt);
@@ -203,10 +208,10 @@ public class SugnUp extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel10.setText("Role");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, -1, -1));
 
         cbbRole.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car Admin", "Hospital Admin", "Hotel Head", "Vaccinate Head", "Driver", "Doctor", "Community Head" }));
+        cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Car Admin", "Hospital Admin", "Hotel Head", "Vaccinate Head", "Driver", "Doctor", "Community Head" }));
         cbbRole.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cbbRoleKeyReleased(evt);
@@ -285,6 +290,11 @@ public class SugnUp extends javax.swing.JFrame {
     private void cbbRoleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbRoleKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbRoleKeyReleased
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
