@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import model.Request;
 
 /**
@@ -192,7 +193,24 @@ public class DoctorWorkArea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
+        int index = jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        String id =model.getValueAt(index,0).toString();
+        lblId.setText(id);
+        String date = model.getValueAt(index,2).toString();
+        lblDate.setText(date);
+        String name = model.getValueAt(index,1).toString();
+        lblName.setText(name);
+        String patientNumber = model.getValueAt(index,3).toString();
+        lblPatientNumber.setText(patientNumber);
+        String victim = model.getValueAt(index,4).toString();
+        lblVictim.setText(victim);
+        String location = model.getValueAt(index,5).toString();
+        lblLocation.setText(location);
+        String description = model.getValueAt(index,6).toString();
+        lblDescription.setText(description);
+        String requestObject = model.getValueAt(index, 7).toString();
+        lblRequestObject.setText(requestObject);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

@@ -7,7 +7,9 @@ package ui;
 import dao.CommunityRequestDao;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import model.Request;
 
 /**
@@ -191,52 +193,24 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        //        int index = jTable1.getSelectedRow();
-        //        TableModel model=jTable1.getModel();
-        //        String id = (String)model.getValueAt(index,0).toString();
-        //        String status = model.getValueAt(index,14).toString();
-        //        if(status.equals("true"))
-        //            status="false";
-        //        else
-        //            status="true";
-        //        int a =JOptionPane.showConfirmDialog(null,"Do you want to change status of "+id+"?","Select",JOptionPane.YES_NO_OPTION);
-        //        if(a==0){
-            //            EncounterDao.changeStatus(id,status);
-            //            setVisible(false);
-            //            new ViewEncounter().setVisible(true);
-            //        }
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
-        String id = model.getValueAt(index,1).toString();
-        lblPatientId.setText(id);
-        String name = model.getValueAt(index,2).toString();
-        lblName.setText(name);
-        String gender = model.getValueAt(index,3).toString();
-        lblGender.setText(gender);
-        String age = model.getValueAt(index,4).toString();
-        lblAge.setText(age);
-        String email = model.getValueAt(index,5).toString();
-        lblEmail.setText(email);
-        String house = model.getValueAt(index,6).toString();
-        lblHouse.setText(house);
-        String community = model.getValueAt(index, 7).toString();
-        lblCommunity.setText(community);
-        String heartBeat = model.getValueAt(index, 8).toString();
-        lblHeartBeat.setText(heartBeat);
-        String bloodPressure = model.getValueAt(index, 9).toString();
-        lblPressure.setText(bloodPressure);
-        String diagnose = model.getValueAt(index, 10).toString();
-        lblDiagnose.setText(diagnose);
-        String docotor = model.getValueAt(index, 11).toString();
-        lblDoctor.setText(docotor);
-        String specialty = model.getValueAt(index, 12).toString();
-        lblSpecialty.setText(specialty);
-        String position = model.getValueAt(index, 13).toString();
-        lblPosition.setText(position);
-        String date = (String)model.getValueAt(index, 15).toString();
+        String id =model.getValueAt(index,0).toString();
+        lblId.setText(id);
+        String date = model.getValueAt(index,2).toString();
         lblDate.setText(date);
-        String status = model.getValueAt(index, 14).toString();
-        lblStatus.setText(status);
+        String name = model.getValueAt(index,1).toString();
+        lblName.setText(name);
+        String patientNumber = model.getValueAt(index,3).toString();
+        lblPatientNumber.setText(patientNumber);
+        String victim = model.getValueAt(index,4).toString();
+        lblVictim.setText(victim);
+        String location = model.getValueAt(index,5).toString();
+        lblLocation.setText(location);
+        String description = model.getValueAt(index,6).toString();
+        lblDescription.setText(description);
+        String requestObject = model.getValueAt(index, 7).toString();
+        lblRequestObject.setText(requestObject);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

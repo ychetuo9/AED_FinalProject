@@ -300,21 +300,7 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         setVisible(false);
         new CommunityWorkArea(name).setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
-//****************************
-//DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
-//        ArrayList<Request> requestList = CommunityRequestDao.getAllRecords();
-//        Iterator<Request> itrRequest = requestList.iterator();
-//        while(itrRequest.hasNext()){
-//            Request requestObj = itrRequest.next();
-//            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
-//        }
-//        
-//        DefaultTableModel dtm1 = (DefaultTableModel)jTable3.getModel();
-//        while(itrRequest.hasNext()){
-//            Request requestObj = itrRequest.next();
-//            dtm1.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
-//        }
-//****************************
+
     
     
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
