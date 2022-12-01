@@ -59,6 +59,11 @@ public class ManageUser extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setText("Verify User");
@@ -177,6 +182,12 @@ public class ManageUser extends javax.swing.JFrame {
         String email=txtEmail.getText();
         getAllRecords(email);
     }//GEN-LAST:event_txtEmailKeyReleased
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

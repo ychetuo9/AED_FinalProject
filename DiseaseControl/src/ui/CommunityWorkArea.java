@@ -151,12 +151,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 520, -1, -1));
 
         cbbRequestObject.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        cbbRequestObject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hotel", "CarAdmin", "Hospital", "Vaccinate" }));
-        cbbRequestObject.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbbRequestObjectItemStateChanged(evt);
-            }
-        });
         getContentPane().add(cbbRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 580, 296, -1));
 
         btnSave.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -187,11 +181,18 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Name");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Date");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Patient Num");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Victim");
             jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("Location");
+            jTable1.getColumnModel().getColumn(6).setHeaderValue("Description");
+            jTable1.getColumnModel().getColumn(7).setHeaderValue("Request Object");
+            jTable1.getColumnModel().getColumn(8).setHeaderValue("Status");
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 78, 1296, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1296, 140));
 
         jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jButton2.setText("Set Location");
@@ -278,11 +279,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_txtDescriptionKeyReleased
 
-    private void cbbRequestObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbRequestObjectItemStateChanged
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_cbbRequestObjectItemStateChanged
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         String name = lblUsername.getText();
@@ -304,9 +300,32 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         setVisible(false);
         new CommunityWorkArea(name).setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
-
+//****************************
+//DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+//        ArrayList<Request> requestList = CommunityRequestDao.getAllRecords();
+//        Iterator<Request> itrRequest = requestList.iterator();
+//        while(itrRequest.hasNext()){
+//            Request requestObj = itrRequest.next();
+//            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
+//        }
+//        
+//        DefaultTableModel dtm1 = (DefaultTableModel)jTable3.getModel();
+//        while(itrRequest.hasNext()){
+//            Request requestObj = itrRequest.next();
+//            dtm1.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
+//        }
+//****************************
+    
+    
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+        ArrayList<User> userList = UserDao.getAllRecords();
+        Iterator<User> itrUser = userList.iterator();
+        while(itrUser.hasNext()){
+            User userObj = itrUser.next();
+            cbbRequestObject.addItem(userObj.getName());
+        }
+        
         DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
         ArrayList<Request> requestList = CommunityRequestDao.getAllRecords();
         Iterator<Request> itrRequest = requestList.iterator();
@@ -314,6 +333,10 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             Request requestObj = itrRequest.next();
             dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
         }
+        
+        
+        
+        
     }//GEN-LAST:event_formComponentShown
 
     /**

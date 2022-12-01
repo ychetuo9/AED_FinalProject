@@ -23,6 +23,8 @@ public class SugnUp extends javax.swing.JFrame {
         initComponents();
         btnSignUp.setEnabled(false);
         lblRight.setVisible(false);
+        lblRight1.setVisible(false);
+        lblWrongHint.setVisible(false);
     }
     
     public void validateFields(){
@@ -34,7 +36,7 @@ public class SugnUp extends javax.swing.JFrame {
         String organization=(String)cbbOrganization.getSelectedItem();
         String carrier=(String)cbbCarrier.getSelectedItem();
         String location=txtLocation.getText();
-        if(!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
+        if(name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
             btnSignUp.setEnabled(true);
         else
             btnSignUp.setEnabled(false);
@@ -95,8 +97,8 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel2.setText("Name");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
+        jLabel2.setText("User Name");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel3.setText("Email");
@@ -143,7 +145,7 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 280, -1));
 
         cbbOrganization.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car Company", "Car Company 1" }));
         cbbOrganization.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cbbOrganizationKeyReleased(evt);
@@ -190,7 +192,7 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 600, 153, -1));
 
         cbbCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "HongKong" }));
         cbbCity.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cbbCityKeyReleased(evt);
@@ -274,10 +276,10 @@ public class SugnUp extends javax.swing.JFrame {
         String name=txtName.getText();
         if(!name.matches(namePattern)){
             lblWrongHint.setVisible(true);
-            lblRight.setVisible(false);
+            lblRight1.setVisible(false);
         }else{
             lblWrongHint.setVisible(false);
-            lblRight.setVisible(true);
+            lblRight1.setVisible(true);
         }
         
     }//GEN-LAST:event_txtNameKeyReleased

@@ -5,12 +5,14 @@
 package ui;
 
 import dao.CommunityRequestDao;
+import dao.UserDao;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Request;
+import model.User;
 
 /**
  *
@@ -81,6 +83,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         lblRequestObject = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
+        lblOrganization = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -108,7 +111,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1296, 238));
 
         cbbAssignedObject.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbAssignedObject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "HotelHead" }));
+        cbbAssignedObject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         cbbAssignedObject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbAssignedObjectItemStateChanged(evt);
@@ -117,7 +120,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         getContentPane().add(cbbAssignedObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 630, 296, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
-        jLabel1.setText("Car Head Work Area");
+        jLabel1.setText("Car Admin Work Area");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, -1));
 
         btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -200,6 +203,9 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         lblId.setText("--");
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
+        lblOrganization.setText("jLabel12");
+        getContentPane().add(lblOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -230,6 +236,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         String name=lblUsername.getText();
+        
         DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
         ArrayList<Request> requestList = CommunityRequestDao.getAssociatedRecords(name);
         Iterator<Request> itrRequest = requestList.iterator();
@@ -237,12 +244,19 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
             Request requestObj = itrRequest.next();
             dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
         }
+        
+        String name1 = lblUsername.getText();
+        User user = UserDao.getDetailInfo(name1);
+        String organization=user.getOrganization();
+        
+        ArrayList<User> driverList = UserDao.getAllAssociatedDriver(organization);
+        Iterator<User> itrDriver = driverList.iterator();
+        while(itrDriver.hasNext()){
+            User driverObj = itrDriver.next();
+            cbbAssignedObject.addItem(driverObj.getName());
+        }
+        
     }//GEN-LAST:event_formComponentShown
-
-    private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_cbbAssignedObjectItemStateChanged
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
@@ -256,6 +270,11 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
             new CarAdminWorkArea(name).setVisible(true);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbAssignedObjectItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -314,6 +333,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblLocation;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblOrganization;
     private javax.swing.JLabel lblPatientNumber;
     private javax.swing.JLabel lblRequestObject;
     private javax.swing.JLabel lblUsername;
