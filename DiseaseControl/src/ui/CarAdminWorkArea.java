@@ -7,7 +7,9 @@ package ui;
 import dao.CommunityRequestDao;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import model.Request;
 
 /**
@@ -26,6 +28,23 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     public CarAdminWorkArea(String name) {
         initComponents();
         lblUsername.setText(name);
+        btnSave.setEnabled(false);
+    }
+    
+    public void validateFields(){
+        String name = lblName.getText();
+        String date=lblDate.getText();
+        String patientNumber=lblPatientNumber.getText();
+        String victim=lblVictim.getText();
+        String location=lblLocation.getText();
+        String descriiption=lblDescription.getText();
+        String requestObject=(String)cbbAssignedObject.getSelectedItem();
+        
+        if(!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
+            btnSave.setEnabled(true);
+
+        else
+            btnSave.setEnabled(false);
     }
 
     /**
@@ -39,9 +58,9 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbbAssignedObject = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
@@ -54,12 +73,14 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblPatientNumber = new javax.swing.JLabel();
-        lblName1 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
         lblVictim = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
         lblDescription = new javax.swing.JLabel();
         lblRequestObject = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -74,7 +95,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
+                "ID", "Name", "Date", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,21 +107,31 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1296, 238));
 
-        jComboBox1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 296, -1));
+        cbbAssignedObject.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        cbbAssignedObject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "HotelHead" }));
+        cbbAssignedObject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbAssignedObjectItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(cbbAssignedObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 630, 296, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Car Head Work Area");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton1.setText("Save");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, -1, -1));
+        btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 700, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Assign to");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 580, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 630, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Hello,");
@@ -112,62 +143,87 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel3.setText("Patient Number");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("# of Potentially infected");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel5.setText("Location");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 460, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Description");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 450, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel8.setText("Request Object");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 490, -1, -1));
+        jLabel8.setText("Current Request Object");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 540, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel17.setText("Date");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setText("Name");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel10.setText("*Click a row to view request log");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, -1, -1));
 
         lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, -1, -1));
 
-        lblName1.setText("--");
-        getContentPane().add(lblName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+        lblName.setText("--");
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
 
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, -1, -1));
 
         lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 500, -1, -1));
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, -1, -1));
 
         lblLocation.setText("--");
-        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 410, -1, -1));
+        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 460, -1, -1));
 
         lblDescription.setText("--");
-        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, -1, -1));
+        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 500, -1, -1));
 
         lblRequestObject.setText("--");
-        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 490, -1, -1));
+        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 540, -1, -1));
+
+        jLabel11.setText("Request Log ID");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+
+        lblId.setText("--");
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
+        
+        int index = jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        String id =model.getValueAt(index,0).toString();
+        lblId.setText(id);
+        String date = model.getValueAt(index,2).toString();
+        lblDate.setText(date);
+        String name = model.getValueAt(index,1).toString();
+        lblName.setText(name);
+        String patientNumber = model.getValueAt(index,3).toString();
+        lblPatientNumber.setText(patientNumber);
+        String victim = model.getValueAt(index,4).toString();
+        lblVictim.setText(victim);
+        String location = model.getValueAt(index,5).toString();
+        lblLocation.setText(location);
+        String description = model.getValueAt(index,6).toString();
+        lblDescription.setText(description);
+        String requestObject = model.getValueAt(index, 7).toString();
+        lblRequestObject.setText(requestObject);
         
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -183,46 +239,65 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formComponentShown
 
+    private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbAssignedObjectItemStateChanged
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String id=lblId.getText();
+        String name = lblUsername.getText();
+        String assignedObject = cbbAssignedObject.getSelectedItem().toString();
+        int a =JOptionPane.showConfirmDialog(null,"Do you want to assign this request to "+assignedObject+"?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            CommunityRequestDao.assignTo(id,assignedObject);
+            setVisible(false);
+            new CarAdminWorkArea(name).setVisible(true);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CarAdminWorkArea().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(CarAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CarAdminWorkArea().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cbbAssignedObject;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -236,8 +311,9 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblLocation;
-    private javax.swing.JLabel lblName1;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPatientNumber;
     private javax.swing.JLabel lblRequestObject;
     private javax.swing.JLabel lblUsername;

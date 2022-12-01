@@ -288,7 +288,11 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         String name = lblUsername.getText();
         Request request = new Request();
         request.setName(txtName.getText());
-        request.setDate(dataChooser1.getDate().toString());
+        
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(dataChooser1.getDate());
+        request.setDate(date);
+                
         request.setPatientNumber(txtPatientNumber.getText());
         request.setVictim(txtVictim.getText());
         request.setLocation(txtLocation.getText());

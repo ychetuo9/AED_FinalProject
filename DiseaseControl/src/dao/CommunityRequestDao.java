@@ -69,4 +69,9 @@ public class CommunityRequestDao {
         String query ="delete from request where id='"+id+"'";
         DbOperations.setDataOrDelete(query, "Request Deleted Successfully!");
     }
+    
+    public static void assignTo(String id,String assignObject){
+        String query="update request set requestObject='"+assignObject+"' where id='"+id+"'";
+        DbOperations.setDataOrDelete(query, "Assigned this task to "+assignObject+" Successfully!");
+    }
 }

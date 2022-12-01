@@ -4,6 +4,12 @@
  */
 package ui;
 
+import dao.CommunityRequestDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
+import model.Request;
+
 /**
  *
  * @author yanyanchen
@@ -38,13 +44,15 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
@@ -106,11 +114,11 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
-                        .addComponent(lblUsername)))
+                        .addComponent(lblUsername))
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
@@ -141,74 +149,86 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
             //            setVisible(false);
             //            new ViewEncounter().setVisible(true);
             //        }
-        int index = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
-        String id = model.getValueAt(index,1).toString();
-        lblPatientId.setText(id);
-        String name = model.getValueAt(index,2).toString();
-        lblName.setText(name);
-        String gender = model.getValueAt(index,3).toString();
-        lblGender.setText(gender);
-        String age = model.getValueAt(index,4).toString();
-        lblAge.setText(age);
-        String email = model.getValueAt(index,5).toString();
-        lblEmail.setText(email);
-        String house = model.getValueAt(index,6).toString();
-        lblHouse.setText(house);
-        String community = model.getValueAt(index, 7).toString();
-        lblCommunity.setText(community);
-        String heartBeat = model.getValueAt(index, 8).toString();
-        lblHeartBeat.setText(heartBeat);
-        String bloodPressure = model.getValueAt(index, 9).toString();
-        lblPressure.setText(bloodPressure);
-        String diagnose = model.getValueAt(index, 10).toString();
-        lblDiagnose.setText(diagnose);
-        String docotor = model.getValueAt(index, 11).toString();
-        lblDoctor.setText(docotor);
-        String specialty = model.getValueAt(index, 12).toString();
-        lblSpecialty.setText(specialty);
-        String position = model.getValueAt(index, 13).toString();
-        lblPosition.setText(position);
-        String date = (String)model.getValueAt(index, 15).toString();
-        lblDate.setText(date);
-        String status = model.getValueAt(index, 14).toString();
-        lblStatus.setText(status);
+//        int index = jTable1.getSelectedRow();
+//        TableModel model=jTable1.getModel();
+//        String id = model.getValueAt(index,1).toString();
+//        lblPatientId.setText(id);
+//        String name = model.getValueAt(index,2).toString();
+//        lblName.setText(name);
+//        String gender = model.getValueAt(index,3).toString();
+//        lblGender.setText(gender);
+//        String age = model.getValueAt(index,4).toString();
+//        lblAge.setText(age);
+//        String email = model.getValueAt(index,5).toString();
+//        lblEmail.setText(email);
+//        String house = model.getValueAt(index,6).toString();
+//        lblHouse.setText(house);
+//        String community = model.getValueAt(index, 7).toString();
+//        lblCommunity.setText(community);
+//        String heartBeat = model.getValueAt(index, 8).toString();
+//        lblHeartBeat.setText(heartBeat);
+//        String bloodPressure = model.getValueAt(index, 9).toString();
+//        lblPressure.setText(bloodPressure);
+//        String diagnose = model.getValueAt(index, 10).toString();
+//        lblDiagnose.setText(diagnose);
+//        String docotor = model.getValueAt(index, 11).toString();
+//        lblDoctor.setText(docotor);
+//        String specialty = model.getValueAt(index, 12).toString();
+//        lblSpecialty.setText(specialty);
+//        String position = model.getValueAt(index, 13).toString();
+//        lblPosition.setText(position);
+//        String date = (String)model.getValueAt(index, 15).toString();
+//        lblDate.setText(date);
+//        String status = model.getValueAt(index, 14).toString();
+//        lblStatus.setText(status);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        String name=lblUsername.getText();
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<Request> requestList = CommunityRequestDao.getAssociatedRecords(name);
+        Iterator<Request> itrRequest = requestList.iterator();
+        while(itrRequest.hasNext()){
+            Request requestObj = itrRequest.next();
+            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HotelHeadWrokArea().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(HotelHeadWrokArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new HotelHeadWrokArea().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

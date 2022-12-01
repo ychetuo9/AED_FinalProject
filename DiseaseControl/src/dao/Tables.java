@@ -27,8 +27,11 @@ public class Tables {
             String carAdminDetails = "insert into user(name,email,mobileNumber,password,status,role) values('CarAdmin','caradmin@gmail.com','1234567890','admin','true','Car Admin')";
             DbOperations.setDataOrDelete(carAdminDetails, "Car Admin Detials Added Successfully");
             
-            String hospitalAdminDetails = "insert into user(name,email,mobileNumber,password,status,role) values('HospitalAdmin','hospitaladmin@gmail.com','1234567890','admin','true','Community Head')";
+            String hospitalAdminDetails = "insert into user(name,email,mobileNumber,password,status,role) values('HospitalAdmin','hospitaladmin@gmail.com','1234567890','admin','true','Hospital Admin')";
             DbOperations.setDataOrDelete(hospitalAdminDetails, "Hospital Admin Detials Added Successfully");
+            
+            String hotelHeadDetails = "insert into user(name,email,mobileNumber,password,status,role) values('HotelHead','hotelhead@gmail.com','1234567890','admin','true','Hotel Head')";
+            DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
             
             String requestTable="create table request(id int AUTO_INCREMENT primary key,name varchar(200),date varchar(200),patientNumber varchar(20),victim varchar(20),location varchar(200),description varchar(200),requestObject varchar(100),status varchar(20))";
             DbOperations.setDataOrDelete(requestTable, "Request Table Created Successfully");
