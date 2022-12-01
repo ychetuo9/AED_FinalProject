@@ -42,7 +42,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         String descriiption=lblDescription.getText();
         String requestObject=(String)cbbAssignedObject.getSelectedItem();
         
-        if(!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
+        if(!name.equals("--")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
             btnSave.setEnabled(true);
 
         else

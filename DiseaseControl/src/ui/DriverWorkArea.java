@@ -199,11 +199,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
                 lblNamePropertyChange(evt);
             }
         });
-        lblName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                lblNameKeyReleased(evt);
-            }
-        });
         getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
 
         lblDate.setText("--");
@@ -310,6 +305,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
                 int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
                 if(a==0){
                 CommunityRequestDao.changeStatus(id,"reject",name);
+                CommunityRequestDao.rejectRequest(id,"CarAdmin");
                 setVisible(false);
                 new DriverWorkArea(name).setVisible(true);
             }
@@ -361,11 +357,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
-
-    private void lblNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblNameKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_lblNameKeyReleased
 
     private void lblNamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblNamePropertyChange
         // TODO add your handling code here:

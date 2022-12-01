@@ -42,7 +42,8 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         String location=lblLocation.getText();
         String descriiption=lblDescription.getText();
         
-        if(!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")){
+//        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
+        if(!name.equals("--")){
             btnAccept.setEnabled(true);
             btnReject.setEnabled(true);
             btnProcess.setEnabled(true);
@@ -302,6 +303,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"reject",name);
+                CommunityRequestDao.rejectRequest(id,"HospitalAdmin");
                 setVisible(false);
                 new DriverWorkArea(name).setVisible(true);
             }
