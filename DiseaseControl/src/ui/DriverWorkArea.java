@@ -113,12 +113,27 @@ public class DriverWorkArea extends javax.swing.JFrame {
         getContentPane().add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 600, -1, -1));
 
         btnReject.setText("Reject");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, -1, -1));
 
         btnProcess.setText("Process");
+        btnProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcessActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, -1, -1));
 
         btnComplete.setText("Complete");
+        btnComplete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 600, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -219,7 +234,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
         }else{
                 int a =JOptionPane.showConfirmDialog(null,"Do you want to accept this request?","Select",JOptionPane.YES_NO_OPTION);
                 if(a==0){
-                CommunityRequestDao.changeStatus(id,"accept");
+                CommunityRequestDao.changeStatus(id,"accept",name);
                 setVisible(false);
                 new CarAdminWorkArea(name).setVisible(true);
             }
@@ -238,6 +253,84 @@ public class DriverWorkArea extends javax.swing.JFrame {
             dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        // TODO add your handling code here:
+        String id=lblId.getText();
+        String name = lblUsername.getText();
+        
+        Request request = CommunityRequestDao.getDetailInfo(id);
+        String status=request.getStatus();
+        
+        if(status.contains("reject")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("accept")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("process")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("complete")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+                int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
+                if(a==0){
+                CommunityRequestDao.changeStatus(id,"reject",name);
+                setVisible(false);
+                new CarAdminWorkArea(name).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_btnRejectActionPerformed
+
+    private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
+        // TODO add your handling code here:
+        String id=lblId.getText();
+        String name = lblUsername.getText();
+        
+        Request request = CommunityRequestDao.getDetailInfo(id);
+        String status=request.getStatus();
+        
+        if(status.contains("reject")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("accept")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("process")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("complete")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+                int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
+                if(a==0){
+                CommunityRequestDao.changeStatus(id,"process",name);
+                setVisible(false);
+                new CarAdminWorkArea(name).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_btnProcessActionPerformed
+
+    private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
+        // TODO add your handling code here:
+        String id=lblId.getText();
+        String name = lblUsername.getText();
+        
+        Request request = CommunityRequestDao.getDetailInfo(id);
+        String status=request.getStatus();
+        
+        if(status.contains("reject")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("accept")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("process")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("complete")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+                int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
+                if(a==0){
+                CommunityRequestDao.changeStatus(id,"complete",name);
+                setVisible(false);
+                new CarAdminWorkArea(name).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_btnCompleteActionPerformed
 
     /**
      * @param args the command line arguments

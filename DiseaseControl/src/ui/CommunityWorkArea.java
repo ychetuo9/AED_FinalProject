@@ -334,9 +334,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
         }
         
-        
-        
-        
     }//GEN-LAST:event_formComponentShown
 
     /**

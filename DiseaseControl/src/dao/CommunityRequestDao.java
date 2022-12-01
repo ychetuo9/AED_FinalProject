@@ -98,8 +98,8 @@ public class CommunityRequestDao {
         return request;
     }
     
-    public static void changeStatus(String id,String status){
-        String query = "update user set status='"+status+"' where id='"+id+"'";
-        DbOperations.setDataOrDelete(query, status+"the task successfully!");
+    public static void changeStatus(String id,String status,String name){
+        String query = "update user set status='"+status+" by "+name+"' where id='"+id+"'";
+        DbOperations.setDataOrDelete(query, name+" "+status+"the task successfully!");
     }
 }
