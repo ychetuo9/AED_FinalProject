@@ -47,10 +47,17 @@ public class CommunityRequestDao {
         try{
             ResultSet rs = DbOperations.getData("select *from request where requestObject='"+name+"'");
             while(rs.next()){
-                Request city = new Request();
-                city.setId(rs.getString("id"));
-                city.setName(rs.getString("name"));
-                arrayList.add(city);
+                Request request = new Request();
+                request.setId(rs.getString("id"));
+                request.setName(rs.getString("name"));
+                request.setDate(rs.getString("date"));
+                request.setPatientNumber(rs.getString("patientNumber"));
+                request.setVictim(rs.getString("victim"));
+                request.setLocation(rs.getString("location"));
+                request.setDescription(rs.getString("description"));
+                request.setRequestObject(rs.getString("requestObject"));
+                request.setStatus(rs.getString("status"));
+                arrayList.add(request);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

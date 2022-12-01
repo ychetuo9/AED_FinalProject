@@ -159,12 +159,11 @@
           <Font name="Helvetica Neue" size="14" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value=" "/>
-            <StringItem index="1" value="Hotel"/>
-            <StringItem index="2" value="Car"/>
-            <StringItem index="3" value="Hospital"/>
-            <StringItem index="4" value="Vaccinate"/>
+          <StringArray count="4">
+            <StringItem index="0" value="Hotel"/>
+            <StringItem index="1" value="CarAdmin"/>
+            <StringItem index="2" value="Hospital"/>
+            <StringItem index="3" value="Vaccinate"/>
           </StringArray>
         </Property>
       </Properties>
