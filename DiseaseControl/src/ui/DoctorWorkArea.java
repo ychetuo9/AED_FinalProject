@@ -69,13 +69,17 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btnAccept = new javax.swing.JButton();
+        btnReject = new javax.swing.JButton();
+        btnProcess = new javax.swing.JButton();
+        btnComplete = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         lblPatientNumber = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
@@ -83,12 +87,8 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         lblLocation = new javax.swing.JLabel();
         lblDescription = new javax.swing.JLabel();
         lblRequestObject = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        btnAccept = new javax.swing.JButton();
-        btnReject = new javax.swing.JButton();
-        btnProcess = new javax.swing.JButton();
-        btnComplete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -127,61 +127,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         jLabel1.setText("Doctor Work Area");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 0, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel3.setText("Patient Number");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("# of Potentially infected");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel5.setText("Location");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 420, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel9.setText("Description");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel10.setText("Current Request Object");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel17.setText("Date");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel11.setText("Name");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, -1, -1));
-
-        lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, -1, -1));
-
-        lblName.setText("--");
-        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, -1, -1));
-
-        lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
-
-        lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
-
-        lblLocation.setText("--");
-        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 420, -1, -1));
-
-        lblDescription.setText("--");
-        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 460, -1, -1));
-
-        lblRequestObject.setText("--");
-        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 500, -1, -1));
-
-        jLabel12.setText("Request Log ID");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
-
-        lblId.setText("--");
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, -1, -1));
-
         btnAccept.setText("Accept");
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,6 +158,66 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 600, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel3.setText("Patient Number");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setText("# of Potentially infected");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel5.setText("Location");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 460, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel13.setText("Description");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel9.setText("Current Request Object");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 540, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel17.setText("Date");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel10.setText("Name");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, -1, -1));
+
+        lblPatientNumber.setText("--");
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, -1, -1));
+
+        lblName.setText("--");
+        lblName.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lblNamePropertyChange(evt);
+            }
+        });
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
+
+        lblDate.setText("--");
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, -1, -1));
+
+        lblVictim.setText("--");
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, -1, -1));
+
+        lblLocation.setText("--");
+        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 460, -1, -1));
+
+        lblDescription.setText("--");
+        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 500, -1, -1));
+
+        lblRequestObject.setText("--");
+        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 540, -1, -1));
+
+        jLabel11.setText("Request Log ID");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+
+        lblId.setText("--");
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -253,8 +258,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        validateFields();
-        
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -281,8 +284,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
-        validateFields();
-        
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -309,8 +310,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
-        validateFields();
-        
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -335,7 +334,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
-        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -355,6 +353,11 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
+
+    private void lblNamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblNamePropertyChange
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_lblNamePropertyChange
 
     /**
      * @param args the command line arguments
@@ -399,7 +402,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

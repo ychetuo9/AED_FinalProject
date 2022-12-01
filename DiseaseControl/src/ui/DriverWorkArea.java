@@ -44,7 +44,8 @@ public class DriverWorkArea extends javax.swing.JFrame {
         String location=lblLocation.getText();
         String descriiption=lblDescription.getText();
         
-        if(!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")){
+//        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
+        if(!name.equals("--")){
             btnAccept.setEnabled(true);
             btnReject.setEnabled(true);
             btnProcess.setEnabled(true);
@@ -193,6 +194,16 @@ public class DriverWorkArea extends javax.swing.JFrame {
         getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, -1, -1));
 
         lblName.setText("--");
+        lblName.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lblNamePropertyChange(evt);
+            }
+        });
+        lblName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblNameKeyReleased(evt);
+            }
+        });
         getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
 
         lblDate.setText("--");
@@ -242,7 +253,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -282,7 +292,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
-        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -309,7 +318,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
-        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -334,7 +342,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
-        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -354,6 +361,16 @@ public class DriverWorkArea extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
+
+    private void lblNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblNameKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_lblNameKeyReleased
+
+    private void lblNamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblNamePropertyChange
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_lblNamePropertyChange
 
     /**
      * @param args the command line arguments
