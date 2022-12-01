@@ -30,6 +30,31 @@ public class DriverWorkArea extends javax.swing.JFrame {
     public DriverWorkArea(String name) {
         initComponents();
         lblUsername.setText(name);
+        btnAccept.setEnabled(false);
+        btnReject.setEnabled(false);
+        btnProcess.setEnabled(false);
+        btnComplete.setEnabled(false);
+    }
+    
+    public void validateFields(){
+        String name = lblName.getText();
+        String date=lblDate.getText();
+        String patientNumber=lblPatientNumber.getText();
+        String victim=lblVictim.getText();
+        String location=lblLocation.getText();
+        String descriiption=lblDescription.getText();
+        
+        if(!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")){
+            btnAccept.setEnabled(true);
+            btnReject.setEnabled(true);
+            btnProcess.setEnabled(true);
+            btnComplete.setEnabled(true);
+        }else{
+            btnAccept.setEnabled(false);
+            btnReject.setEnabled(false);
+            btnProcess.setEnabled(false);
+            btnComplete.setEnabled(false);
+        }
     }
 
     /**
@@ -88,7 +113,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
+                "ID", "Name", "Date", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -217,6 +242,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
+        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -236,7 +262,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
                 if(a==0){
                 CommunityRequestDao.changeStatus(id,"accept",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAcceptActionPerformed
@@ -256,6 +282,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
+        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -275,13 +302,14 @@ public class DriverWorkArea extends javax.swing.JFrame {
                 if(a==0){
                 CommunityRequestDao.changeStatus(id,"reject",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnRejectActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
+        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -290,8 +318,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
         
         if(status.contains("reject")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("accept")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else if(status.contains("process")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else if(status.contains("complete")){
@@ -301,13 +327,14 @@ public class DriverWorkArea extends javax.swing.JFrame {
                 if(a==0){
                 CommunityRequestDao.changeStatus(id,"process",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
+        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
         
@@ -316,10 +343,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
         
         if(status.contains("reject")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("accept")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("process")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else if(status.contains("complete")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else{
@@ -327,7 +350,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
                 if(a==0){
                 CommunityRequestDao.changeStatus(id,"complete",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed

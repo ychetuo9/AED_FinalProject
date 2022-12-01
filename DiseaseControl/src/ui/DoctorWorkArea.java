@@ -28,8 +28,33 @@ public class DoctorWorkArea extends javax.swing.JFrame {
     public DoctorWorkArea(String name) {
         initComponents();
         lblUsername.setText(name);
+        btnAccept.setEnabled(false);
+        btnReject.setEnabled(false);
+        btnProcess.setEnabled(false);
+        btnComplete.setEnabled(false);
     }
 
+    public void validateFields(){
+        String name = lblName.getText();
+        String date=lblDate.getText();
+        String patientNumber=lblPatientNumber.getText();
+        String victim=lblVictim.getText();
+        String location=lblLocation.getText();
+        String descriiption=lblDescription.getText();
+        
+        if(!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")){
+            btnAccept.setEnabled(true);
+            btnReject.setEnabled(true);
+            btnProcess.setEnabled(true);
+            btnComplete.setEnabled(true);
+        }else{
+            btnAccept.setEnabled(false);
+            btnReject.setEnabled(false);
+            btnProcess.setEnabled(false);
+            btnComplete.setEnabled(false);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,10 +69,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        btnAccept = new javax.swing.JButton();
-        btnReject = new javax.swing.JButton();
-        btnProcess = new javax.swing.JButton();
-        btnComplete = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -64,6 +85,10 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         lblRequestObject = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
+        btnAccept = new javax.swing.JButton();
+        btnReject = new javax.swing.JButton();
+        btnProcess = new javax.swing.JButton();
+        btnComplete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -101,38 +126,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Doctor Work Area");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 0, -1, -1));
-
-        btnAccept.setText("Accept");
-        btnAccept.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcceptActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, -1, -1));
-
-        btnReject.setText("Reject");
-        btnReject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRejectActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, -1, -1));
-
-        btnProcess.setText("Process");
-        btnProcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcessActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 560, -1, -1));
-
-        btnComplete.setText("Complete");
-        btnComplete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 560, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel3.setText("Patient Number");
@@ -189,6 +182,38 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         lblId.setText("--");
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, -1, -1));
 
+        btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 600, -1, -1));
+
+        btnReject.setText("Reject");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, -1, -1));
+
+        btnProcess.setText("Process");
+        btnProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcessActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, -1, -1));
+
+        btnComplete.setText("Complete");
+        btnComplete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 600, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,6 +253,8 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
+        validateFields();
+        
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -247,13 +274,15 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"accept",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
+        validateFields();
+        
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -273,13 +302,15 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"reject",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnRejectActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
+        validateFields();
+        
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -288,8 +319,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
         if(status.contains("reject")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("accept")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else if(status.contains("process")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else if(status.contains("complete")){
@@ -299,13 +328,14 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"process",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
+        validateFields();
         String id=lblId.getText();
         String name = lblUsername.getText();
 
@@ -314,10 +344,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
         if(status.contains("reject")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("accept")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("process")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else if(status.contains("complete")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else{
@@ -325,7 +351,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"complete",name);
                 setVisible(false);
-                new CarAdminWorkArea(name).setVisible(true);
+                new DriverWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
