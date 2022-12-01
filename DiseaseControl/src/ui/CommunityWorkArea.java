@@ -9,6 +9,7 @@ import dao.UserDao;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Request;
@@ -233,32 +234,44 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         
+//        int index = jTable1.getSelectedRow();
+//        TableModel model=jTable1.getModel();
+//        String date = model.getValueAt(index,2).toString();
+//        dataChooser1.setDateFormatString(date);
+//        String name = model.getValueAt(index,1).toString();
+//        txtName.setText(name);
+//        String patientNumber = model.getValueAt(index,3).toString();
+//        txtPatientNumber.setText(patientNumber);
+//        String victim = model.getValueAt(index,4).toString();
+//        txtVictim.setText(victim);
+//        String location = model.getValueAt(index,5).toString();
+//        txtLocation.setText(location);
+//        String description = model.getValueAt(index,6).toString();
+//        txtDescription.setText(description);
+//        String requestObject = model.getValueAt(index, 7).toString();
+//        
+//        cbbRequestObject.removeAllItems();
+//        cbbRequestObject.addItem(requestObject);
+//        
+//        ArrayList<User> usernameList = UserDao.getAllUsername();
+//        Iterator<User> usernameItr=usernameList.iterator();
+//        while(usernameItr.hasNext()){
+//            User userObj = usernameItr.next();
+//            if(!userObj.getName().equals(requestObject))
+//                cbbRequestObject.addItem(userObj.getName());
+//        }
+        String name = lblUsername.getText();
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
-        String date = model.getValueAt(index,2).toString();
-        dataChooser1.setDateFormatString(date);
-        String name = model.getValueAt(index,1).toString();
-        txtName.setText(name);
-        String patientNumber = model.getValueAt(index,3).toString();
-        txtPatientNumber.setText(patientNumber);
-        String victim = model.getValueAt(index,4).toString();
-        txtVictim.setText(victim);
-        String location = model.getValueAt(index,5).toString();
-        txtLocation.setText(location);
-        String description = model.getValueAt(index,6).toString();
-        txtDescription.setText(description);
-        String requestObject = model.getValueAt(index, 7).toString();
-        
-        cbbRequestObject.removeAllItems();
-        cbbRequestObject.addItem(requestObject);
-        
-        ArrayList<User> usernameList = UserDao.getAllUsername();
-        Iterator<User> usernameItr=usernameList.iterator();
-        while(usernameItr.hasNext()){
-            User userObj = usernameItr.next();
-            if(!userObj.getName().equals(requestObject))
-                cbbRequestObject.addItem(userObj.getName());
+        String id = model.getValueAt(index,0).toString();
+        int a = JOptionPane.showConfirmDialog(null,"Do you want to delete this request?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            CommunityRequestDao.delete(id);
+            setVisible(false);
+            new CommunityWorkArea(name).setVisible(true);
         }
+
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void dataChooser1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dataChooser1KeyReleased

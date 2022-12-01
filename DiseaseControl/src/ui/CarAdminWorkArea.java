@@ -4,6 +4,12 @@
  */
 package ui;
 
+import dao.CommunityRequestDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
+import model.Request;
+
 /**
  *
  * @author yanyanchen
@@ -39,6 +45,21 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblPatientNumber = new javax.swing.JLabel();
+        lblName1 = new javax.swing.JLabel();
+        lblDate = new javax.swing.JLabel();
+        lblVictim = new javax.swing.JLabel();
+        lblLocation = new javax.swing.JLabel();
+        lblDescription = new javax.swing.JLabel();
+        lblRequestObject = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -46,13 +67,11 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
@@ -65,125 +84,103 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1296, 238));
+
         jComboBox1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 296, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Car Head Work Area");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton1.setText("Save");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Assign to");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 580, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Hello,");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, -1, -1));
 
         lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblUsername.setText("--");
+        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 30, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(127, 127, 127)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblUsername)
-                .addGap(226, 226, 226))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(380, 380, 380)
-                        .addComponent(jLabel6)
-                        .addGap(93, 93, 93)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(lblUsername)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(jButton1)
-                .addContainerGap(170, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel3.setText("Patient Number");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setText("# of Potentially infected");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel5.setText("Location");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel7.setText("Description");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 450, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel8.setText("Request Object");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 490, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel17.setText("Date");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel9.setText("Name");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel10.setText("*Click a row to view request log");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, -1, -1));
+
+        lblPatientNumber.setText("--");
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
+
+        lblName1.setText("--");
+        getContentPane().add(lblName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+
+        lblDate.setText("--");
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
+
+        lblVictim.setText("--");
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 500, -1, -1));
+
+        lblLocation.setText("--");
+        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 410, -1, -1));
+
+        lblDescription.setText("--");
+        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, -1, -1));
+
+        lblRequestObject.setText("--");
+        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 490, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        //        int index = jTable1.getSelectedRow();
-        //        TableModel model=jTable1.getModel();
-        //        String id = (String)model.getValueAt(index,0).toString();
-        //        String status = model.getValueAt(index,14).toString();
-        //        if(status.equals("true"))
-        //            status="false";
-        //        else
-        //            status="true";
-        //        int a =JOptionPane.showConfirmDialog(null,"Do you want to change status of "+id+"?","Select",JOptionPane.YES_NO_OPTION);
-        //        if(a==0){
-            //            EncounterDao.changeStatus(id,status);
-            //            setVisible(false);
-            //            new ViewEncounter().setVisible(true);
-            //        }
-        int index = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
-        String id = model.getValueAt(index,1).toString();
-        lblPatientId.setText(id);
-        String name = model.getValueAt(index,2).toString();
-        lblName.setText(name);
-        String gender = model.getValueAt(index,3).toString();
-        lblGender.setText(gender);
-        String age = model.getValueAt(index,4).toString();
-        lblAge.setText(age);
-        String email = model.getValueAt(index,5).toString();
-        lblEmail.setText(email);
-        String house = model.getValueAt(index,6).toString();
-        lblHouse.setText(house);
-        String community = model.getValueAt(index, 7).toString();
-        lblCommunity.setText(community);
-        String heartBeat = model.getValueAt(index, 8).toString();
-        lblHeartBeat.setText(heartBeat);
-        String bloodPressure = model.getValueAt(index, 9).toString();
-        lblPressure.setText(bloodPressure);
-        String diagnose = model.getValueAt(index, 10).toString();
-        lblDiagnose.setText(diagnose);
-        String docotor = model.getValueAt(index, 11).toString();
-        lblDoctor.setText(docotor);
-        String specialty = model.getValueAt(index, 12).toString();
-        lblSpecialty.setText(specialty);
-        String position = model.getValueAt(index, 13).toString();
-        lblPosition.setText(position);
-        String date = (String)model.getValueAt(index, 15).toString();
-        lblDate.setText(date);
-        String status = model.getValueAt(index, 14).toString();
-        lblStatus.setText(status);
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+        String name=lblUsername.getText();
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<Request> requestList = CommunityRequestDao.getAssociatedRecords(name);
+        Iterator<Request> itrRequest = requestList.iterator();
+        while(itrRequest.hasNext()){
+            Request requestObj = itrRequest.next();
+            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
+        }
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -225,10 +222,25 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblLocation;
+    private javax.swing.JLabel lblName1;
+    private javax.swing.JLabel lblPatientNumber;
+    private javax.swing.JLabel lblRequestObject;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblVictim;
     // End of variables declaration//GEN-END:variables
 }
