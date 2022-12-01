@@ -71,7 +71,35 @@ public class CommunityRequestDao {
     }
     
     public static void assignTo(String id,String assignObject){
-        String query="update request set requestObject='"+assignObject+"' where id='"+id+"'";
+        String query="update request set requestObject='"+assignObject+"', status='Forward to "+assignObject+"' where id='"+id+"'";
         DbOperations.setDataOrDelete(query, "Assigned this task to "+assignObject+" Successfully!");
+    }
+    
+    public static Request getDetailInfo(String id){
+        Request request = null;
+        try{
+            ResultSet rs = DbOperations.getData("select *from user request id='"+id+"'");
+            while(rs.next()){
+                request = new Request();
+//                name,date,patientNumber,victim,location,description,requestObject,status
+                request.setId(rs.getString("id"));
+                request.setName(rs.getString("name"));
+                request.setDate(rs.getString("date"));
+                request.setPatientNumber(rs.getString("patientNumber"));
+                request.setVictim(rs.getString("victim"));
+                request.setLocation(rs.getString("location"));
+                request.setDescription(rs.getString("description"));
+                request.setRequestObject(rs.getString("requestObject"));
+                request.setStatus(rs.getString("status"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        return request;
+    }
+    
+    public static void changeStatus(String id,String status){
+        String query = "update user set status='"+status+"' where id='"+id+"'";
+        DbOperations.setDataOrDelete(query, status+"the task successfully!");
     }
 }

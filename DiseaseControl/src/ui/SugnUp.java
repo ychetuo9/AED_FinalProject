@@ -145,7 +145,7 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 280, -1));
 
         cbbOrganization.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car Company", "Car Company 1" }));
+        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car Company", "Car Company 1", "Boston Hospital" }));
         cbbOrganization.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cbbOrganizationKeyReleased(evt);

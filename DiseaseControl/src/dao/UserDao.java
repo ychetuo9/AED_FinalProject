@@ -35,30 +35,31 @@ public class UserDao {
         return user;
     }
     
-//    public static ArrayList<User> getAllRecords(String email){
-//        ArrayList<User> arrayList = new ArrayList<>();
-//        try{
-//            ResultSet rs3 = DbOperations.getData("select *from user where email like '%"+email+"%'");
-//            while(rs3.next()){
-//                User user = new User();
-//                user.setId(rs3.getString("id"));
-//                user.setName(rs3.getString("name"));
-//                user.setEmail(rs3.getString("email"));
-//                user.setPassword(rs3.getString("password"));
-//                user.setCity(rs3.getString("city"));
-//                user.setOrganization(rs3.getString("organization"));
-//                user.setRole(rs3.getString("role"));
-//                user.setCarrier(rs3.getString("carrier"));
-//                user.setMobileNumber(rs3.getString("mobileNumber"));
-//                user.setLocation(rs3.getString("location"));
-//                user.setStatus(rs3.getString("status"));
-//                
-//            }
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-//        return arrayList;
-//    }
+    public static ArrayList<User> getAllRecords(String name){
+        ArrayList<User> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs3 = DbOperations.getData("select *from user where name like '%"+name+"%'");
+            while(rs3.next()){
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+                
+                arrayList.add(user);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
     
     public static ArrayList<User> getAllRecords(){
         ArrayList<User> arrayList = new ArrayList<>();
@@ -113,6 +114,32 @@ public class UserDao {
         return arrayList;
     }
     
+    
+    public static ArrayList<User> getAllAssociatedDoctor(String organization){
+        ArrayList<User> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs1 = DbOperations.getData("select *from user where role='Doctor' and organization='"+organization+"'");
+            while(rs1.next()){
+                User user = new User();
+                user.setId(rs1.getString("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setPassword(rs1.getString("password"));
+                user.setCity(rs1.getString("city"));
+                user.setOrganization(rs1.getString("organization"));
+                user.setRole(rs1.getString("role"));
+                user.setCarrier(rs1.getString("carrier"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setLocation(rs1.getString("location"));
+                user.setStatus(rs1.getString("status"));
+                
+                arrayList.add(user);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
 
     
     public static User getDetailInfo(String name){
@@ -140,8 +167,8 @@ public class UserDao {
         return user;
     }
     
-    public static void changeStatus(String email,String status){
-        String query = "update user set status='"+status+"' where email='"+email+"'";
+    public static void changeStatus(String name,String status){
+        String query = "update user set status='"+status+"' where name='"+name+"'";
         DbOperations.setDataOrDelete(query, "Status Changed Successfully!");
     }
     

@@ -5,8 +5,14 @@
 package ui;
 
 import dao.CommunityRequestDao;
+import dao.UserDao;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import model.Request;
+import model.User;
 
 /**
  *
@@ -19,11 +25,29 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
      */
     public HospitalAdminWorkArea() {
         initComponents();
+        btnSave.setEnabled(false);
     }
     
     public HospitalAdminWorkArea(String name) {
         initComponents();
         lblUsername.setText(name);
+        btnSave.setEnabled(false);
+    }
+    
+    public void validateFields(){
+        String name = lblName.getText();
+        String date=lblDate.getText();
+        String patientNumber=lblPatientNumber.getText();
+        String victim=lblVictim.getText();
+        String location=lblLocation.getText();
+        String descriiption=lblDescription.getText();
+        String requestObject=(String)cbbAssignedObject.getSelectedItem();
+        
+        if(!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
+            btnSave.setEnabled(true);
+
+        else
+            btnSave.setEnabled(false);
     }
 
     /**
@@ -62,14 +86,16 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         lblId = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
@@ -97,6 +123,11 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 15, -1, -1));
 
         cbbAssignedObject.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        cbbAssignedObject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbAssignedObjectItemStateChanged(evt);
+            }
+        });
         getContentPane().add(cbbAssignedObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, 296, -1));
 
         btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -208,6 +239,35 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
             new CarAdminWorkArea(name).setVisible(true);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbAssignedObjectItemStateChanged
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        String name=lblUsername.getText();
+        
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<Request> requestList = CommunityRequestDao.getAssociatedRecords(name);
+        Iterator<Request> itrRequest = requestList.iterator();
+        while(itrRequest.hasNext()){
+            Request requestObj = itrRequest.next();
+            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
+        }
+        
+        String name1 = lblUsername.getText();
+        User user = UserDao.getDetailInfo(name1);
+        String organization=user.getOrganization();
+        
+        ArrayList<User> driverList = UserDao.getAllAssociatedDoctor(organization);
+        Iterator<User> itrDriver = driverList.iterator();
+        while(itrDriver.hasNext()){
+            User driverObj = itrDriver.next();
+            cbbAssignedObject.addItem(driverObj.getName());
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

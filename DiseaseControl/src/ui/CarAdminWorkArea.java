@@ -83,7 +83,6 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         lblRequestObject = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        lblOrganization = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -202,9 +201,6 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
         lblId.setText("--");
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
-
-        lblOrganization.setText("jLabel12");
-        getContentPane().add(lblOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -333,7 +329,6 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblLocation;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblOrganization;
     private javax.swing.JLabel lblPatientNumber;
     private javax.swing.JLabel lblRequestObject;
     private javax.swing.JLabel lblUsername;
