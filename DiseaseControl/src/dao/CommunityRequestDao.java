@@ -14,8 +14,8 @@ import model.Request;
  * @author yanyanchen
  */
 public class CommunityRequestDao {
-    public static void save(Request request){
-        String query = "insert into request(name,) values('"+request.getName()+"')";
+    public static void saveRequest(Request request){
+        String query = "insert into request(name,date,patientNumber,victim,location,description,requestObject,status) values('"+request.getName()+"','"+request.getDate()+"','"+request.getPatientNumber()+"','"+request.getVictim()+"','"+request.getLocation()+"','"+request.getDescription()+"','"+request.getRequestObject()+"','"+request.getStatus()+"')";
         DbOperations.setDataOrDelete(query, "Request Added Successfully!");
     }
     
@@ -24,10 +24,17 @@ public class CommunityRequestDao {
         try{
             ResultSet rs = DbOperations.getData("select *from request");
             while(rs.next()){
-                Request city = new Request();
-                city.setId(rs.getString("id"));
-                city.setName(rs.getString("name"));
-                arrayList.add(city);
+                Request request = new Request();
+                request.setId(rs.getString("id"));
+                request.setName(rs.getString("name"));
+                request.setDate(rs.getString("date"));
+                request.setPatientNumber(rs.getString("patientNumber"));
+                request.setVictim(rs.getString("victim"));
+                request.setLocation(rs.getString("location"));
+                request.setDescription(rs.getString("description"));
+                request.setRequestObject(rs.getString("requestObject"));
+                request.setStatus(rs.getString("status"));
+                arrayList.add(request);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

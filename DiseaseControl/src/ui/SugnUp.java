@@ -14,6 +14,8 @@ import model.User;
 public class SugnUp extends javax.swing.JFrame {
     public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
     public String mobileNumberPattern="^[0-9]*$"; 
+    public String namePattern="^\\w+$";
+    
     /**
      * Creates new form SugnUp
      */
@@ -77,6 +79,8 @@ public class SugnUp extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         cbbRole = new javax.swing.JComboBox<>();
+        lblRight1 = new javax.swing.JLabel();
+        lblWrongHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -219,6 +223,19 @@ public class SugnUp extends javax.swing.JFrame {
         });
         getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
 
+        lblRight1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblRight1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
+        lblRight1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                lblRight1ComponentShown(evt);
+            }
+        });
+        getContentPane().add(lblRight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, -1, -1));
+
+        lblWrongHint.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        lblWrongHint.setText("Your input should consist of numbers, letters or underscores ");
+        getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, -1, 20));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,6 +271,15 @@ public class SugnUp extends javax.swing.JFrame {
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
         validateFields();
+        String name=txtName.getText();
+        if(!name.matches(namePattern)){
+            lblWrongHint.setVisible(true);
+            lblRight.setVisible(false);
+        }else{
+            lblWrongHint.setVisible(false);
+            lblRight.setVisible(true);
+        }
+        
     }//GEN-LAST:event_txtNameKeyReleased
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
@@ -295,6 +321,10 @@ public class SugnUp extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_formComponentShown
+
+    private void lblRight1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lblRight1ComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblRight1ComponentShown
 
     /**
      * @param args the command line arguments
@@ -349,6 +379,8 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblRight;
+    private javax.swing.JLabel lblRight1;
+    private javax.swing.JLabel lblWrongHint;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtMobileNumber;

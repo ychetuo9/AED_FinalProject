@@ -4,9 +4,12 @@
  */
 package ui;
 
+import dao.CommunityRequestDao;
 import dao.UserDao;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Request;
 import model.User;
@@ -18,7 +21,6 @@ import model.User;
 public class CommunityWorkArea extends javax.swing.JFrame {
 
     public String numberPattern="^[0-9]*$";
-    public String namePattern="^\\w+$";
     
     /**
      * Creates new form CommunityWorkArea
@@ -26,16 +28,14 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     public CommunityWorkArea() {
         initComponents();
         btnSave.setEnabled(false);
-        lblRight.setVisible(false);
-        lblWrongHint.setVisible(false);
+        
     }
     
     public CommunityWorkArea(String name) {
         initComponents();
         btnSave.setEnabled(false);
         lblUsername.setText(name);
-        lblRight.setVisible(false);
-        lblWrongHint.setVisible(false);
+        
     }
     
     public void validateFields(){
@@ -50,12 +50,13 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         String requestObject=(String)cbbRequestObject.getSelectedItem();
         
         
-        if(name.matches(namePattern)&&victim.matches(numberPattern)&&patientNumber.matches(numberPattern)&&!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
+        if(victim.matches(numberPattern)&&patientNumber.matches(numberPattern)&&!name.equals("")&&!date.equals("")&&!patientNumber.equals("")&&!victim.equals("")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
             btnSave.setEnabled(true);
 
         else
             btnSave.setEnabled(false);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,10 +88,13 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        lblRight = new javax.swing.JLabel();
-        lblWrongHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -172,7 +176,7 @@ public class CommunityWorkArea extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Date", "Name", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
+                "ID", "Name", "Date", "Patient Num", "Victim", "Location", "Description", "Request Object", "Status"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,21 +224,8 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 296, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jLabel8.setText("User Name");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
-
-        lblRight.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
-        lblRight.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                lblRightComponentShown(evt);
-            }
-        });
-        getContentPane().add(lblRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, -1, -1));
-
-        lblWrongHint.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        lblWrongHint.setText("Your input should consist of numbers, letters or underscores ");
-        getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 250, -1, 20));
+        jLabel8.setText("Name");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -244,9 +235,9 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
-        String date = model.getValueAt(index,1).toString();
+        String date = model.getValueAt(index,2).toString();
         dataChooser1.setDateFormatString(date);
-        String name = model.getValueAt(index,2).toString();
+        String name = model.getValueAt(index,1).toString();
         txtName.setText(name);
         String patientNumber = model.getValueAt(index,3).toString();
         txtPatientNumber.setText(patientNumber);
@@ -278,14 +269,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
         validateFields();
-        String name=txtName.getText();
-        if(!name.matches(namePattern)){
-            lblWrongHint.setVisible(true);
-            lblRight.setVisible(false);
-        }else{
-            lblWrongHint.setVisible(false);
-            lblRight.setVisible(true);
-        }
     }//GEN-LAST:event_txtNameKeyReleased
 
     private void txtPatientNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPatientNumberKeyReleased
@@ -315,12 +298,32 @@ public class CommunityWorkArea extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        String name = lblUsername.getText();
+        Request request = new Request();
+        request.setName(txtName.getText());
+        request.setDate(dataChooser1.getDate().toString());
+        request.setPatientNumber(txtPatientNumber.getText());
+        request.setVictim(txtVictim.getText());
+        request.setLocation(txtLocation.getText());
+        request.setDescription(txtDescription.getText());
+        request.setRequestObject(cbbRequestObject.getSelectedItem().toString());
+        request.setStatus("Undone");
         
+        CommunityRequestDao.saveRequest(request);
+        setVisible(false);
+        new CommunityWorkArea(name).setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void lblRightComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lblRightComponentShown
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblRightComponentShown
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<Request> requestList = CommunityRequestDao.getAllRecords();
+        Iterator<Request> itrRequest = requestList.iterator();
+        while(itrRequest.hasNext()){
+            Request requestObj = itrRequest.next();
+            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -360,7 +363,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbbRequestObject;
-    private com.toedter.calendar.JDateChooser dataChooser;
     private com.toedter.calendar.JDateChooser dataChooser1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -374,9 +376,7 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblRight;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JLabel lblWrongHint;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtName;
