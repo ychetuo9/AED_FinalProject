@@ -87,6 +87,32 @@ public class UserDao {
         return arrayList;
     }
     
+    public static ArrayList<User> getRequestObject(){
+        ArrayList<User> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs0 = DbOperations.getData("select *from user where role='Car Admin' or role='Hospital Admin' or role='Hotel Head' or role='Vaccinate Head'");
+            while(rs0.next()){
+                User user = new User();
+                user.setId(rs0.getString("id"));
+                user.setName(rs0.getString("name"));
+                user.setEmail(rs0.getString("email"));
+                user.setPassword(rs0.getString("password"));
+                user.setCity(rs0.getString("city"));
+                user.setOrganization(rs0.getString("organization"));
+                user.setRole(rs0.getString("role"));
+                user.setCarrier(rs0.getString("carrier"));
+                user.setMobileNumber(rs0.getString("mobileNumber"));
+                user.setLocation(rs0.getString("location"));
+                user.setStatus(rs0.getString("status"));
+                
+                arrayList.add(user);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    
     
     public static ArrayList<User> getAllAssociatedDriver(String organization){
         ArrayList<User> arrayList = new ArrayList<>();

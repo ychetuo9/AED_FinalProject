@@ -305,7 +305,7 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        ArrayList<User> userList = UserDao.getAllRecords();
+        ArrayList<User> userList = UserDao.getRequestObject();
         Iterator<User> itrUser = userList.iterator();
         while(itrUser.hasNext()){
             User userObj = itrUser.next();
