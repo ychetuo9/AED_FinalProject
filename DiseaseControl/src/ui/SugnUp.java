@@ -4,7 +4,13 @@
  */
 package ui;
 
+import dao.CityDao;
+import dao.EnterpriseDao;
 import dao.UserDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import model.City;
+import model.Enterprise;
 import model.User;
 
 /**
@@ -21,7 +27,7 @@ public class SugnUp extends javax.swing.JFrame {
      */
     public SugnUp() {
         initComponents();
-        btnSignUp.setEnabled(false);
+        btnLogin.setEnabled(false);
         lblRight.setVisible(false);
         lblRight1.setVisible(false);
         lblWrongHint.setVisible(false);
@@ -37,9 +43,9 @@ public class SugnUp extends javax.swing.JFrame {
         String carrier=(String)cbbCarrier.getSelectedItem();
         String location=txtLocation.getText();
         if(name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
-            btnSignUp.setEnabled(true);
+            btnLogin.setEnabled(true);
         else
-            btnSignUp.setEnabled(false);
+            btnLogin.setEnabled(false);
     }
     
     public void clear(){
@@ -47,7 +53,7 @@ public class SugnUp extends javax.swing.JFrame {
         txtEmail.setText("");
         txtMobileNumber.setText("");
         txtPassword.setText("");
-        btnSignUp.setEnabled(false);
+        btnLogin.setEnabled(false);
     }
 
     /**
@@ -75,7 +81,7 @@ public class SugnUp extends javax.swing.JFrame {
         txtMobileNumber = new javax.swing.JTextField();
         txtLocation = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        btnSignUp = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         cbbCity = new javax.swing.JComboBox<>();
         lblRight = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
@@ -83,6 +89,7 @@ public class SugnUp extends javax.swing.JFrame {
         cbbRole = new javax.swing.JComboBox<>();
         lblRight1 = new javax.swing.JLabel();
         lblWrongHint = new javax.swing.JLabel();
+        btnSignUp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -145,19 +152,19 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 280, -1));
 
         cbbOrganization.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car Company", "Car Company 1", "Boston Hospital" }));
-        cbbOrganization.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cbbOrganizationKeyReleased(evt);
+        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cbbOrganization.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbOrganizationItemStateChanged(evt);
             }
         });
         getContentPane().add(cbbOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 280, -1));
 
         cbbCarrier.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCarrier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AT&T", "Verizon", "T-Mobile" }));
-        cbbCarrier.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cbbCarrierKeyReleased(evt);
+        cbbCarrier.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbCarrierItemStateChanged(evt);
             }
         });
         getContentPane().add(cbbCarrier, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 280, -1));
@@ -182,20 +189,20 @@ public class SugnUp extends javax.swing.JFrame {
         jButton1.setText("Set Location");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
 
-        btnSignUp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnSignUp.setText("Sign Up");
-        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUpActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 600, 153, -1));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 660, 280, -1));
 
         cbbCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "HongKong" }));
-        cbbCity.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cbbCityKeyReleased(evt);
+        cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cbbCity.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbCityItemStateChanged(evt);
             }
         });
         getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 280, -1));
@@ -218,9 +225,9 @@ public class SugnUp extends javax.swing.JFrame {
 
         cbbRole.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Car Admin", "Hospital Admin", "Hotel Head", "Vaccinate Head", "Driver", "Doctor", "Community Head" }));
-        cbbRole.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cbbRoleKeyReleased(evt);
+        cbbRole.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbRoleItemStateChanged(evt);
             }
         });
         getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
@@ -238,6 +245,15 @@ public class SugnUp extends javax.swing.JFrame {
         lblWrongHint.setText("Your input should consist of numbers, letters or underscores ");
         getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, -1, 20));
 
+        btnSignUp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnSignUp.setText("Sign Up");
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUpActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 610, 280, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,23 +268,14 @@ public class SugnUp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEmailKeyReleased
 
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        User user = new User();
-        user.setName(txtName.getText());
-        user.setEmail(txtEmail.getText());
-        user.setPassword(txtPassword.getText());
-        user.setCity((String)cbbCity.getSelectedItem());
-        user.setOrganization((String)cbbOrganization.getSelectedItem());
-        user.setRole((String)cbbRole.getSelectedItem());
-        user.setCarrier((String)cbbCity.getSelectedItem());
-        user.setMobileNumber(txtMobileNumber.getText());
-        user.setLocation(txtLocation.getText());
-        user.setStatus("false");
         
-        UserDao.save(user);
-        clear();
-    }//GEN-LAST:event_btnSignUpActionPerformed
+            this.dispose();
+            Login in=new Login();
+            in.setVisible(true);
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
@@ -289,22 +296,6 @@ public class SugnUp extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_txtPasswordKeyReleased
 
-    private void cbbCityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbCityKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_cbbCityKeyReleased
-
-    private void cbbOrganizationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbOrganizationKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-        
-    }//GEN-LAST:event_cbbOrganizationKeyReleased
-
-    private void cbbCarrierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbCarrierKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_cbbCarrierKeyReleased
-
     private void txtMobileNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMobileNumberKeyReleased
         // TODO add your handling code here:
         validateFields();
@@ -315,55 +306,54 @@ public class SugnUp extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_txtLocationKeyReleased
 
-    private void cbbRoleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbRoleKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbbRoleKeyReleased
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+        ArrayList<Enterprise> enterpriseList = EnterpriseDao.getAllRecords();
+        Iterator<Enterprise> itrEnterprise = enterpriseList.iterator();
+        while(itrEnterprise.hasNext()){
+            Enterprise enterpriseObj = itrEnterprise.next();
+            cbbOrganization.addItem(enterpriseObj.getName());
+        }
         
+        ArrayList<City> cityList = CityDao.getAllRecords();
+        Iterator<City> itrCity = cityList.iterator();
+        while(itrCity.hasNext()){
+            City cityObj = itrCity.next();
+            cbbCity.addItem(cityObj.getName());
+        }
     }//GEN-LAST:event_formComponentShown
 
     private void lblRight1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lblRight1ComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_lblRight1ComponentShown
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void cbbCityItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbCityItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbCityItemStateChanged
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SugnUp().setVisible(true);
-            }
-        });
-    }
+    private void cbbOrganizationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbOrganizationItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbOrganizationItemStateChanged
+
+    private void cbbRoleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbRoleItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbRoleItemStateChanged
+
+    private void cbbCarrierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbCarrierItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbCarrierItemStateChanged
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSignUpActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JComboBox<String> cbbCarrier;
     private javax.swing.JComboBox<String> cbbCity;
