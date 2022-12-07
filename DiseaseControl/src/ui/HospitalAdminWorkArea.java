@@ -45,7 +45,6 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         
         if(!name.equals("--")&&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
             btnSave.setEnabled(true);
-
         else
             btnSave.setEnabled(false);
     }
@@ -124,6 +123,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 15, -1, -1));
 
         cbbAssignedObject.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        cbbAssignedObject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         cbbAssignedObject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbAssignedObjectItemStateChanged(evt);
