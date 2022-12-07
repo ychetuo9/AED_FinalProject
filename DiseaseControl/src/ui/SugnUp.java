@@ -27,7 +27,7 @@ public class SugnUp extends javax.swing.JFrame {
      */
     public SugnUp() {
         initComponents();
-        btnLogin.setEnabled(false);
+        lblHint.setVisible(false);
         lblRight.setVisible(false);
         lblRight1.setVisible(false);
         lblWrongHint.setVisible(false);
@@ -43,9 +43,9 @@ public class SugnUp extends javax.swing.JFrame {
         String carrier=(String)cbbCarrier.getSelectedItem();
         String location=txtLocation.getText();
         if(name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
-            btnLogin.setEnabled(true);
+            lblHint.setVisible(true);
         else
-            btnLogin.setEnabled(false);
+            lblHint.setVisible(false);
     }
     
     public void clear(){
@@ -53,7 +53,7 @@ public class SugnUp extends javax.swing.JFrame {
         txtEmail.setText("");
         txtMobileNumber.setText("");
         txtPassword.setText("");
-        btnLogin.setEnabled(false);
+        lblHint.setVisible(false);
     }
 
     /**
@@ -81,7 +81,6 @@ public class SugnUp extends javax.swing.JFrame {
         txtMobileNumber = new javax.swing.JTextField();
         txtLocation = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        btnLogin = new javax.swing.JButton();
         cbbCity = new javax.swing.JComboBox<>();
         lblRight = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
@@ -90,6 +89,8 @@ public class SugnUp extends javax.swing.JFrame {
         lblRight1 = new javax.swing.JLabel();
         lblWrongHint = new javax.swing.JLabel();
         btnSignUp = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        lblHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -189,15 +190,6 @@ public class SugnUp extends javax.swing.JFrame {
         jButton1.setText("Set Location");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
 
-        btnLogin.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnLogin.setText("Login");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 660, 280, -1));
-
         cbbCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         cbbCity.addItemListener(new java.awt.event.ItemListener() {
@@ -254,6 +246,18 @@ public class SugnUp extends javax.swing.JFrame {
         });
         getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 610, 280, -1));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 25, -1, -1));
+
+        lblHint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblHint.setText("You are all set !!!");
+        getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 150, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -267,15 +271,6 @@ public class SugnUp extends javax.swing.JFrame {
             lblRight.setVisible(false);
         }
     }//GEN-LAST:event_txtEmailKeyReleased
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        
-            this.dispose();
-            Login in=new Login();
-            in.setVisible(true);
-        
-    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
@@ -349,17 +344,38 @@ public class SugnUp extends javax.swing.JFrame {
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
+        User user = new User();
+        user.setName(txtName.getText());
+        user.setEmail(txtEmail.getText());
+        user.setPassword(txtPassword.getText());
+        user.setCity(cbbCity.getSelectedItem().toString());
+        user.setOrganization(cbbOrganization.getSelectedItem().toString());
+        user.setRole(cbbRole.getSelectedItem().toString()); 
+        user.setCarrier(cbbCarrier.getSelectedItem().toString());
+        user.setMobileNumber(txtMobileNumber.getText());
+        user.setLocation(txtLocation.getText());
+        
+        UserDao.save(user);
+        setVisible(false);
+        new SugnUp().setVisible(true);
     }//GEN-LAST:event_btnSignUpActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Login in=new Login();
+        in.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JComboBox<String> cbbCarrier;
     private javax.swing.JComboBox<String> cbbCity;
     private javax.swing.JComboBox<String> cbbOrganization;
     private javax.swing.JComboBox<String> cbbRole;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -370,6 +386,7 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblHint;
     private javax.swing.JLabel lblRight;
     private javax.swing.JLabel lblRight1;
     private javax.swing.JLabel lblWrongHint;

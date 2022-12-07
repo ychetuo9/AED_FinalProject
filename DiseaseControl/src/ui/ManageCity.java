@@ -169,7 +169,7 @@ public class ManageCity extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-                String userName=lblUsername.getText();
+        String userName=lblUsername.getText();
 
         City city = new City();
         city.setName(txtName.getText());
