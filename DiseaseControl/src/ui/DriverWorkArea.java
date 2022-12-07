@@ -38,11 +38,6 @@ public class DriverWorkArea extends javax.swing.JFrame {
     
     public void validateFields(){
         String name = lblName.getText();
-        String date=lblDate.getText();
-        String patientNumber=lblPatientNumber.getText();
-        String victim=lblVictim.getText();
-        String location=lblLocation.getText();
-        String descriiption=lblDescription.getText();
         
 //        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
         if(!name.equals("--")){
@@ -221,6 +216,11 @@ public class DriverWorkArea extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
 
         lblId.setText("--");
+        lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lblIdPropertyChange(evt);
+            }
+        });
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
@@ -381,6 +381,11 @@ public class DriverWorkArea extends javax.swing.JFrame {
             in.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_lblIdPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

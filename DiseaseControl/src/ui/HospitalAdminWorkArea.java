@@ -36,14 +36,9 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
     
     public void validateFields(){
         String name = lblName.getText();
-        String date=lblDate.getText();
-        String patientNumber=lblPatientNumber.getText();
-        String victim=lblVictim.getText();
-        String location=lblLocation.getText();
-        String descriiption=lblDescription.getText();
         String requestObject=(String)cbbAssignedObject.getSelectedItem();
         
-        if(!name.equals("--")&&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("")&&!descriiption.equals("")&&!requestObject.equals(" "))
+        if(!name.equals("--")&& !requestObject.equals(" "))
             btnSave.setEnabled(true);
         else
             btnSave.setEnabled(false);
@@ -201,6 +196,11 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, -1, -1));
 
         lblId.setText("--");
+        lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lblIdPropertyChange(evt);
+            }
+        });
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
@@ -287,6 +287,11 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
             in.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_lblIdPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
