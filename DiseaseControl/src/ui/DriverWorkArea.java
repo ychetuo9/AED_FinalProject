@@ -336,7 +336,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
         }else if(status.contains("complete")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else{
-                int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
+                int a =JOptionPane.showConfirmDialog(null,"Do you want to process this request?","Select",JOptionPane.YES_NO_OPTION);
                 if(a==0){
                 CommunityRequestDao.changeStatus(id,"process",name);
                 setVisible(false);
@@ -358,7 +358,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
         }else if(status.contains("complete")){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else{
-                int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
+                int a =JOptionPane.showConfirmDialog(null,"Do you want to complete this request?","Select",JOptionPane.YES_NO_OPTION);
                 if(a==0){
                 CommunityRequestDao.changeStatus(id,"complete",name);
                 setVisible(false);

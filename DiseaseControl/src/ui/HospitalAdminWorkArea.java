@@ -112,7 +112,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 78, 1296, 238));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
-        jLabel1.setText("Hoapital Admin Work Area");
+        jLabel1.setText("Hospital Admin Work Area");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 15, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N

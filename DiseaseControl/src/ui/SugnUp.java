@@ -358,6 +358,9 @@ public class SugnUp extends javax.swing.JFrame {
         UserDao.save(user);
         setVisible(false);
         new SugnUp().setVisible(true);
+        
+        
+        
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
