@@ -125,7 +125,6 @@ public class SugnUp extends javax.swing.JFrame {
         btnSignUp = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblHint = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -298,14 +297,6 @@ public class SugnUp extends javax.swing.JFrame {
         lblHint.setText("You are all set !!!");
         getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 150, -1));
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 510, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -453,65 +444,6 @@ public class SugnUp extends javax.swing.JFrame {
            });
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        // Create a TileFactoryInfo for OSM
-        TileFactoryInfo info = new OSMTileFactoryInfo();
-        DefaultTileFactory tileFactory = new DefaultTileFactory(info);
-        tileFactory.setThreadPoolSize(8);
-
-        // Setup local file cache
-        File cacheDir = new File(System.getProperty("user.home") + File.separator + ".jxmapviewer2");
-        tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
-
-        // Setup JXMapViewer
-        JXMapViewer mapViewer = new JXMapViewer();
-        mapViewer.setTileFactory(tileFactory);
-
-        GeoPosition frankfurt = new GeoPosition(45,  7, 0, -73, 41, 0);
-        // GeoPosition wiesbaden = new GeoPosition(50,  5, 0, 8, 14, 0);
-        // GeoPosition mainz     = new GeoPosition(50,  0, 0, 8, 16, 0);
-        // GeoPosition darmstadt = new GeoPosition(49, 52, 0, 8, 39, 0);
-        // GeoPosition offenbach = new GeoPosition(50,  6, 0, 8, 46, 0);
-
-        // Set the focus
-        mapViewer.setZoom(10);
-        mapViewer.setAddressLocation(frankfurt);
-
-        // Add interactions
-        MouseInputListener mia = new PanMouseInputListener(mapViewer);
-        mapViewer.addMouseListener(mia);
-        mapViewer.addMouseMotionListener(mia);
-        mapViewer.addMouseListener(new CenterMapListener(mapViewer));
-        mapViewer.addMouseWheelListener(new ZoomMouseWheelListenerCenter(mapViewer));
-        mapViewer.addKeyListener(new PanKeyListener(mapViewer));
-
-        // Create waypoints from the geo-positions
-        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-                new SwingWaypoint("Frankfurt", frankfurt)));
-                // new SwingWaypoint("Wiesbaden", wiesbaden),
-                // new SwingWaypoint("Mainz", mainz),
-                // new SwingWaypoint("Darmstadt", darmstadt),
-                // new SwingWaypoint("Offenbach", offenbach)));
-
-        // Set the overlay painter
-        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-        swingWaypointPainter.setWaypoints(waypoints);
-        mapViewer.setOverlayPainter(swingWaypointPainter);
-
-        // Add the JButtons to the map viewer
-        for (SwingWaypoint w : waypoints) {
-            mapViewer.add(w.getButton());
-        }
-
-        // Display the viewer in a JFrame
-        JFrame frame = new JFrame("JXMapviewer2 Example 7");
-        frame.getContentPane().add(mapViewer);
-        frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSignUp;
@@ -521,7 +453,6 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbRole;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

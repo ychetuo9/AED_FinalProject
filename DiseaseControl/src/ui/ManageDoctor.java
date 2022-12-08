@@ -152,21 +152,15 @@ public class ManageDoctor extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        String userName = lblUsername.getText();
+        String name = lblUsername.getText();
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
-        String name = model.getValueAt(index,1).toString();
-        String status = model.getValueAt(index,7).toString();
-        if(status.equals("true")){
-            status="false";
-        }else{
-            status="true";
-        }
-        int a =JOptionPane.showConfirmDialog(null,"Do you want to change status of "+name+"?","Select",JOptionPane.YES_NO_OPTION);
+        String id = model.getValueAt(index,0).toString();
+        int a = JOptionPane.showConfirmDialog(null,"Do you want to delete this request?","Select",JOptionPane.YES_NO_OPTION);
         if(a==0){
-            UserDao.changeStatus(name,status);
+            UserDao.delete(id);
             setVisible(false);
-            new ManageDoctor(userName).setVisible(true);
+            new ManageDoctor(name).setVisible(true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
