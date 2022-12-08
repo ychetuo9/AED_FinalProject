@@ -250,5 +250,10 @@ public class UserDao {
         String query = "update user set status='" + status + "' where name='" + name + "'";
         DbOperations.setDataOrDelete(query, "Status Changed Successfully!");
     }
+    
+    public static void delete(String id){
+        String query ="delete from user where id='"+id+"'";
+        DbOperations.setDataOrDelete(query, "Request Deleted Successfully!");
+    }
 
 }
