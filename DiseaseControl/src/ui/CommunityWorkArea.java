@@ -4,12 +4,24 @@
  */
 package ui;
 
+import com.teamdev.jxbrowser.browser.Browser;
+import com.teamdev.jxbrowser.engine.Engine;
+import com.teamdev.jxbrowser.engine.EngineOptions;
+import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
+import com.teamdev.jxbrowser.view.swing.BrowserView;
 import dao.CommunityRequestDao;
 import dao.UserDao;
+import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Request;
@@ -82,7 +94,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         dataChooser1 = new com.toedter.calendar.JDateChooser();
@@ -90,6 +101,7 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -195,10 +207,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1296, 140));
 
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jButton2.setText("Set Location");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 450, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Hello,");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1023, 39, -1, -1));
@@ -237,6 +245,15 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jButton2.setText("Set Location");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 450, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -340,6 +357,41 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             in.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        EngineOptions options =
+        EngineOptions.newBuilder(HARDWARE_ACCELERATED).licenseKey("1BNDHFSC1G4QUT3RPDBJ1TFBPZ7IT5G91LF01P391VE36M8YIJT021UVPOMGMWAPNHM14R").build();
+        Engine engine = Engine.newInstance(options);
+        Browser browser = engine.newBrowser();
+
+        SwingUtilities.invokeLater(() -> {
+            // Creating Swing component for rendering web content
+            // loaded in the given Browser instance.
+            BrowserView view = BrowserView.newInstance(browser);
+
+            // Creating and displaying Swing app frame.
+            JFrame frame = new JFrame("Hello World");
+            // Close Engine and onClose app window
+            frame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    engine.close();
+                }
+            });
+            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            JTextField addressBar = new JTextField("file:///C://Users//oooo//Documents//GitHub//INFO5100_FinalProject//map4.html");
+            addressBar.addActionListener(e ->
+                browser.navigation().loadUrl(addressBar.getText()));
+            frame.add(addressBar, BorderLayout.NORTH);
+            frame.add(view, BorderLayout.CENTER);
+            frame.setSize(800, 500);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+
+            browser.navigation().loadUrl(addressBar.getText());
+        });
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

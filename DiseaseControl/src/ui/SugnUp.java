@@ -12,7 +12,40 @@ import java.util.Iterator;
 import model.City;
 import model.Enterprise;
 import model.User;
-import util.GmailUtil;
+import java.io.File;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
+
+import com.teamdev.jxbrowser.browser.Browser;
+import com.teamdev.jxbrowser.engine.Engine;
+import com.teamdev.jxbrowser.engine.EngineOptions;
+import com.teamdev.jxbrowser.view.swing.BrowserView;
+import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+
+import javax.swing.event.MouseInputListener;
+
+import org.jxmapviewer.JXMapViewer;
+import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.cache.FileBasedLocalCache;
+import org.jxmapviewer.input.CenterMapListener;
+import org.jxmapviewer.input.PanKeyListener;
+import org.jxmapviewer.input.PanMouseInputListener;
+import org.jxmapviewer.input.ZoomMouseWheelListenerCenter;
+import org.jxmapviewer.viewer.DefaultTileFactory;
+import org.jxmapviewer.viewer.GeoPosition;
+import org.jxmapviewer.viewer.TileFactoryInfo;
+import org.jxmapviewer.viewer.WaypointPainter;
+
+import map.*;
 
 /**
  *
@@ -189,6 +222,11 @@ public class SugnUp extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton1.setText("Set Location");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
 
         cbbCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -371,6 +409,41 @@ public class SugnUp extends javax.swing.JFrame {
         Login in=new Login();
         in.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        EngineOptions options =
+                EngineOptions.newBuilder(HARDWARE_ACCELERATED).licenseKey("1BNDHFSC1G4QUT3RPDBJ1TFBPZ7IT5G91LF01P391VE36M8YIJT021UVPOMGMWAPNHM14R").build();
+        Engine engine = Engine.newInstance(options);
+        Browser browser = engine.newBrowser();
+
+        SwingUtilities.invokeLater(() -> {
+            // Creating Swing component for rendering web content
+            // loaded in the given Browser instance.
+            BrowserView view = BrowserView.newInstance(browser);
+
+            // Creating and displaying Swing app frame.
+            JFrame frame = new JFrame("Hello World");
+            // Close Engine and onClose app window
+            frame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    engine.close();
+                }
+            });
+            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            JTextField addressBar = new JTextField("file:///C://Users//oooo//Documents//GitHub//INFO5100_FinalProject//map4.html");
+            addressBar.addActionListener(e ->
+                    browser.navigation().loadUrl(addressBar.getText()));
+            frame.add(addressBar, BorderLayout.NORTH);
+            frame.add(view, BorderLayout.CENTER);
+            frame.setSize(800, 500);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+
+            browser.navigation().loadUrl(addressBar.getText());
+           });
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
