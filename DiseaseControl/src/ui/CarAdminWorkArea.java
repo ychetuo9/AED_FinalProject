@@ -345,10 +345,6 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         mapViewer.setTileFactory(tileFactory);
 
         GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
-        // GeoPosition wiesbaden = new GeoPosition(50,  5, 0, 8, 14, 0);
-        // GeoPosition mainz     = new GeoPosition(50,  0, 0, 8, 16, 0);
-        // GeoPosition darmstadt = new GeoPosition(49, 52, 0, 8, 39, 0);
-        // GeoPosition offenbach = new GeoPosition(50,  6, 0, 8, 46, 0);
 
         // Set the focus
         mapViewer.setZoom(10);
@@ -364,11 +360,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
         // Create waypoints from the geo-positions
         Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-                new SwingWaypoint("Frankfurt", frankfurt)));
-                // new SwingWaypoint("Wiesbaden", wiesbaden),
-                // new SwingWaypoint("Mainz", mainz),
-                // new SwingWaypoint("Darmstadt", darmstadt),
-                // new SwingWaypoint("Offenbach", offenbach)));
+                new SwingWaypoint("Request", frankfurt)));
 
         // Set the overlay painter
         WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
@@ -381,7 +373,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         }
 
         // Display the viewer in a JFrame
-        JFrame frame = new JFrame("JXMapviewer2 Example 7");
+        JFrame frame = new JFrame("Current Request");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
