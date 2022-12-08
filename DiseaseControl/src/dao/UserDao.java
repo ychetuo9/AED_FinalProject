@@ -138,6 +138,34 @@ public class UserDao {
         }
         return arrayList;
     }
+    
+    public static ArrayList<User> searchDriver(String organization, String name) {
+        ArrayList<User> arrayList = new ArrayList<>();
+        try {
+            ResultSet rs1 = DbOperations.getData("select *from user where role='Driver' and organization='" + organization + "'");
+            while (rs1.next()) {
+                if (rs1.getString("name").equals(name)) {
+                    User user = new User();
+                    user.setId(rs1.getString("id"));
+                    user.setName(rs1.getString("name"));
+                    user.setEmail(rs1.getString("email"));
+                    user.setPassword(rs1.getString("password"));
+                    user.setCity(rs1.getString("city"));
+                    user.setOrganization(rs1.getString("organization"));
+                    user.setRole(rs1.getString("role"));
+                    user.setCarrier(rs1.getString("carrier"));
+                    user.setMobileNumber(rs1.getString("mobileNumber"));
+                    user.setLocation(rs1.getString("location"));
+                    user.setStatus(rs1.getString("status"));
+
+                    arrayList.add(user);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
 
     public static ArrayList<User> getAllAssociatedDoctor(String organization) {
         ArrayList<User> arrayList = new ArrayList<>();
