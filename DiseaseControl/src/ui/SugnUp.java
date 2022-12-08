@@ -4,8 +4,28 @@
  */
 package ui;
 
+import dao.CityDao;
+import dao.EnterpriseDao;
 import dao.UserDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import model.City;
+import model.Enterprise;
 import model.User;
+
+import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
+
+import com.teamdev.jxbrowser.browser.Browser;
+import com.teamdev.jxbrowser.engine.Engine;
+import com.teamdev.jxbrowser.engine.EngineOptions;
+import com.teamdev.jxbrowser.view.swing.BrowserView;
+import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -14,13 +34,17 @@ import model.User;
 public class SugnUp extends javax.swing.JFrame {
     public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
     public String mobileNumberPattern="^[0-9]*$"; 
+    public String namePattern="^\\w+$";
+    
     /**
      * Creates new form SugnUp
      */
     public SugnUp() {
         initComponents();
-        btnSignUp.setEnabled(false);
+        lblHint.setVisible(false);
         lblRight.setVisible(false);
+        lblRight1.setVisible(false);
+        lblWrongHint.setVisible(false);
     }
     
     public void validateFields(){
@@ -32,10 +56,10 @@ public class SugnUp extends javax.swing.JFrame {
         String organization=(String)cbbOrganization.getSelectedItem();
         String carrier=(String)cbbCarrier.getSelectedItem();
         String location=txtLocation.getText();
-        if(!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
-            btnSignUp.setEnabled(true);
+        if(name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
+            lblHint.setVisible(true);
         else
-            btnSignUp.setEnabled(false);
+            lblHint.setVisible(false);
     }
     
     public void clear(){
@@ -43,7 +67,7 @@ public class SugnUp extends javax.swing.JFrame {
         txtEmail.setText("");
         txtMobileNumber.setText("");
         txtPassword.setText("");
-        btnSignUp.setEnabled(false);
+        lblHint.setVisible(false);
     }
 
     /**
@@ -71,12 +95,23 @@ public class SugnUp extends javax.swing.JFrame {
         txtMobileNumber = new javax.swing.JTextField();
         txtLocation = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        btnSignUp = new javax.swing.JButton();
         cbbCity = new javax.swing.JComboBox<>();
         lblRight = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+        jLabel10 = new javax.swing.JLabel();
+        cbbRole = new javax.swing.JComboBox<>();
+        lblRight1 = new javax.swing.JLabel();
+        lblWrongHint = new javax.swing.JLabel();
+        btnSignUp = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        lblHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -84,8 +119,8 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel2.setText("Name");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
+        jLabel2.setText("User Name");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel3.setText("Email");
@@ -97,23 +132,23 @@ public class SugnUp extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel5.setText("City");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel6.setText("Organization");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
+        jLabel6.setText("Enterprise");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Carrier");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel8.setText("MobileNumber");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setText("Location");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 550, -1, -1));
 
         txtName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -132,22 +167,22 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 280, -1));
 
         cbbOrganization.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        cbbOrganization.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cbbOrganizationKeyReleased(evt);
+        cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cbbOrganization.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbOrganizationItemStateChanged(evt);
             }
         });
-        getContentPane().add(cbbOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 280, -1));
+        getContentPane().add(cbbOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 280, -1));
 
         cbbCarrier.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCarrier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AT&T", "Verizon", "T-Mobile" }));
-        cbbCarrier.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cbbCarrierKeyReleased(evt);
+        cbbCarrier.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbCarrierItemStateChanged(evt);
             }
         });
-        getContentPane().add(cbbCarrier, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 280, -1));
+        getContentPane().add(cbbCarrier, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 280, -1));
 
         txtMobileNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtMobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -155,7 +190,7 @@ public class SugnUp extends javax.swing.JFrame {
                 txtMobileNumberKeyReleased(evt);
             }
         });
-        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 280, -1));
+        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 280, -1));
 
         txtLocation.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtLocation.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -163,29 +198,25 @@ public class SugnUp extends javax.swing.JFrame {
                 txtLocationKeyReleased(evt);
             }
         });
-        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 280, -1));
+        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, 280, -1));
 
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton1.setText("Set Location");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 480, -1, -1));
-
-        btnSignUp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnSignUp.setText("Sign Up");
-        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUpActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 153, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
 
         cbbCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        cbbCity.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cbbCityKeyReleased(evt);
+        cbbCity.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbCityItemStateChanged(evt);
             }
         });
-        getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 280, -1));
+        getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 280, -1));
 
         lblRight.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
@@ -198,6 +229,53 @@ public class SugnUp extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 280, -1));
+
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel10.setText("Role");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, -1, -1));
+
+        cbbRole.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Car Admin", "Hospital Admin", "Hotel Head", "Vaccinate Head", "Driver", "Doctor", "Community Head" }));
+        cbbRole.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbRoleItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
+
+        lblRight1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblRight1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
+        lblRight1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                lblRight1ComponentShown(evt);
+            }
+        });
+        getContentPane().add(lblRight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, -1, -1));
+
+        lblWrongHint.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        lblWrongHint.setText("Your input should consist of numbers, letters or underscores ");
+        getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, -1, 20));
+
+        btnSignUp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnSignUp.setText("Sign Up");
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUpActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 610, 280, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 25, -1, -1));
+
+        lblHint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblHint.setText("You are all set !!!");
+        getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -213,49 +291,24 @@ public class SugnUp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEmailKeyReleased
 
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        // TODO add your handling code here:
-        User user = new User();
-        user.setName(txtName.getText());
-        user.setEmail(txtEmail.getText());
-        user.setMobileNumber(txtMobileNumber.getText());
-        user.setPassword(txtPassword.getText());
-        user.setCity((String)cbbCity.getSelectedItem());
-        user.setCarrier((String)cbbCity.getSelectedItem());
-        user.setOrganization((String)cbbOrganization.getSelectedItem());
-        user.setCarrier((String)cbbCarrier.getSelectedItem());
-        user.setLocation(txtLocation.getText());
-        user.setStatus("false");
-        
-        UserDao.save(user);
-        clear();
-    }//GEN-LAST:event_btnSignUpActionPerformed
-
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
         validateFields();
+        String name=txtName.getText();
+        if(!name.matches(namePattern)){
+            lblWrongHint.setVisible(true);
+            lblRight1.setVisible(false);
+        }else{
+            lblWrongHint.setVisible(false);
+            lblRight1.setVisible(true);
+        }
+        
     }//GEN-LAST:event_txtNameKeyReleased
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
         // TODO add your handling code here:
         validateFields();
     }//GEN-LAST:event_txtPasswordKeyReleased
-
-    private void cbbCityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbCityKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_cbbCityKeyReleased
-
-    private void cbbOrganizationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbOrganizationKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-        
-    }//GEN-LAST:event_cbbOrganizationKeyReleased
-
-    private void cbbCarrierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbbCarrierKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_cbbCarrierKeyReleased
 
     private void txtMobileNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMobileNumberKeyReleased
         // TODO add your handling code here:
@@ -267,48 +320,121 @@ public class SugnUp extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_txtLocationKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SugnUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        ArrayList<Enterprise> enterpriseList = EnterpriseDao.getAllRecords();
+        Iterator<Enterprise> itrEnterprise = enterpriseList.iterator();
+        while(itrEnterprise.hasNext()){
+            Enterprise enterpriseObj = itrEnterprise.next();
+            cbbOrganization.addItem(enterpriseObj.getName());
         }
-        //</editor-fold>
+        
+        ArrayList<City> cityList = CityDao.getAllRecords();
+        Iterator<City> itrCity = cityList.iterator();
+        while(itrCity.hasNext()){
+            City cityObj = itrCity.next();
+            cbbCity.addItem(cityObj.getName());
+        }
+    }//GEN-LAST:event_formComponentShown
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SugnUp().setVisible(true);
-            }
-        });
-    }
+    private void lblRight1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lblRight1ComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblRight1ComponentShown
+
+    private void cbbCityItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbCityItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbCityItemStateChanged
+
+    private void cbbOrganizationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbOrganizationItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbOrganizationItemStateChanged
+
+    private void cbbRoleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbRoleItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbRoleItemStateChanged
+
+    private void cbbCarrierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbCarrierItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbCarrierItemStateChanged
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
+        User user = new User();
+        user.setName(txtName.getText());
+        user.setEmail(txtEmail.getText());
+        user.setPassword(txtPassword.getText());
+        user.setCity(cbbCity.getSelectedItem().toString());
+        user.setOrganization(cbbOrganization.getSelectedItem().toString());
+        user.setRole(cbbRole.getSelectedItem().toString()); 
+        user.setCarrier(cbbCarrier.getSelectedItem().toString());
+        user.setMobileNumber(txtMobileNumber.getText());
+        user.setLocation(txtLocation.getText());
+        
+        UserDao.save(user);
+        setVisible(false);
+        new SugnUp().setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_btnSignUpActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Login in=new Login();
+        in.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        EngineOptions options =
+                EngineOptions.newBuilder(HARDWARE_ACCELERATED).licenseKey("1BNDHFSC1G4QUT3RPDBJ1TFBPZ7IT5G91LF01P391VE36M8YIJT021UVPOMGMWAPNHM14R").build();
+        Engine engine = Engine.newInstance(options);
+        Browser browser = engine.newBrowser();
+
+        SwingUtilities.invokeLater(() -> {
+            // Creating Swing component for rendering web content
+            // loaded in the given Browser instance.
+            BrowserView view = BrowserView.newInstance(browser);
+
+            // Creating and displaying Swing app frame.
+            JFrame frame = new JFrame("Hello World");
+            // Close Engine and onClose app window
+            frame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    engine.close();
+                }
+            });
+            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            JTextField addressBar = new JTextField("file:///C://Users//oooo//Documents//GitHub//INFO5100_FinalProject//map.html");
+            addressBar.addActionListener(e ->
+                    browser.navigation().loadUrl(addressBar.getText()));
+            frame.add(addressBar, BorderLayout.NORTH);
+            frame.add(view, BorderLayout.CENTER);
+            frame.setSize(800, 500);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+
+            browser.navigation().loadUrl(addressBar.getText());
+           });
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSignUp;
     private javax.swing.JComboBox<String> cbbCarrier;
     private javax.swing.JComboBox<String> cbbCity;
     private javax.swing.JComboBox<String> cbbOrganization;
+    private javax.swing.JComboBox<String> cbbRole;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -317,7 +443,10 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblHint;
     private javax.swing.JLabel lblRight;
+    private javax.swing.JLabel lblRight1;
+    private javax.swing.JLabel lblWrongHint;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtMobileNumber;

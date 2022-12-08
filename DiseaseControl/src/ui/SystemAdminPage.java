@@ -4,6 +4,8 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yanyanchen
@@ -13,8 +15,10 @@ public class SystemAdminPage extends javax.swing.JFrame {
     /**
      * Creates new form SystemAdminPage
      */
-    public SystemAdminPage() {
+    
+    public SystemAdminPage(String name) {
         initComponents();
+        lblUsername.setText(name);
     }
 
     /**
@@ -29,8 +33,12 @@ public class SystemAdminPage extends javax.swing.JFrame {
         btnCityManage = new javax.swing.JButton();
         btnEnterpriseManage = new javax.swing.JButton();
         btnUserManage = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCityManage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCityManage.setText("Manage City");
@@ -39,6 +47,7 @@ public class SystemAdminPage extends javax.swing.JFrame {
                 btnCityManageActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCityManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 61, 353, 76));
 
         btnEnterpriseManage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnEnterpriseManage.setText("Manage Enterprise");
@@ -47,6 +56,7 @@ public class SystemAdminPage extends javax.swing.JFrame {
                 btnEnterpriseManageActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEnterpriseManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 198, 353, 76));
 
         btnUserManage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnUserManage.setText("Manage User");
@@ -55,91 +65,67 @@ public class SystemAdminPage extends javax.swing.JFrame {
                 btnUserManageActionPerformed(evt);
             }
         });
+        getContentPane().add(btnUserManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 335, 353, 76));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(321, 321, 321)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCityManage, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnterpriseManage, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserManage, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(526, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(btnCityManage, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(btnEnterpriseManage, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(btnUserManage, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(339, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setText("Hello,");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(867, 61, -1, -1));
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblUsername.setText("--");
+        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(928, 61, -1, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCityManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCityManageActionPerformed
         // TODO add your handling code here:
+        String name=lblUsername.getText();
         this.dispose();
-        ManageCity in =new ManageCity();
+        ManageCity in =new ManageCity(name);
         in.setVisible(true);
     }//GEN-LAST:event_btnCityManageActionPerformed
 
     private void btnEnterpriseManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseManageActionPerformed
         // TODO add your handling code here:
+        String name=lblUsername.getText();
         this.dispose();
-        ManageEnterprise in =new ManageEnterprise();
-        in.setVisible(true);
+        setVisible(false);
+        new ManageEnterprise(name).setVisible(true);
     }//GEN-LAST:event_btnEnterpriseManageActionPerformed
 
     private void btnUserManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserManageActionPerformed
         // TODO add your handling code here:
-        
+        String name=lblUsername.getText();
+        setVisible(false);
+        new ManageUser(name).setVisible(true);
     }//GEN-LAST:event_btnUserManageActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SystemAdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SystemAdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SystemAdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SystemAdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int a =JOptionPane.showConfirmDialog(null,"Do you want to exit this page ?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            Login in=new Login();
+            in.setVisible(true);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SystemAdminPage().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCityManage;
     private javax.swing.JButton btnEnterpriseManage;
     private javax.swing.JButton btnUserManage;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
 }

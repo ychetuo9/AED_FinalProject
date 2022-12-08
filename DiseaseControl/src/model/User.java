@@ -9,16 +9,25 @@ package model;
  * @author yanyanchen
  */
 public class User {
-    private int id;
+    private String id;
     private String name;
     private String email;
     private String mobileNumber;
     private String password;
     private String status;
+    private String role;
     private String city;
     private String organization;
     private String carrier;
     private String location;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getCity() {
         return city;
@@ -51,14 +60,16 @@ public class User {
     public void setLocation(String location) {
         this.location = location;
     }
-    
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
+    
+    
 
     public String getName() {
         return name;

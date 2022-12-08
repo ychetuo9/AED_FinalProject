@@ -14,26 +14,24 @@ import model.User;
  * @author yanyanchen
  */
 public class Login extends javax.swing.JFrame {
-    public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
         btnLogin.setEnabled(false);
-        lblRight.setVisible(false);
     }
     
     public void clear(){
-        txtEmail.setText("");
+        txtName.setText("");
         txtPassword.setText("");
         btnLogin.setEnabled(false);
     }
     
     public void validateFields(){
-        String email=txtEmail.getText();
+        String name=txtName.getText();
         String password=txtPassword.getText();
-        if(email.matches(emailPattern) && !password.equals("")&& !email.equals("")){
+        if(!password.equals("")&& !name.equals("")){
             btnLogin.setEnabled(true);
         }else{
             btnLogin.setEnabled(false);
@@ -50,14 +48,13 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        txtEmail = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
         txtClear = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
-        lblRight = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,15 +66,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        txtEmail.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtEmailKeyReleased(evt);
+                txtNameKeyReleased(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Email");
+        jLabel1.setText("UserName");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Password");
@@ -113,9 +110,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        lblRight.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
-
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
         jLabel3.setText("Login");
@@ -139,10 +133,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(btnSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                             .addComponent(txtClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtPassword)
-                            .addComponent(txtEmail)
+                            .addComponent(txtName)
                             .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(33, 33, 33)
-                        .addComponent(lblRight)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(590, Short.MAX_VALUE)
@@ -156,12 +148,10 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblRight))
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -188,10 +178,10 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        String email = txtEmail.getText();
+        String name = txtName.getText();
         String password = txtPassword.getText();
         User user = null;
-        user = UserDao.login(email,password);
+        user = UserDao.login(name,password);
         if(user == null){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else{
@@ -200,9 +190,37 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"<html><b>Wait for Admin Approval</b></html>","Message",JOptionPane.INFORMATION_MESSAGE,icon);
                 clear();
             }
-            if(user.getStatus().equals("true")){
+            if(user.getStatus().equals("true")&&user.getRole().equals("System Admin")){
                 setVisible(false);
-                new SystemAdminPage().setVisible(true);
+                new SystemAdminPage(name).setVisible(true);
+            }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Car Admin")){
+                setVisible(false);
+                new CarAdminWorkArea(name).setVisible(true);
+            }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Hospital Admin")){
+                setVisible(false);
+                new HospitalAdminWorkArea(name).setVisible(true);
+            }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Hotel Head")){
+                setVisible(false);
+                new HotelHeadWrokArea(name).setVisible(true);
+            }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Vaccinate Head")){
+                setVisible(false);
+                new VaccinateHeadWorkArea(name).setVisible(true);
+            }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Driver")){
+                setVisible(false);
+                new DriverWorkArea(name).setVisible(true);
+            }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Doctor")){
+                setVisible(false);
+                new DoctorWorkArea(name).setVisible(true);
+            }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Community Head")){
+                setVisible(false);
+                new CommunityWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -219,16 +237,10 @@ public class Login extends javax.swing.JFrame {
         in.setVisible(true);
     }//GEN-LAST:event_btnSignUpActionPerformed
 
-    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
         validateFields();
-        String email=txtEmail.getText();
-        if(email.matches(emailPattern)){
-            lblRight.setVisible(true);
-        }else{
-            lblRight.setVisible(false);
-        }
-    }//GEN-LAST:event_txtEmailKeyReleased
+    }//GEN-LAST:event_txtNameKeyReleased
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
         // TODO add your handling code here:
@@ -277,9 +289,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel lblRight;
     private javax.swing.JButton txtClear;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
