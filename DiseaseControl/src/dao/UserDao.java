@@ -198,7 +198,7 @@ public class UserDao {
         DbOperations.setDataOrDelete(query, "Status Changed Successfully!");
     }
 
-    /*查询所有警察*/
+    /*police*/
     public static ArrayList<User> getAllAssociatedPoliceMan(String organization){
         ArrayList<User> arrayList = new ArrayList<>();
         try{
