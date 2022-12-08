@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="javax.activation-3.0-prelude">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/javax.activation-3.0-prelude.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.mail.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

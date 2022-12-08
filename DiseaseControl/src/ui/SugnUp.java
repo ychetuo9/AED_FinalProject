@@ -12,6 +12,7 @@ import java.util.Iterator;
 import model.City;
 import model.Enterprise;
 import model.User;
+import util.GmailUtil;
 
 /**
  *
@@ -358,7 +359,8 @@ public class SugnUp extends javax.swing.JFrame {
         UserDao.save(user);
         setVisible(false);
         new SugnUp().setVisible(true);
-        
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+                ,user.getEmail(),"Congratulations! Your registration in the Infectious Disease Control System has been successful. The System Admin will verify your account later.","Notification of successful registration");
         
         
     }//GEN-LAST:event_btnSignUpActionPerformed
