@@ -31,7 +31,10 @@ public class ManageDoctor extends javax.swing.JFrame {
     public void search(String name){
         DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
         dtm.setRowCount(0);
-        ArrayList<User> list = UserDao.getAllRecords(name);
+        String name1 = lblUsername.getText();
+        User user = UserDao.getDetailInfo(name1);
+        String organization=user.getOrganization();
+        ArrayList<User> list = UserDao.searchDoctor(organization, name);
         Iterator<User> itr = list.iterator();
         while(itr.hasNext()){
             User userObj = itr.next();
