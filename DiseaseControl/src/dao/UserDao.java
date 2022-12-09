@@ -258,4 +258,30 @@ public class UserDao {
         String query = "delete from user where name='" + name + "'";
         DbOperations.setDataOrDelete(query, "Deleted Successfully!");
     }
+    
+    //email
+public static String findEmail(String name){
+        User user=null;
+        try{
+            ResultSet rs = DbOperations.getData("select *from user where name='"+name+"'");
+            while(rs.next()){
+                user = new User();
+
+                user.setId(rs.getString("id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setCity(rs.getString("city"));
+                user.setOrganization(rs.getString("organization"));
+                user.setRole(rs.getString("role"));
+                user.setCarrier(rs.getString("carrier"));
+                user.setMobileNumber(rs.getString("mobileNumber"));
+                user.setLocation(rs.getString("location"));
+                user.setStatus(rs.getString("status"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        return user.getEmail();
+    }
 }

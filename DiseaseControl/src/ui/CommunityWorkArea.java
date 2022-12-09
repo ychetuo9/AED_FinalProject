@@ -11,6 +11,7 @@ import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
 import com.teamdev.jxbrowser.view.swing.BrowserView;
 import dao.CommunityRequestDao;
 import dao.UserDao;
+import static dao.UserDao.findEmail;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -46,6 +47,7 @@ import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
+import util.GmailUtil;
 
 /**
  *
@@ -359,6 +361,11 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         CommunityRequestDao.saveRequest(request);
         setVisible(false);
         new CommunityWorkArea(name).setVisible(true);
+        
+        String nameofemail = cbbRequestObject.getSelectedItem().toString();
+        String email = findEmail(nameofemail);
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+                ,email,"You have just received a new assignment in the Infectious Disease Control System. Please log in to view.","Notification of new assignment");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     
