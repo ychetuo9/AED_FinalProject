@@ -92,6 +92,20 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             btnSave.setEnabled(false);
     }
     
+    private int getMin(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        return (int) temp1;
+    }
+
+    private int getSec(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        int min = (int) temp1;
+        double temp2 = (temp1 - min) * 60;
+        return (int) temp2;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -440,10 +454,11 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
         if (index == -1) {
+            JOptionPane.showMessageDialog(null, "select a request");
             return;
         }
-        TableModel model=jTable1.getModel();
-        String location = model.getValueAt(index,5).toString();
+        TableModel model = jTable1.getModel();
+        String location = model.getValueAt(index, 5).toString();
         double latitude = Double.parseDouble(location.split(",")[0]);
         double longtitude = Double.parseDouble(location.split(",")[1]);
 
@@ -459,19 +474,19 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         JXMapViewer mapViewer = new JXMapViewer();
         mapViewer.setTileFactory(tileFactory);
 
-        GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
-        GeoPosition doctorpos = null;
+        GeoPosition requestPosition = new GeoPosition((int) latitude, getMin(latitude), getSec(latitude), (int) longtitude, getMin(longtitude), getMin(longtitude));
+        GeoPosition objectPosition = null;
         String objectname = cbbRequestObject.getSelectedItem().toString();
         if (!objectname.equals("")) {
             String dlocation = UserDao.getDetailInfo(objectname).getLocation();
             double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
             double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
-            doctorpos = new GeoPosition((int)dlatitude,  7, 0, (int)dlongtitude, 41, 0);
+            objectPosition = new GeoPosition((int) dlatitude, 7, 0, (int) dlongtitude, 41, 0);
         }
 
         // Set the focus
         mapViewer.setZoom(10);
-        mapViewer.setAddressLocation(frankfurt);
+        mapViewer.setAddressLocation(requestPosition);
 
         // Add interactions
         MouseInputListener mia = new PanMouseInputListener(mapViewer);
@@ -482,21 +497,20 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         mapViewer.addKeyListener(new PanKeyListener(mapViewer));
 
         // Create waypoints from the geo-positions
-        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-            new SwingWaypoint("Request", frankfurt)));
-        
-        if (doctorpos != null) {
-            waypoints.add(new SwingWaypoint("object", doctorpos, "object"));
+        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("Request", requestPosition)));
+
+        if (objectPosition != null) {
+            waypoints.add(new SwingWaypoint("object", objectPosition, "object"));
         }
 
-    // Set the overlay painter
-    WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-    swingWaypointPainter.setWaypoints(waypoints);
-    mapViewer.setOverlayPainter(swingWaypointPainter);
+        // Set the overlay painter
+        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+        swingWaypointPainter.setWaypoints(waypoints);
+        mapViewer.setOverlayPainter(swingWaypointPainter);
 
-    // Add the JButtons to the map viewer
-    for (SwingWaypoint w : waypoints) {
-        mapViewer.add(w.getButton());
+        // Add the JButtons to the map viewer
+        for (SwingWaypoint w : waypoints) {
+            mapViewer.add(w.getButton());
         }
 
         // Display the viewer in a JFrame

@@ -63,6 +63,20 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         else
             btnSave.setEnabled(false);
     }
+    
+    private int getMin(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        return (int) temp1;
+    }
+
+    private int getSec(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        int min = (int) temp1;
+        double temp2 = (temp1 - min) * 60;
+        return (int) temp2;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -345,6 +359,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
         if (index == -1) {
+            JOptionPane.showMessageDialog(null, "select a request");
             return;
         }
         TableModel model=jTable1.getModel();
@@ -364,7 +379,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         JXMapViewer mapViewer = new JXMapViewer();
         mapViewer.setTileFactory(tileFactory);
 
-        GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
+        GeoPosition requestPosition = new GeoPosition((int) latitude, getMin(latitude), getSec(latitude), (int) longtitude, getMin(longtitude), getMin(longtitude));
         GeoPosition doctorpos = null;
         String doctorname = cbbAssignedObject.getSelectedItem().toString();
         if (!doctorname.equals("")) {
@@ -376,7 +391,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
 
         // Set the focus
         mapViewer.setZoom(10);
-        mapViewer.setAddressLocation(frankfurt);
+        mapViewer.setAddressLocation(requestPosition);
 
         // Add interactions
         MouseInputListener mia = new PanMouseInputListener(mapViewer);
@@ -387,8 +402,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         mapViewer.addKeyListener(new PanKeyListener(mapViewer));
 
         // Create waypoints from the geo-positions
-        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-            new SwingWaypoint("Request", frankfurt)));
+        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("Request", requestPosition)));
         
         if (doctorpos != null) {
             waypoints.add(new SwingWaypoint("doctor", doctorpos, "doctor"));

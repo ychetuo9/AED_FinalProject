@@ -156,7 +156,7 @@ public class ManageDriver extends javax.swing.JFrame {
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
         String id = model.getValueAt(index,0).toString();
-        int a = JOptionPane.showConfirmDialog(null,"Do you want to delete this request?","Select",JOptionPane.YES_NO_OPTION);
+        int a = JOptionPane.showConfirmDialog(null,"Do you want to delete this driver?","Select",JOptionPane.YES_NO_OPTION);
         if(a==0){
             UserDao.delete(id);
             setVisible(false);

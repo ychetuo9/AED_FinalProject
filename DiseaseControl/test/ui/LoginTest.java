@@ -20,22 +20,22 @@ import static org.junit.Assert.*;
  * @author oooo
  */
 public class LoginTest {
-    
+
     public LoginTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -85,7 +85,7 @@ public class LoginTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testlogin() {
         System.out.println("main");
@@ -93,20 +93,20 @@ public class LoginTest {
         //Login.main(args);
         Login instance = new Login();
         User result = null;
-        result = UserDao.login("Admin","admin");
+        result = UserDao.login("Admin", "admin");
         User expResult = null;
         assertNotEquals(expResult, result);
         System.out.println("Admin login test passed");
-        
+
         User result2 = null;
-        result2 = UserDao.login("Admin2","admin");
+        result2 = UserDao.login("Admin2", "admin");
         User expResult2 = null;
         assertEquals(expResult2, result2);
         System.out.println("Admin login test passed");
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSignup() {
         System.out.println("main");
@@ -119,25 +119,24 @@ public class LoginTest {
         user.setPassword("test1");
         user.setCity(CityDao.getAllRecords().get(0).getName());
         user.setOrganization(EnterpriseDao.getAllRecords().get(0).getName());
-        user.setRole("Driver"); 
+        user.setRole("Driver");
         user.setCarrier("Mint");
         user.setMobileNumber(String.valueOf(1000000000));
         user.setLocation("50, 50");
-        
+
         UserDao.save(user);
-        
-        
+
         User user2 = new User();
         user2.setName("test1");
         user2.setEmail("test1@gmail.com");
         user2.setPassword("test1");
         user2.setCity(CityDao.getAllRecords().get(0).getName());
         user2.setOrganization(EnterpriseDao.getAllRecords().get(0).getName());
-        user2.setRole("Driver"); 
+        user2.setRole("Driver");
         user2.setCarrier("Mint");
         user2.setMobileNumber(String.valueOf(1000000000));
         user2.setLocation("50, 50");
-        
+
         UserDao.save(user2);
         UserDao.deleteByName("test1");
         System.out.println("Admin login test passed");
@@ -145,5 +144,5 @@ public class LoginTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
-    
+
 }
