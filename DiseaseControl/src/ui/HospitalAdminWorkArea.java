@@ -332,6 +332,9 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
+        if (index == -1) {
+            return;
+        }
         TableModel model=jTable1.getModel();
         String location = model.getValueAt(index,5).toString();
         double latitude = Double.parseDouble(location.split(",")[0]);

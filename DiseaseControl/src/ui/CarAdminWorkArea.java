@@ -335,6 +335,9 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
+        if (index == -1) {
+            return;
+        }
         TableModel model=jTable1.getModel();
         String location = model.getValueAt(index,5).toString();
         double latitude = Double.parseDouble(location.split(",")[0]);
@@ -390,6 +393,9 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
     private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
         // TODO add your handling code here:
+//        if(user == null){
+//            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+//        }
         this.dispose();
         ManageDriver in =new ManageDriver(lblUsername.getText());
         in.setVisible(true);
