@@ -4,6 +4,8 @@
  */
 package ui;
 
+import dao.CityDao;
+import dao.EnterpriseDao;
 import dao.UserDao;
 import model.User;
 import org.junit.After;
@@ -101,6 +103,30 @@ public class LoginTest {
         User expResult2 = null;
         assertEquals(expResult2, result2);
         System.out.println("Admin login test passed");
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testSignup() {
+        System.out.println("main");
+        String[] args = null;
+        //Login.main(args);
+        User user = new User();
+        user.setName("test1");
+        user.setEmail("test1@gmail.com");
+        user.setPassword("test1");
+        user.setCity(CityDao.getAllRecords().get(0).getName());
+        user.setOrganization(EnterpriseDao.getAllRecords().get(0).getName());
+        user.setRole("Driver"); 
+        user.setCarrier("Mint");
+        user.setMobileNumber(String.valueOf(1000000000));
+        user.setLocation("50, 50");
+        
+        UserDao.save(user);
+        
+        System.out.println("Admin login test passed");
+
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
