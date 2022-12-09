@@ -14,6 +14,8 @@ import dao.UserDao;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -380,7 +382,9 @@ public class CommunityWorkArea extends javax.swing.JFrame {
                 }
             });
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            JTextField addressBar = new JTextField("file:///C://Users//oooo//Documents//GitHub//INFO5100_FinalProject//map4.html");
+            Path currentRelativePath = Paths.get("");
+            String s = currentRelativePath.toAbsolutePath().toString();
+            JTextField addressBar = new JTextField(s+"/src/urls/map4.html");
             addressBar.addActionListener(e ->
                 browser.navigation().loadUrl(addressBar.getText()));
             frame.add(addressBar, BorderLayout.NORTH);
