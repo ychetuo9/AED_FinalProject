@@ -6,6 +6,7 @@ package ui;
 
 import dao.CommunityRequestDao;
 import dao.UserDao;
+import static dao.UserDao.findEmail;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,7 @@ import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
+import util.GmailUtil;
 /**
  *
  * @author yanyanchen
@@ -288,6 +290,11 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
             setVisible(false);
             new CarAdminWorkArea(name).setVisible(true);
         }
+        
+        String nameofemail = cbbAssignedObject.getSelectedItem().toString();
+        String email = findEmail(nameofemail);
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+                ,email,"You have just received a new assignment in the Infectious Disease Control System. Please log in to view.","Notification of new assignment");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
