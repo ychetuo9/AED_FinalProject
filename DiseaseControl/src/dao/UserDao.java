@@ -253,4 +253,9 @@ public class UserDao {
         String query = "delete from user where id='" + id + "'";
         DbOperations.setDataOrDelete(query, "Deleted Successfully!");
     }
+    
+    public static void deleteByName(String name) {
+        String query = "delete from user where name='" + name + "'";
+        DbOperations.setDataOrDelete(query, "Deleted Successfully!");
+    }
 }

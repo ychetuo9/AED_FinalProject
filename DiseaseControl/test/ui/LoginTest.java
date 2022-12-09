@@ -112,6 +112,7 @@ public class LoginTest {
         System.out.println("main");
         String[] args = null;
         //Login.main(args);
+        UserDao.deleteByName("test1");
         User user = new User();
         user.setName("test1");
         user.setEmail("test1@gmail.com");
@@ -125,6 +126,20 @@ public class LoginTest {
         
         UserDao.save(user);
         
+        
+        User user2 = new User();
+        user2.setName("test1");
+        user2.setEmail("test1@gmail.com");
+        user2.setPassword("test1");
+        user2.setCity(CityDao.getAllRecords().get(0).getName());
+        user2.setOrganization(EnterpriseDao.getAllRecords().get(0).getName());
+        user2.setRole("Driver"); 
+        user2.setCarrier("Mint");
+        user2.setMobileNumber(String.valueOf(1000000000));
+        user2.setLocation("50, 50");
+        
+        UserDao.save(user2);
+        UserDao.deleteByName("test1");
         System.out.println("Admin login test passed");
 
         // TODO review the generated test code and remove the default call to fail.

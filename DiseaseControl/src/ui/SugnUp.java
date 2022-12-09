@@ -265,6 +265,11 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbRoleItemStateChanged(evt);
             }
         });
+        cbbRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbRoleActionPerformed(evt);
+            }
+        });
         getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
 
         lblRight1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -450,6 +455,10 @@ public class SugnUp extends javax.swing.JFrame {
             browser.navigation().loadUrl(addressBar.getText());
            });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbRoleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
