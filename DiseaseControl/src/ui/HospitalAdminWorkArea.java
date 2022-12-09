@@ -144,6 +144,11 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
                 cbbAssignedObjectItemStateChanged(evt);
             }
         });
+        cbbAssignedObject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbAssignedObjectActionPerformed(evt);
+            }
+        });
         getContentPane().add(cbbAssignedObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, 296, -1));
 
         btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -353,6 +358,14 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         mapViewer.setTileFactory(tileFactory);
 
         GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
+        GeoPosition doctorpos = null;
+        String doctorname = cbbAssignedObject.getSelectedItem().toString();
+        if (!doctorname.equals("")) {
+            String dlocation = UserDao.getDetailInfo(doctorname).getLocation();
+            double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
+            double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
+            doctorpos = new GeoPosition((int)dlatitude,  7, 0, (int)dlongtitude, 41, 0);
+        }
 
         // Set the focus
         mapViewer.setZoom(10);
@@ -369,6 +382,10 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         // Create waypoints from the geo-positions
         Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
             new SwingWaypoint("Request", frankfurt)));
+        
+        if (doctorpos != null) {
+            waypoints.add(new SwingWaypoint("doctor", doctorpos, "doctor"));
+        }
 
     // Set the overlay painter
     WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
@@ -394,6 +411,10 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         ManageDoctor in =new ManageDoctor(lblUsername.getText());
         in.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbbAssignedObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbAssignedObjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbAssignedObjectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

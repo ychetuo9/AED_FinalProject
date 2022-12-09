@@ -356,6 +356,14 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         mapViewer.setTileFactory(tileFactory);
 
         GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
+        GeoPosition driverpos = null;
+        String drivername = cbbAssignedObject.getSelectedItem().toString();
+        if (!drivername.equals("")) {
+            String dlocation = UserDao.getDetailInfo(drivername).getLocation();
+            double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
+            double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
+            driverpos = new GeoPosition((int)dlatitude,  7, 0, (int)dlongtitude, 41, 0);
+        }
 
         // Set the focus
         mapViewer.setZoom(10);
@@ -372,6 +380,10 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         // Create waypoints from the geo-positions
         Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
             new SwingWaypoint("Request", frankfurt)));
+        
+        if (driverpos != null) {
+            waypoints.add(new SwingWaypoint("driver", driverpos, "driver"));
+        }
 
     // Set the overlay painter
     WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
