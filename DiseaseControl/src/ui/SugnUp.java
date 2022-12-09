@@ -46,6 +46,7 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
 import map.*;
+import util.*;
 
 /**
  *
