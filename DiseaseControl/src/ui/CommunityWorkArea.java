@@ -136,9 +136,9 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -280,6 +280,14 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         jLabel8.setText("Name");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
+
         jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jButton2.setText("Set Location");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -296,14 +304,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 580, -1, -1));
-
-        jButton1.setText("Return");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -402,6 +402,16 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_formComponentShown
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int a =JOptionPane.showConfirmDialog(null,"Do you want to exit this page ?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            Login in=new Login();
+            in.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -507,23 +517,12 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         JFrame frame = new JFrame("Current Request");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cbbRequestObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbRequestObjectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbRequestObjectActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int a = JOptionPane.showConfirmDialog(null, "Do you want to exit this page ?", "Select", JOptionPane.YES_NO_OPTION);
-        if (a == 0) {
-            this.dispose();
-            Login in = new Login();
-            in.setVisible(true);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

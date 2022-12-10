@@ -24,22 +24,22 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
     public VaccinateHeadWorkArea(String name) {
         initComponents();
         lblUsername.setText(name);
-        btnAccept.setEnabled(false);
-        btnReject.setEnabled(false);
-        btnProcess.setEnabled(false);
-        btnComplete.setEnabled(false);
+         btnAccept.setEnabled(false);
+            btnReject.setEnabled(false);
+            btnProcess.setEnabled(false);
+            btnComplete.setEnabled(false);
     }
-
-    public void validateFields() {
+    
+    public void validateFields(){
         String name = lblName.getText();
-
+        
 //        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
-        if (!name.equals("--")) {
+        if(!name.equals("--")){
             btnAccept.setEnabled(true);
             btnReject.setEnabled(true);
             btnProcess.setEnabled(true);
             btnComplete.setEnabled(true);
-        } else {
+        }else{
             btnAccept.setEnabled(false);
             btnReject.setEnabled(false);
             btnProcess.setEnabled(false);
@@ -220,13 +220,13 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
         lblLocation.setText("--");
         getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 460, -1, -1));
 
-        jButton1.setText("Return");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -234,20 +234,20 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String id = model.getValueAt(index, 0).toString();
+        TableModel model=jTable1.getModel();
+        String id =model.getValueAt(index,0).toString();
         lblId.setText(id);
-        String date = model.getValueAt(index, 2).toString();
+        String date = model.getValueAt(index,2).toString();
         lblDate.setText(date);
-        String name = model.getValueAt(index, 1).toString();
+        String name = model.getValueAt(index,1).toString();
         lblName.setText(name);
-        String patientNumber = model.getValueAt(index, 3).toString();
+        String patientNumber = model.getValueAt(index,3).toString();
         lblPatientNumber.setText(patientNumber);
-        String victim = model.getValueAt(index, 4).toString();
+        String victim = model.getValueAt(index,4).toString();
         lblVictim.setText(victim);
-        String location = model.getValueAt(index, 5).toString();
+        String location = model.getValueAt(index,5).toString();
         lblLocation.setText(location);
-        String description = model.getValueAt(index, 6).toString();
+        String description = model.getValueAt(index,6).toString();
         lblDescription.setText(description);
         String requestObject = model.getValueAt(index, 7).toString();
         lblRequestObject.setText(requestObject);
@@ -255,37 +255,37 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        String name = lblUsername.getText();
-
-        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        String name=lblUsername.getText();
+        
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
         ArrayList<Request> requestList = CommunityRequestDao.getAssociatedRecords(name);
         Iterator<Request> itrRequest = requestList.iterator();
-        while (itrRequest.hasNext()) {
+        while(itrRequest.hasNext()){
             Request requestObj = itrRequest.next();
-            dtm.addRow(new Object[]{requestObj.getId(), requestObj.getName(), requestObj.getDate(), requestObj.getPatientNumber(), requestObj.getVictim(), requestObj.getLocation(), requestObj.getDescription(), requestObj.getRequestObject(), requestObj.getStatus()});
+            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
         }
     }//GEN-LAST:event_formComponentShown
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        String id = lblId.getText();
+        String id=lblId.getText();
         String name = lblUsername.getText();
 
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status = request.getStatus();
+        String status=request.getStatus();
 
-        if (status.contains("reject")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("accept")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("process")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("complete")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int a = JOptionPane.showConfirmDialog(null, "Do you want to accept this request?", "Select", JOptionPane.YES_NO_OPTION);
-            if (a == 0) {
-                CommunityRequestDao.changeStatus(id, "accept", name);
+        if(status.contains("reject")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("accept")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("process")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("complete")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+            int a =JOptionPane.showConfirmDialog(null,"Do you want to accept this request?","Select",JOptionPane.YES_NO_OPTION);
+            if(a==0){
+                CommunityRequestDao.changeStatus(id,"accept",name);
                 setVisible(false);
                 new VaccinateHeadWorkArea(name).setVisible(true);
             }
@@ -294,22 +294,22 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
-        String id = lblId.getText();
+        String id=lblId.getText();
         String name = lblUsername.getText();
 
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status = request.getStatus();
+        String status=request.getStatus();
 
-        if (status.contains("reject")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("process")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("complete")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int a = JOptionPane.showConfirmDialog(null, "Do you want to process this request?", "Select", JOptionPane.YES_NO_OPTION);
-            if (a == 0) {
-                CommunityRequestDao.changeStatus(id, "process", name);
+        if(status.contains("reject")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("process")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("complete")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+            int a =JOptionPane.showConfirmDialog(null,"Do you want to process this request?","Select",JOptionPane.YES_NO_OPTION);
+            if(a==0){
+                CommunityRequestDao.changeStatus(id,"process",name);
                 setVisible(false);
                 new VaccinateHeadWorkArea(name).setVisible(true);
             }
@@ -318,24 +318,24 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
-        String id = lblId.getText();
+        String id=lblId.getText();
         String name = lblUsername.getText();
 
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status = request.getStatus();
+        String status=request.getStatus();
 
-        if (status.contains("reject")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("accept")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("process")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("complete")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int a = JOptionPane.showConfirmDialog(null, "Do you want to reject this request?", "Select", JOptionPane.YES_NO_OPTION);
-            if (a == 0) {
-                CommunityRequestDao.changeStatus(id, "reject", name);
+        if(status.contains("reject")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("accept")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("process")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("complete")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+            int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
+            if(a==0){
+                CommunityRequestDao.changeStatus(id,"reject",name);
                 setVisible(false);
                 new VaccinateHeadWorkArea(name).setVisible(true);
             }
@@ -349,40 +349,40 @@ public class VaccinateHeadWorkArea extends javax.swing.JFrame {
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
-        String id = lblId.getText();
+        String id=lblId.getText();
         String name = lblUsername.getText();
 
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status = request.getStatus();
+        String status=request.getStatus();
 
-        if (status.contains("reject")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else if (status.contains("complete")) {
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int a = JOptionPane.showConfirmDialog(null, "Do you want to complete this request?", "Select", JOptionPane.YES_NO_OPTION);
-            if (a == 0) {
-                CommunityRequestDao.changeStatus(id, "complete", name);
+        if(status.contains("reject")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else if(status.contains("complete")){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+            int a =JOptionPane.showConfirmDialog(null,"Do you want to complete this request?","Select",JOptionPane.YES_NO_OPTION);
+            if(a==0){
+                CommunityRequestDao.changeStatus(id,"complete",name);
                 setVisible(false);
                 new VaccinateHeadWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int a =JOptionPane.showConfirmDialog(null,"Do you want to exit this page ?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            Login in=new Login();
+            in.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
         // TODO add your handling code here:
         validateFields();
     }//GEN-LAST:event_lblIdPropertyChange
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int a = JOptionPane.showConfirmDialog(null, "Do you want to exit this page ?", "Select", JOptionPane.YES_NO_OPTION);
-        if (a == 0) {
-            this.dispose();
-            Login in = new Login();
-            in.setVisible(true);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

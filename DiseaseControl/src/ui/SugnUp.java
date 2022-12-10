@@ -66,6 +66,8 @@ public class SugnUp extends javax.swing.JFrame {
     public SugnUp() {
         initComponents();
         lblHint.setVisible(false);
+        lblRight.setVisible(false);
+        lblRight1.setVisible(false);
         lblWrongHint.setVisible(false);
     }
     
@@ -118,13 +120,15 @@ public class SugnUp extends javax.swing.JFrame {
         txtLocation = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         cbbCity = new javax.swing.JComboBox<>();
+        lblRight = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         cbbRole = new javax.swing.JComboBox<>();
+        lblRight1 = new javax.swing.JLabel();
         lblWrongHint = new javax.swing.JLabel();
         btnSignUp = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         lblHint = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -238,6 +242,10 @@ public class SugnUp extends javax.swing.JFrame {
         });
         getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 280, -1));
 
+        lblRight.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
+        getContentPane().add(lblRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 230, -1, -1));
+
         txtPassword.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -264,6 +272,15 @@ public class SugnUp extends javax.swing.JFrame {
         });
         getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
 
+        lblRight1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblRight1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
+        lblRight1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                lblRight1ComponentShown(evt);
+            }
+        });
+        getContentPane().add(lblRight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, -1, -1));
+
         lblWrongHint.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         lblWrongHint.setText("Your input should consist of numbers, letters or underscores ");
         getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, -1, 20));
@@ -277,17 +294,17 @@ public class SugnUp extends javax.swing.JFrame {
         });
         getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 610, 280, -1));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 25, -1, -1));
+
         lblHint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblHint.setText("You are all set !!!");
         getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 150, -1));
-
-        jButton4.setText("Return");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 100, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -296,6 +313,11 @@ public class SugnUp extends javax.swing.JFrame {
         // TODO add your handling code here:
         validateFields();
         String email=txtEmail.getText();
+        if(email.matches(emailPattern)){
+            lblRight.setVisible(true);
+        }else{
+            lblRight.setVisible(false);
+        }
     }//GEN-LAST:event_txtEmailKeyReleased
 
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
@@ -304,8 +326,10 @@ public class SugnUp extends javax.swing.JFrame {
         String name=txtName.getText();
         if(!name.matches(namePattern)){
             lblWrongHint.setVisible(true);
+            lblRight1.setVisible(false);
         }else{
             lblWrongHint.setVisible(false);
+            lblRight1.setVisible(true);
         }
         
     }//GEN-LAST:event_txtNameKeyReleased
@@ -341,6 +365,10 @@ public class SugnUp extends javax.swing.JFrame {
             cbbCity.addItem(cityObj.getName());
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void lblRight1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lblRight1ComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblRight1ComponentShown
 
     private void cbbCityItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbCityItemStateChanged
         // TODO add your handling code here:
@@ -384,6 +412,13 @@ public class SugnUp extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSignUpActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Login in=new Login();
+        in.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         EngineOptions options =
@@ -425,13 +460,6 @@ public class SugnUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbRoleActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Login in=new Login();
-        in.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSignUp;
@@ -440,7 +468,7 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbOrganization;
     private javax.swing.JComboBox<String> cbbRole;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -452,6 +480,8 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblHint;
+    private javax.swing.JLabel lblRight;
+    private javax.swing.JLabel lblRight1;
     private javax.swing.JLabel lblWrongHint;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLocation;

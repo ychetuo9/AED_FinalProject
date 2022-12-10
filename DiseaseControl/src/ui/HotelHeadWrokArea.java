@@ -99,8 +99,8 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -236,6 +236,14 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
         lblLocation.setText("--");
         getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 460, -1, -1));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
+
         jButton2.setText("View in map");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,14 +251,6 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, -1, -1));
-
-        jButton4.setText("Return");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -392,6 +392,16 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int a =JOptionPane.showConfirmDialog(null,"Do you want to exit this page ?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            this.dispose();
+            Login in=new Login();
+            in.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
         // TODO add your handling code here:
         validateFields();
@@ -449,19 +459,8 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
         JFrame frame = new JFrame("Current Request");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        int a = JOptionPane.showConfirmDialog(null, "Do you want to exit this page ?", "Select", JOptionPane.YES_NO_OPTION);
-        if (a == 0) {
-            this.dispose();
-            Login in = new Login();
-            in.setVisible(true);
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -469,8 +468,8 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
     private javax.swing.JButton btnComplete;
     private javax.swing.JButton btnProcess;
     private javax.swing.JButton btnReject;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

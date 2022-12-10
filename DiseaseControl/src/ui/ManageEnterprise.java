@@ -55,13 +55,14 @@ public class ManageEnterprise extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         cbbCity = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         cbbType = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -123,6 +124,19 @@ public class ManageEnterprise extends javax.swing.JFrame {
         });
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 671, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/category.png"))); // NOI18N
+        jLabel1.setText("Manage Organization");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 25, -1, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 25, -1, -1));
+
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("City");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 523, -1, -1));
@@ -154,14 +168,6 @@ public class ManageEnterprise extends javax.swing.JFrame {
         lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblUsername.setText("--");
         getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, -1));
-
-        jButton4.setText("Return");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, 100, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -207,6 +213,14 @@ public class ManageEnterprise extends javax.swing.JFrame {
         new ManageEnterprise(userName).setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String userName=lblUsername.getText();
+        this.dispose();
+        SystemAdminPage in=new SystemAdminPage(userName);
+        in.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
@@ -236,21 +250,14 @@ public class ManageEnterprise extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_cbbCityItemStateChanged
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        String userName=lblUsername.getText();
-        this.dispose();
-        SystemAdminPage in=new SystemAdminPage(userName);
-        in.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbbCity;
     private javax.swing.JComboBox<String> cbbType;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
