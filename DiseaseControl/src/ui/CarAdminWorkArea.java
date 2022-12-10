@@ -112,9 +112,9 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         lblRequestObject = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnDriver = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -239,14 +239,6 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         });
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
-
         jButton2.setText("View in map");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +254,14 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 370, 140, -1));
+
+        jButton1.setText("Return");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -337,16 +337,6 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         // TODO add your handling code here:
         validateFields();
     }//GEN-LAST:event_cbbAssignedObjectItemStateChanged
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int a =JOptionPane.showConfirmDialog(null,"Do you want to exit this page ?","Select",JOptionPane.YES_NO_OPTION);
-        if(a==0){
-            this.dispose();
-        Login in=new Login();
-        in.setVisible(true);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
         // TODO add your handling code here:
@@ -433,6 +423,16 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         ManageDriver in =new ManageDriver(lblUsername.getText());
         in.setVisible(true);
     }//GEN-LAST:event_btnDriverActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to exit this page ?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            this.dispose();
+            Login in = new Login();
+            in.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
