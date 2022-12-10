@@ -54,7 +54,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
     }
 
     public void validateFields(){
-        String name = lblName.getText();
+        String name = lblRequestName.getText();
         
 //        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
         if(!name.equals("--")){
@@ -96,7 +96,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblPatientNumber = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
+        lblRequestName = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
         lblVictim = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
@@ -207,13 +207,13 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         lblPatientNumber.setText("--");
         getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, -1, -1));
 
-        lblName.setText("--");
-        lblName.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        lblRequestName.setText("--");
+        lblRequestName.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                lblNamePropertyChange(evt);
+                lblRequestNamePropertyChange(evt);
             }
         });
-        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
+        getContentPane().add(lblRequestName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
 
         lblDate.setText("--");
         getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, -1, -1));
@@ -268,7 +268,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         String date = model.getValueAt(index,2).toString();
         lblDate.setText(date);
         String name = model.getValueAt(index,1).toString();
-        lblName.setText(name);
+        lblRequestName.setText(name);
         String patientNumber = model.getValueAt(index,3).toString();
         lblPatientNumber.setText(patientNumber);
         String victim = model.getValueAt(index,4).toString();
@@ -351,6 +351,10 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         // TODO add your handling code here:
         String id=lblId.getText();
         String name = lblUsername.getText();
+        
+        String request1=lblRequestName.getText();
+        String patientNumber=lblPatientNumber.getText();
+        String date=lblDate.getText();
 
         Request request = CommunityRequestDao.getDetailInfo(id);
         String status=request.getStatus();
@@ -366,7 +370,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"process",name);
                 setVisible(false);
-                new DoctorWorkArea(name).setVisible(true);
+                new DoctorWorkLog(name,id,request1,patientNumber,date).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnProcessActionPerformed
@@ -393,10 +397,10 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
 
-    private void lblNamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblNamePropertyChange
+    private void lblRequestNamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblRequestNamePropertyChange
         // TODO add your handling code here:
         validateFields();
-    }//GEN-LAST:event_lblNamePropertyChange
+    }//GEN-LAST:event_lblRequestNamePropertyChange
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -492,8 +496,8 @@ public class DoctorWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblLocation;
-    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPatientNumber;
+    private javax.swing.JLabel lblRequestName;
     private javax.swing.JLabel lblRequestObject;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblVictim;
