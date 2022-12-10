@@ -6,7 +6,10 @@ package ui;
 
 import dao.UserDao;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import model.User;
 
 /**
@@ -26,6 +29,18 @@ public class Login extends javax.swing.JFrame {
         txtName.setText("");
         txtPassword.setText("");
         btnLogin.setEnabled(false);
+    }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public JTextField getTxtName() {
+        return txtName;
+    }
+
+    public JPasswordField getTxtPassword() {
+        return txtPassword;
     }
     
     public void validateFields(){
@@ -229,6 +244,14 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         clear();
     }//GEN-LAST:event_txtClearActionPerformed
+
+    public void setTxtName(String name) {
+        this.txtName.setText(name);
+    }
+
+    public void setTxtPassword(String password) {
+        this.txtPassword.setText(password);
+    }
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:

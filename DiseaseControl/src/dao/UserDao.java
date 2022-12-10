@@ -138,26 +138,25 @@ public class UserDao {
         }
         return arrayList;
     }
-    
+
     public static ArrayList<User> searchDriver(String organization, String name) {
         ArrayList<User> arrayList = new ArrayList<>();
         try {
             ResultSet rs1 = DbOperations.getData("select *from user where role='Driver' and organization='" + organization + "'");
             while (rs1.next()) {
-                if (rs1.getString("name").equals(name)) {
-                    User user = new User();
-                    user.setId(rs1.getString("id"));
-                    user.setName(rs1.getString("name"));
-                    user.setEmail(rs1.getString("email"));
-                    user.setPassword(rs1.getString("password"));
-                    user.setCity(rs1.getString("city"));
-                    user.setOrganization(rs1.getString("organization"));
-                    user.setRole(rs1.getString("role"));
-                    user.setCarrier(rs1.getString("carrier"));
-                    user.setMobileNumber(rs1.getString("mobileNumber"));
-                    user.setLocation(rs1.getString("location"));
-                    user.setStatus(rs1.getString("status"));
-
+                User user = new User();
+                user.setId(rs1.getString("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setPassword(rs1.getString("password"));
+                user.setCity(rs1.getString("city"));
+                user.setOrganization(rs1.getString("organization"));
+                user.setRole(rs1.getString("role"));
+                user.setCarrier(rs1.getString("carrier"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setLocation(rs1.getString("location"));
+                user.setStatus(rs1.getString("status"));
+                if (rs1.getString("name").equals(name) || name.equals("")) {
                     arrayList.add(user);
                 }
             }
@@ -198,20 +197,19 @@ public class UserDao {
         try {
             ResultSet rs1 = DbOperations.getData("select *from user where role='Doctor' and organization='" + organization + "'");
             while (rs1.next()) {
-                if (rs1.getString("name").equals(name)) {
-                    User user = new User();
-                    user.setId(rs1.getString("id"));
-                    user.setName(rs1.getString("name"));
-                    user.setEmail(rs1.getString("email"));
-                    user.setPassword(rs1.getString("password"));
-                    user.setCity(rs1.getString("city"));
-                    user.setOrganization(rs1.getString("organization"));
-                    user.setRole(rs1.getString("role"));
-                    user.setCarrier(rs1.getString("carrier"));
-                    user.setMobileNumber(rs1.getString("mobileNumber"));
-                    user.setLocation(rs1.getString("location"));
-                    user.setStatus(rs1.getString("status"));
-
+                User user = new User();
+                user.setId(rs1.getString("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setPassword(rs1.getString("password"));
+                user.setCity(rs1.getString("city"));
+                user.setOrganization(rs1.getString("organization"));
+                user.setRole(rs1.getString("role"));
+                user.setCarrier(rs1.getString("carrier"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setLocation(rs1.getString("location"));
+                user.setStatus(rs1.getString("status"));
+                if (rs1.getString("name").equals(name) || name.equals("")) {
                     arrayList.add(user);
                 }
             }
@@ -250,10 +248,40 @@ public class UserDao {
         String query = "update user set status='" + status + "' where name='" + name + "'";
         DbOperations.setDataOrDelete(query, "Status Changed Successfully!");
     }
-    
-    public static void delete(String id){
-        String query ="delete from user where id='"+id+"'";
-        DbOperations.setDataOrDelete(query, "Request Deleted Successfully!");
-    }
 
+    public static void delete(String id) {
+        String query = "delete from user where id='" + id + "'";
+        DbOperations.setDataOrDelete(query, "Deleted Successfully!");
+    }
+    
+    public static void deleteByName(String name) {
+        String query = "delete from user where name='" + name + "'";
+        DbOperations.setDataOrDelete(query, "Deleted Successfully!");
+    }
+    
+    //email
+public static String findEmail(String name){
+        User user=null;
+        try{
+            ResultSet rs = DbOperations.getData("select *from user where name='"+name+"'");
+            while(rs.next()){
+                user = new User();
+
+                user.setId(rs.getString("id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setCity(rs.getString("city"));
+                user.setOrganization(rs.getString("organization"));
+                user.setRole(rs.getString("role"));
+                user.setCarrier(rs.getString("carrier"));
+                user.setMobileNumber(rs.getString("mobileNumber"));
+                user.setLocation(rs.getString("location"));
+                user.setStatus(rs.getString("status"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        return user.getEmail();
+    }
 }

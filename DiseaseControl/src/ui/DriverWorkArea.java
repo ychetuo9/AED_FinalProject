@@ -33,6 +33,7 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
+
 /**
  *
  * @author yanyanchen
@@ -422,12 +423,11 @@ public class DriverWorkArea extends javax.swing.JFrame {
         String location = model.getValueAt(index,5).toString();
         double latitude = Double.parseDouble(location.split(",")[0]);
         double longtitude = Double.parseDouble(location.split(",")[1]);
-        
-        
+
         TileFactoryInfo info = new OSMTileFactoryInfo();
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
         tileFactory.setThreadPoolSize(8);
-        
+
         // Setup local file cache
         File cacheDir = new File(System.getProperty("user.home") + File.separator + ".jxmapviewer2");
         tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
@@ -452,23 +452,22 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
         // Create waypoints from the geo-positions
         Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-                new SwingWaypoint("Request", frankfurt)));
+            new SwingWaypoint("Request", frankfurt)));
 
-        // Set the overlay painter
-        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-        swingWaypointPainter.setWaypoints(waypoints);
-        mapViewer.setOverlayPainter(swingWaypointPainter);
+    // Set the overlay painter
+    WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+    swingWaypointPainter.setWaypoints(waypoints);
+    mapViewer.setOverlayPainter(swingWaypointPainter);
 
-        // Add the JButtons to the map viewer
-        for (SwingWaypoint w : waypoints) {
-            mapViewer.add(w.getButton());
+    // Add the JButtons to the map viewer
+    for (SwingWaypoint w : waypoints) {
+        mapViewer.add(w.getButton());
         }
 
         // Display the viewer in a JFrame
         JFrame frame = new JFrame("Current Request");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

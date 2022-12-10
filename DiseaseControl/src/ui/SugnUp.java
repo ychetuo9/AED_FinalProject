@@ -46,6 +46,10 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
 import map.*;
+import util.*;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -261,6 +265,11 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbRoleItemStateChanged(evt);
             }
         });
+        cbbRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbRoleActionPerformed(evt);
+            }
+        });
         getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
 
         lblRight1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -397,7 +406,8 @@ public class SugnUp extends javax.swing.JFrame {
         UserDao.save(user);
         setVisible(false);
         new SugnUp().setVisible(true);
-        
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+                ,user.getEmail(),"Congratulations! Your registration in the Infectious Disease Control System has been successful. The System Admin will verify your account later.","Notification of successful registration");
         
         
     }//GEN-LAST:event_btnSignUpActionPerformed
@@ -431,7 +441,9 @@ public class SugnUp extends javax.swing.JFrame {
                 }
             });
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            JTextField addressBar = new JTextField("file:///C://Users//oooo//Documents//GitHub//INFO5100_FinalProject//map4.html");
+            Path currentRelativePath = Paths.get("");
+            String s = currentRelativePath.toAbsolutePath().toString();
+            JTextField addressBar = new JTextField(s+"/src/urls/map4.html");
             addressBar.addActionListener(e ->
                     browser.navigation().loadUrl(addressBar.getText()));
             frame.add(addressBar, BorderLayout.NORTH);
@@ -439,10 +451,14 @@ public class SugnUp extends javax.swing.JFrame {
             frame.setSize(800, 500);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-
+            
             browser.navigation().loadUrl(addressBar.getText());
            });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbRoleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

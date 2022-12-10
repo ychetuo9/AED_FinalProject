@@ -33,6 +33,18 @@ public class SwingWaypoint extends DefaultWaypoint {
         button.setPreferredSize(new Dimension(24, 24));
         button.addMouseListener(new SwingWaypointMouseListener());
         button.setVisible(true);
+        button.setBackground(Color.RED);
+    }
+    
+    public SwingWaypoint(String text, GeoPosition coord, String role) {
+        super(coord);
+        this.text = text;
+        button = new JButton(text.substring(0, 1));
+        button.setSize(24, 24);
+        button.setPreferredSize(new Dimension(24, 24));
+        button.addMouseListener(new SwingWaypointMouseListener());
+        button.setVisible(true);
+        button.setBackground(Color.BLUE);
     }
 
     public JButton getButton() {

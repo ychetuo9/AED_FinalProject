@@ -11,21 +11,43 @@ import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
 import com.teamdev.jxbrowser.view.swing.BrowserView;
 import dao.CommunityRequestDao;
 import dao.UserDao;
+import static dao.UserDao.findEmail;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import map.SwingWaypoint;
+import map.SwingWaypointOverlayPainter;
 import model.Request;
 import model.User;
+import org.jxmapviewer.JXMapViewer;
+import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.cache.FileBasedLocalCache;
+import org.jxmapviewer.input.CenterMapListener;
+import org.jxmapviewer.input.PanKeyListener;
+import org.jxmapviewer.input.PanMouseInputListener;
+import org.jxmapviewer.input.ZoomMouseWheelListenerCenter;
+import org.jxmapviewer.viewer.DefaultTileFactory;
+import org.jxmapviewer.viewer.GeoPosition;
+import org.jxmapviewer.viewer.TileFactoryInfo;
+import org.jxmapviewer.viewer.WaypointPainter;
+import util.GmailUtil;
 
 /**
  *
@@ -70,6 +92,20 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             btnSave.setEnabled(false);
     }
     
+    private int getMin(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        return (int) temp1;
+    }
+
+    private int getSec(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        int min = (int) temp1;
+        double temp2 = (temp1 - min) * 60;
+        return (int) temp2;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,7 +130,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         dataChooser1 = new com.toedter.calendar.JDateChooser();
@@ -102,6 +137,8 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -164,6 +201,11 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 520, -1, -1));
 
         cbbRequestObject.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        cbbRequestObject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbRequestObjectActionPerformed(evt);
+            }
+        });
         getContentPane().add(cbbRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 580, 296, -1));
 
         btnSave.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -207,15 +249,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1296, 140));
 
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jButton2.setText("Set Location");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 450, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Hello,");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1023, 39, -1, -1));
@@ -254,6 +287,23 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jButton2.setText("Set Location");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 450, -1, -1));
+
+        jButton3.setText("View in map");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 580, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -325,6 +375,11 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         CommunityRequestDao.saveRequest(request);
         setVisible(false);
         new CommunityWorkArea(name).setVisible(true);
+        
+        String nameofemail = cbbRequestObject.getSelectedItem().toString();
+        String email = findEmail(nameofemail);
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+                ,email,"You have just received a new assignment in the Infectious Disease Control System. Please log in to view.","Notification of new assignment");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     
@@ -361,7 +416,7 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         EngineOptions options =
-                EngineOptions.newBuilder(HARDWARE_ACCELERATED).licenseKey("1BNDHFSC1G4QUT3RPDBJ1TFBPZ7IT5G91LF01P391VE36M8YIJT021UVPOMGMWAPNHM14R").build();
+        EngineOptions.newBuilder(HARDWARE_ACCELERATED).licenseKey("1BNDHFSC1G4QUT3RPDBJ1TFBPZ7IT5G91LF01P391VE36M8YIJT021UVPOMGMWAPNHM14R").build();
         Engine engine = Engine.newInstance(options);
         Browser browser = engine.newBrowser();
 
@@ -380,9 +435,11 @@ public class CommunityWorkArea extends javax.swing.JFrame {
                 }
             });
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            JTextField addressBar = new JTextField("file:///C://Users//oooo//Documents//GitHub//INFO5100_FinalProject//map4.html");
+            Path currentRelativePath = Paths.get("");
+            String s = currentRelativePath.toAbsolutePath().toString();
+            JTextField addressBar = new JTextField(s+"/src/urls/map4.html");
             addressBar.addActionListener(e ->
-                    browser.navigation().loadUrl(addressBar.getText()));
+                browser.navigation().loadUrl(addressBar.getText()));
             frame.add(addressBar, BorderLayout.NORTH);
             frame.add(view, BorderLayout.CENTER);
             frame.setSize(800, 500);
@@ -390,8 +447,82 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             frame.setVisible(true);
 
             browser.navigation().loadUrl(addressBar.getText());
-           });
+        });
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(null, "select a request");
+            return;
+        }
+        TableModel model = jTable1.getModel();
+        String location = model.getValueAt(index, 5).toString();
+        double latitude = Double.parseDouble(location.split(",")[0]);
+        double longtitude = Double.parseDouble(location.split(",")[1]);
+
+        TileFactoryInfo info = new OSMTileFactoryInfo();
+        DefaultTileFactory tileFactory = new DefaultTileFactory(info);
+        tileFactory.setThreadPoolSize(8);
+
+        // Setup local file cache
+        File cacheDir = new File(System.getProperty("user.home") + File.separator + ".jxmapviewer2");
+        tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
+
+        // Setup JXMapViewer
+        JXMapViewer mapViewer = new JXMapViewer();
+        mapViewer.setTileFactory(tileFactory);
+
+        GeoPosition requestPosition = new GeoPosition((int) latitude, getMin(latitude), getSec(latitude), (int) longtitude, getMin(longtitude), getMin(longtitude));
+        GeoPosition objectPosition = null;
+        String objectname = cbbRequestObject.getSelectedItem().toString();
+        if (!objectname.equals("")) {
+            String dlocation = UserDao.getDetailInfo(objectname).getLocation();
+            double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
+            double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
+            objectPosition = new GeoPosition((int) dlatitude, 7, 0, (int) dlongtitude, 41, 0);
+        }
+
+        // Set the focus
+        mapViewer.setZoom(10);
+        mapViewer.setAddressLocation(requestPosition);
+
+        // Add interactions
+        MouseInputListener mia = new PanMouseInputListener(mapViewer);
+        mapViewer.addMouseListener(mia);
+        mapViewer.addMouseMotionListener(mia);
+        mapViewer.addMouseListener(new CenterMapListener(mapViewer));
+        mapViewer.addMouseWheelListener(new ZoomMouseWheelListenerCenter(mapViewer));
+        mapViewer.addKeyListener(new PanKeyListener(mapViewer));
+
+        // Create waypoints from the geo-positions
+        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("Request", requestPosition)));
+
+        if (objectPosition != null) {
+            waypoints.add(new SwingWaypoint("object", objectPosition, "object"));
+        }
+
+        // Set the overlay painter
+        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+        swingWaypointPainter.setWaypoints(waypoints);
+        mapViewer.setOverlayPainter(swingWaypointPainter);
+
+        // Add the JButtons to the map viewer
+        for (SwingWaypoint w : waypoints) {
+            mapViewer.add(w.getButton());
+        }
+
+        // Display the viewer in a JFrame
+        JFrame frame = new JFrame("Current Request");
+        frame.getContentPane().add(mapViewer);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbbRequestObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbRequestObjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbRequestObjectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -400,6 +531,7 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dataChooser1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;

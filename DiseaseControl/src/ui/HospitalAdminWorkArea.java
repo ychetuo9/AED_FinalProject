@@ -6,6 +6,7 @@ package ui;
 
 import dao.CommunityRequestDao;
 import dao.UserDao;
+import static dao.UserDao.findEmail;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +33,7 @@ import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
-
+import util.GmailUtil;
 /**
  *
  * @author yanyanchen
@@ -61,6 +62,20 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
             btnSave.setEnabled(true);
         else
             btnSave.setEnabled(false);
+    }
+    
+    private int getMin(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        return (int) temp1;
+    }
+
+    private int getSec(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        int min = (int) temp1;
+        double temp2 = (temp1 - min) * 60;
+        return (int) temp2;
     }
 
     /**
@@ -289,6 +304,11 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
             setVisible(false);
             new CarAdminWorkArea(name).setVisible(true);
         }
+        
+        String nameofemail = cbbAssignedObject.getSelectedItem().toString();
+        String email = findEmail(nameofemail);
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+                ,email,"You have just received a new assignment in the Infectious Disease Control System. Please log in to view.","Notification of new assignment");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
@@ -335,23 +355,22 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_lblIdPropertyChange
 
-    private void cbbAssignedObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbAssignedObjectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbbAssignedObjectActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(null, "select a request");
+            return;
+        }
         TableModel model=jTable1.getModel();
         String location = model.getValueAt(index,5).toString();
         double latitude = Double.parseDouble(location.split(",")[0]);
         double longtitude = Double.parseDouble(location.split(",")[1]);
-        
-        
+
         TileFactoryInfo info = new OSMTileFactoryInfo();
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
         tileFactory.setThreadPoolSize(8);
-        
+
         // Setup local file cache
         File cacheDir = new File(System.getProperty("user.home") + File.separator + ".jxmapviewer2");
         tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
@@ -360,11 +379,19 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         JXMapViewer mapViewer = new JXMapViewer();
         mapViewer.setTileFactory(tileFactory);
 
-        GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
+        GeoPosition requestPosition = new GeoPosition((int) latitude, getMin(latitude), getSec(latitude), (int) longtitude, getMin(longtitude), getMin(longtitude));
+        GeoPosition doctorpos = null;
+        String doctorname = cbbAssignedObject.getSelectedItem().toString();
+        if (!doctorname.equals("")) {
+            String dlocation = UserDao.getDetailInfo(doctorname).getLocation();
+            double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
+            double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
+            doctorpos = new GeoPosition((int)dlatitude,  7, 0, (int)dlongtitude, 41, 0);
+        }
 
         // Set the focus
         mapViewer.setZoom(10);
-        mapViewer.setAddressLocation(frankfurt);
+        mapViewer.setAddressLocation(requestPosition);
 
         // Add interactions
         MouseInputListener mia = new PanMouseInputListener(mapViewer);
@@ -375,24 +402,26 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         mapViewer.addKeyListener(new PanKeyListener(mapViewer));
 
         // Create waypoints from the geo-positions
-        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-                new SwingWaypoint("Request", frankfurt)));
+        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("Request", requestPosition)));
+        
+        if (doctorpos != null) {
+            waypoints.add(new SwingWaypoint("doctor", doctorpos, "doctor"));
+        }
 
-        // Set the overlay painter
-        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-        swingWaypointPainter.setWaypoints(waypoints);
-        mapViewer.setOverlayPainter(swingWaypointPainter);
+    // Set the overlay painter
+    WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+    swingWaypointPainter.setWaypoints(waypoints);
+    mapViewer.setOverlayPainter(swingWaypointPainter);
 
-        // Add the JButtons to the map viewer
-        for (SwingWaypoint w : waypoints) {
-            mapViewer.add(w.getButton());
+    // Add the JButtons to the map viewer
+    for (SwingWaypoint w : waypoints) {
+        mapViewer.add(w.getButton());
         }
 
         // Display the viewer in a JFrame
         JFrame frame = new JFrame("Current Request");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -402,6 +431,10 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         ManageDoctor in =new ManageDoctor(lblUsername.getText());
         in.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbbAssignedObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbAssignedObjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbAssignedObjectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

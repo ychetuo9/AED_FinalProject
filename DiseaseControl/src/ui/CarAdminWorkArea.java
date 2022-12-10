@@ -6,6 +6,7 @@ package ui;
 
 import dao.CommunityRequestDao;
 import dao.UserDao;
+import static dao.UserDao.findEmail;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,8 @@ import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
+import util.GmailUtil;
+import javax.swing.*;
 
 /**
  *
@@ -60,6 +63,20 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
             btnSave.setEnabled(true);
         else
             btnSave.setEnabled(false);
+    }
+    
+    private int getMin(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        return (int) temp1;
+    }
+
+    private int getSec(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        int min = (int) temp1;
+        double temp2 = (temp1 - min) * 60;
+        return (int) temp2;
     }
 
     /**
@@ -98,7 +115,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         lblId = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnDriver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -239,13 +256,13 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, -1, -1));
 
-        jButton3.setText("View Drivers");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnDriver.setText("View Drivers");
+        btnDriver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnDriverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 370, 140, -1));
+        getContentPane().add(btnDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 370, 140, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -310,6 +327,11 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
             setVisible(false);
             new CarAdminWorkArea(name).setVisible(true);
         }
+        
+        String nameofemail = cbbAssignedObject.getSelectedItem().toString();
+        String email = findEmail(nameofemail);
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+                ,email,"You have just received a new assignment in the Infectious Disease Control System. Please log in to view.","Notification of new assignment");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
@@ -335,16 +357,19 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
-        String location = model.getValueAt(index,5).toString();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(null, "select a request");
+            return;
+        }
+        TableModel model = jTable1.getModel();
+        String location = model.getValueAt(index, 5).toString();
         double latitude = Double.parseDouble(location.split(",")[0]);
         double longtitude = Double.parseDouble(location.split(",")[1]);
-        
-        
+
         TileFactoryInfo info = new OSMTileFactoryInfo();
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
         tileFactory.setThreadPoolSize(8);
-        
+
         // Setup local file cache
         File cacheDir = new File(System.getProperty("user.home") + File.separator + ".jxmapviewer2");
         tileFactory.setLocalCache(new FileBasedLocalCache(cacheDir, false));
@@ -353,11 +378,19 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         JXMapViewer mapViewer = new JXMapViewer();
         mapViewer.setTileFactory(tileFactory);
 
-        GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
+        GeoPosition requestPosition = new GeoPosition((int) latitude, getMin(latitude), getSec(latitude), (int) longtitude, getMin(longtitude), getMin(longtitude));
+        GeoPosition objectPosition = null;
+        String objectname = cbbAssignedObject.getSelectedItem().toString();
+        if (!objectname.equals("")) {
+            String dlocation = UserDao.getDetailInfo(objectname).getLocation();
+            double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
+            double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
+            objectPosition = new GeoPosition((int) dlatitude, 7, 0, (int) dlongtitude, 41, 0);
+        }
 
         // Set the focus
         mapViewer.setZoom(10);
-        mapViewer.setAddressLocation(frankfurt);
+        mapViewer.setAddressLocation(requestPosition);
 
         // Add interactions
         MouseInputListener mia = new PanMouseInputListener(mapViewer);
@@ -368,8 +401,11 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         mapViewer.addKeyListener(new PanKeyListener(mapViewer));
 
         // Create waypoints from the geo-positions
-        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-                new SwingWaypoint("Request", frankfurt)));
+        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("Request", requestPosition)));
+
+        if (objectPosition != null) {
+            waypoints.add(new SwingWaypoint("object", objectPosition, "object"));
+        }
 
         // Set the overlay painter
         WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
@@ -385,24 +421,26 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         JFrame frame = new JFrame("Current Request");
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
         // TODO add your handling code here:
+//        if(user == null){
+//            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+//        }
         this.dispose();
         ManageDriver in =new ManageDriver(lblUsername.getText());
         in.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnDriverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDriver;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbbAssignedObject;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
