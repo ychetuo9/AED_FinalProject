@@ -49,12 +49,13 @@ public class CityDao {
                 City city = new City();
                 city.setId(rs.getString("id"));
                 city.setName(rs.getString("name"));
+                
                 arrayList.add(city);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        if(arrayList!=null && arrayList.size()>=0){
+        if(arrayList!=null && arrayList.size()!=0){
             flag=true;
         }
         return flag;

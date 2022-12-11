@@ -19,56 +19,37 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class ReportingModule extends javax.swing.JFrame {
     
+    double ratioHospital=UserDao.countUserFromHospital()*1.0/UserDao.countUser()*100;
+    double ratioCommunity=UserDao.countUserFromCommunity()*1.0/UserDao.countUser()*100;
+    double ratioPolice=UserDao.countUserFromPolice()*1.0/UserDao.countUser()*100;
+    double ratioHotel=UserDao.countUserFromHotel()*1.0/UserDao.countUser()*100;
+    double ratioVaccinateUnit=UserDao.countUserFromVaccinateUnit()*1.0/UserDao.countUser()*100;
+    double ratioCarCompany=UserDao.countUserFromCarCompany()*1.0/UserDao.countUser()*100;
+        
     
 
     /**
      * Creates new form ReportingModule
      */
-    public ReportingModule() {
+    public ReportingModule(String name) {
         initComponents();
-        showPieChart();
+        lblUsername.setText(name);
+        showPieChart(ratioHospital,ratioVaccinateUnit,ratioPolice,ratioCommunity,ratioCarCompany,ratioHotel);
     }
     
     
     
-    public void showPieChart(){
-        
-        double a = 24.5;
-        double b = 48.7;
-        double c = 11.4;
-        double d = 5.4;
-        double e = 1.4;
-        double f = 8.6;
-        
-        String cityName="Boston";
-        
-        int count = 11;
-        
-//        int ratioHospital=UserDao.countUserFromHospital()/UserDao.countUser();
-//        int ratioCommunity=UserDao.countUserFromCommunity()/UserDao.countUser();
-//        int ratioPolice=UserDao.countUserFromPolice()/UserDao.countUser();
-//        int ratioHotel=UserDao.countUserFromHotel()/UserDao.countUser();
-//        int ratioVaccinateUnit=UserDao.countUserFromVaccinateUnit()/UserDao.countUser();
-//        int ratioCarCompany=UserDao.countUserFromCarCompany()/UserDao.countUser();
-        
+    public void showPieChart(double a,double b,double c,double d,double e,double f){
         
         //create dataset
       DefaultPieDataset barDataset = new DefaultPieDataset( );
       
-      
-//      barDataset.setValue( "Hospital" , new Double( ratioHospital ) );  
-//      barDataset.setValue( "Vaccinate Unit" , new Double( ratioVaccinateUnit ) );   
-//      barDataset.setValue( "Police" , new Double( ratioPolice ) );    
-//      barDataset.setValue( "Community" , new Double( ratioCommunity ) );
-//      barDataset.setValue( "Car Company" , new Double( ratioCarCompany ) );
-//      barDataset.setValue( "Hotel" , new Double( ratioHotel ) );
-
-        barDataset.setValue( "Hospital" , new Double( a ) );  
-        barDataset.setValue( "Vaccinate Unit" , new Double( b ) );   
-        barDataset.setValue( "Police" , new Double( c ) );    
-        barDataset.setValue( "Community" , new Double( d ) );
-        barDataset.setValue( "Car Company" , new Double( e ) );
-        barDataset.setValue( "Hotel" , new Double( f ) );
+        barDataset.setValue("Hospital" , Double.valueOf(a));  
+        barDataset.setValue("Vaccinate Unit" , Double.valueOf(b));   
+        barDataset.setValue("Police" , Double.valueOf(c));    
+        barDataset.setValue("Community" , Double.valueOf(d));
+        barDataset.setValue("Car Company" , Double.valueOf(e));
+        barDataset.setValue("Hotel" , Double.valueOf(f));
       
       //create chart
        JFreeChart piechart = ChartFactory.createPieChart("Role Type Proportion Of Users",barDataset, false,true,false);//explain
@@ -103,6 +84,9 @@ public class ReportingModule extends javax.swing.JFrame {
     private void initComponents() {
 
         panelBarChart = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,45 +95,72 @@ public class ReportingModule extends javax.swing.JFrame {
         panelBarChart.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelBarChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 650, 430));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1139, 30, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setText("Hello,");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 40, -1, -1));
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblUsername.setText("--");
+        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 40, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name = lblUsername.getText();
+        this.dispose();
+        SystemAdminPage in=new SystemAdminPage(name);
+        in.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReportingModule().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ReportingModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ReportingModule().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel panelBarChart;
     // End of variables declaration//GEN-END:variables
 }

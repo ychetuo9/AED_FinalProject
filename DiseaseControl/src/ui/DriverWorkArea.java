@@ -33,7 +33,6 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
-
 /**
  *
  * @author yanyanchen
@@ -46,7 +45,7 @@ public class DriverWorkArea extends javax.swing.JFrame {
     public DriverWorkArea() {
         initComponents();
     }
-    
+
     public DriverWorkArea(String name) {
         initComponents();
         lblUsername.setText(name);
@@ -55,22 +54,36 @@ public class DriverWorkArea extends javax.swing.JFrame {
         btnProcess.setEnabled(false);
         btnComplete.setEnabled(false);
     }
-    
-    public void validateFields(){
+
+    public void validateFields() {
         String name = lblRequestName.getText();
-        
+
 //        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
-        if(!name.equals("--")){
+        if (!name.equals("--")) {
             btnAccept.setEnabled(true);
             btnReject.setEnabled(true);
             btnProcess.setEnabled(true);
             btnComplete.setEnabled(true);
-        }else{
+        } else {
             btnAccept.setEnabled(false);
             btnReject.setEnabled(false);
             btnProcess.setEnabled(false);
             btnComplete.setEnabled(false);
         }
+    }
+    
+    private int getMin(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        return (int) temp1;
+    }
+
+    private int getSec(double location) {
+        int ldeg = (int) location;
+        double temp1 = (location - ldeg) * 60;
+        int min = (int) temp1;
+        double temp2 = (temp1 - min) * 60;
+        return (int) temp2;
     }
 
     /**
@@ -265,20 +278,20 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int index = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
-        String id =model.getValueAt(index,0).toString();
+        TableModel model = jTable1.getModel();
+        String id = model.getValueAt(index, 0).toString();
         lblId.setText(id);
-        String date = model.getValueAt(index,2).toString();
+        String date = model.getValueAt(index, 2).toString();
         lblDate.setText(date);
-        String name = model.getValueAt(index,1).toString();
+        String name = model.getValueAt(index, 1).toString();
         lblRequestName.setText(name);
-        String patientNumber = model.getValueAt(index,3).toString();
+        String patientNumber = model.getValueAt(index, 3).toString();
         lblPatientNumber.setText(patientNumber);
-        String victim = model.getValueAt(index,4).toString();
+        String victim = model.getValueAt(index, 4).toString();
         lblVictim.setText(victim);
-        String location = model.getValueAt(index,5).toString();
+        String location = model.getValueAt(index, 5).toString();
         lblLocation.setText(location);
-        String description = model.getValueAt(index,6).toString();
+        String description = model.getValueAt(index, 6).toString();
         lblDescription.setText(description);
         String requestObject = model.getValueAt(index, 7).toString();
         lblRequestObject.setText(requestObject);
@@ -286,24 +299,24 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        String id=lblId.getText();
+        String id = lblId.getText();
         String name = lblUsername.getText();
-        
+
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status=request.getStatus();
-        
-        if(status.contains("reject")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("accept")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("process")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("complete")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else{
-                int a =JOptionPane.showConfirmDialog(null,"Do you want to accept this request?","Select",JOptionPane.YES_NO_OPTION);
-                if(a==0){
-                CommunityRequestDao.changeStatus(id,"accept",name);
+        String status = request.getStatus();
+
+        if (status.contains("reject")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("accept")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("process")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("complete")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int a = JOptionPane.showConfirmDialog(null, "Do you want to accept this request?", "Select", JOptionPane.YES_NO_OPTION);
+            if (a == 0) {
+                CommunityRequestDao.changeStatus(id, "accept", name);
                 setVisible(false);
                 new DriverWorkArea(name).setVisible(true);
             }
@@ -312,40 +325,38 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        String name=lblUsername.getText();
-        
-        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        String name = lblUsername.getText();
+
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         ArrayList<Request> requestList = CommunityRequestDao.getAssociatedRecords(name);
         Iterator<Request> itrRequest = requestList.iterator();
-        while(itrRequest.hasNext()){
+        while (itrRequest.hasNext()) {
             Request requestObj = itrRequest.next();
-            dtm.addRow(new Object[]{requestObj.getId(),requestObj.getName(),requestObj.getDate(),requestObj.getPatientNumber(),requestObj.getVictim(),requestObj.getLocation(),requestObj.getDescription(),requestObj.getRequestObject(),requestObj.getStatus()});
+            dtm.addRow(new Object[]{requestObj.getId(), requestObj.getName(), requestObj.getDate(), requestObj.getPatientNumber(), requestObj.getVictim(), requestObj.getLocation(), requestObj.getDescription(), requestObj.getRequestObject(), requestObj.getStatus()});
         }
     }//GEN-LAST:event_formComponentShown
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
-        String id=lblId.getText();
+        String id = lblId.getText();
         String name = lblUsername.getText();
-        
-        
-        
+
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status=request.getStatus();
-        
-        if(status.contains("reject")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("accept")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("process")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("complete")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else{
-                int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
-                if(a==0){
-                CommunityRequestDao.changeStatus(id,"reject",name);
-                CommunityRequestDao.rejectRequest(id,"CarAdmin");
+        String status = request.getStatus();
+
+        if (status.contains("reject")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("accept")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Accepted</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("process")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("complete")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int a = JOptionPane.showConfirmDialog(null, "Do you want to reject this request?", "Select", JOptionPane.YES_NO_OPTION);
+            if (a == 0) {
+                CommunityRequestDao.changeStatus(id, "reject", name);
+                CommunityRequestDao.rejectRequest(id, "CarAdmin");
                 setVisible(false);
                 new DriverWorkArea(name).setVisible(true);
             }
@@ -354,49 +365,49 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
-        String id=lblId.getText();
+        String id = lblId.getText();
         String name = lblUsername.getText();
-        
-        String request1=lblRequestName.getText();
-        String patientNumber=lblPatientNumber.getText();
-        String date=lblDate.getText();
-        String victim=lblVictim.getText();
-        
+
+        String request1 = lblRequestName.getText();
+        String patientNumber = lblPatientNumber.getText();
+        String date = lblDate.getText();
+        String victim = lblVictim.getText();
+
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status=request.getStatus();
-        
-        if(status.contains("reject")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("process")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("complete")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else{
-                int a =JOptionPane.showConfirmDialog(null,"Do you want to process this request?","Select",JOptionPane.YES_NO_OPTION);
-                if(a==0){
-                CommunityRequestDao.changeStatus(id,"process",name);
+        String status = request.getStatus();
+
+        if (status.contains("reject")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("process")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Processing</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("complete")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int a = JOptionPane.showConfirmDialog(null, "Do you want to process this request?", "Select", JOptionPane.YES_NO_OPTION);
+            if (a == 0) {
+                CommunityRequestDao.changeStatus(id, "process", name);
                 setVisible(false);
-                new DriverWorkLog(name,id,request1,patientNumber,victim,date).setVisible(true);
+                new DriverWorkLog(name, id, request1, patientNumber, victim, date).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
-        String id=lblId.getText();
+        String id = lblId.getText();
         String name = lblUsername.getText();
-        
+
         Request request = CommunityRequestDao.getDetailInfo(id);
-        String status=request.getStatus();
-        
-        if(status.contains("reject")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else if(status.contains("complete")){
-            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-        }else{
-                int a =JOptionPane.showConfirmDialog(null,"Do you want to complete this request?","Select",JOptionPane.YES_NO_OPTION);
-                if(a==0){
-                CommunityRequestDao.changeStatus(id,"complete",name);
+        String status = request.getStatus();
+
+        if (status.contains("reject")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Rejected</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else if (status.contains("complete")) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">The Task Has Already Been Completed</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int a = JOptionPane.showConfirmDialog(null, "Do you want to complete this request?", "Select", JOptionPane.YES_NO_OPTION);
+            if (a == 0) {
+                CommunityRequestDao.changeStatus(id, "complete", name);
                 setVisible(false);
                 new DriverWorkArea(name).setVisible(true);
             }
@@ -410,10 +421,10 @@ public class DriverWorkArea extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int a =JOptionPane.showConfirmDialog(null,"Do you want to exit this page ?","Select",JOptionPane.YES_NO_OPTION);
-        if(a==0){
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to exit this page ?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
             this.dispose();
-            Login in=new Login();
+            Login in = new Login();
             in.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -426,8 +437,8 @@ public class DriverWorkArea extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
-        String location = model.getValueAt(index,5).toString();
+        TableModel model = jTable1.getModel();
+        String location = model.getValueAt(index, 5).toString();
         double latitude = Double.parseDouble(location.split(",")[0]);
         double longtitude = Double.parseDouble(location.split(",")[1]);
 
@@ -443,11 +454,11 @@ public class DriverWorkArea extends javax.swing.JFrame {
         JXMapViewer mapViewer = new JXMapViewer();
         mapViewer.setTileFactory(tileFactory);
 
-        GeoPosition frankfurt = new GeoPosition((int)latitude,  7, 0, (int)longtitude, 41, 0);
+        GeoPosition requestPosition = new GeoPosition((int) latitude, getMin(latitude), getSec(latitude), (int) longtitude, getMin(longtitude), getMin(longtitude));
 
         // Set the focus
         mapViewer.setZoom(10);
-        mapViewer.setAddressLocation(frankfurt);
+        mapViewer.setAddressLocation(requestPosition);
 
         // Add interactions
         MouseInputListener mia = new PanMouseInputListener(mapViewer);
@@ -458,17 +469,16 @@ public class DriverWorkArea extends javax.swing.JFrame {
         mapViewer.addKeyListener(new PanKeyListener(mapViewer));
 
         // Create waypoints from the geo-positions
-        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
-            new SwingWaypoint("Request", frankfurt)));
+        Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("Request", requestPosition)));
 
-    // Set the overlay painter
-    WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-    swingWaypointPainter.setWaypoints(waypoints);
-    mapViewer.setOverlayPainter(swingWaypointPainter);
+        // Set the overlay painter
+        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+        swingWaypointPainter.setWaypoints(waypoints);
+        mapViewer.setOverlayPainter(swingWaypointPainter);
 
-    // Add the JButtons to the map viewer
-    for (SwingWaypoint w : waypoints) {
-        mapViewer.add(w.getButton());
+        // Add the JButtons to the map viewer
+        for (SwingWaypoint w : waypoints) {
+            mapViewer.add(w.getButton());
         }
 
         // Display the viewer in a JFrame

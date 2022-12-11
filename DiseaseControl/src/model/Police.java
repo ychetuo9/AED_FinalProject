@@ -9,5 +9,14 @@ package model;
  * @author yanyanchen
  */
 public class Police {
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
 }

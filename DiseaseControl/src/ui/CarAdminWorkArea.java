@@ -114,7 +114,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnMap = new javax.swing.JButton();
         btnDriver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -248,13 +248,13 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
 
-        jButton2.setText("View in map");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnMap.setText("View in map");
+        btnMap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnMapActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, -1, -1));
+        getContentPane().add(btnMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, -1, -1));
 
         btnDriver.setText("View Drivers");
         btnDriver.addActionListener(new java.awt.event.ActionListener() {
@@ -354,7 +354,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_lblIdPropertyChange
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
         if (index == -1) {
@@ -385,7 +385,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
             String dlocation = UserDao.getDetailInfo(objectname).getLocation();
             double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
             double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
-            objectPosition = new GeoPosition((int) dlatitude, 7, 0, (int) dlongtitude, 41, 0);
+            objectPosition = new GeoPosition((int) dlatitude, getMin(dlatitude), getSec(dlatitude), (int) dlongtitude, getMin(dlongtitude), getMin(dlongtitude));
         }
 
         // Set the focus
@@ -422,7 +422,7 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
         frame.getContentPane().add(mapViewer);
         frame.setSize(800, 600);
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnMapActionPerformed
 
     private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
         // TODO add your handling code here:
@@ -437,10 +437,10 @@ public class CarAdminWorkArea extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDriver;
+    private javax.swing.JButton btnMap;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbbAssignedObject;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

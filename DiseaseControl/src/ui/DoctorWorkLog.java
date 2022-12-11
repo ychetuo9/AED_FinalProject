@@ -4,13 +4,21 @@
  */
 package ui;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.log.Logger;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.IOException;
+import java.lang.System.Logger.Level;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 /**
  *
@@ -23,6 +31,8 @@ public class DoctorWorkLog extends javax.swing.JFrame {
      */
     public DoctorWorkLog(String userName,String id,String request,String patientNumber,String date) {
         initComponents();
+        txtPhotoPath2.setEditable(false);
+        
         lblUsername.setText(userName);
         lblPatientNumber.setText(patientNumber);
         lblPatientNumber1.setText(patientNumber);
@@ -35,9 +45,10 @@ public class DoctorWorkLog extends javax.swing.JFrame {
     
     public void validateFields(){
         String diagnose = txtDiagnose.getText();
+        String photo=txtPhotoPath2.getText();
         
 //        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
-        if(!diagnose.equals("")){
+        if(!diagnose.equals("")&&!photo.equals("")){
             btnPrint.setEnabled(true);
         }else{
             btnPrint.setEnabled(false);
@@ -64,11 +75,15 @@ public class DoctorWorkLog extends javax.swing.JFrame {
         lblPatientNumber = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        btnPrint = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         lblPatientNumber1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtDiagnose = new javax.swing.JTextField();
+        btnPrint = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtPhotoPath2 = new javax.swing.JTextField();
+        btnBrowse1 = new javax.swing.JButton();
+        lblPic = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,19 +102,19 @@ public class DoctorWorkLog extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Request Name:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
 
         lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRequest.setText("--");
-        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("Date:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
 
         lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Patient Number:");
@@ -122,32 +137,53 @@ public class DoctorWorkLog extends javax.swing.JFrame {
         });
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
 
-        btnPrint.setText("Print Work Log");
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Please add ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         lblPatientNumber1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblPatientNumber1.setText("--");
-        getContentPane().add(lblPatientNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
+        getContentPane().add(lblPatientNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setText("patients overall diagnose");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
         txtDiagnose.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDiagnoseKeyReleased(evt);
             }
         });
-        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 330, -1));
+        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 330, -1));
+
+        btnPrint.setText("Print Work Log");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 530, -1, -1));
+
+        jLabel3.setText("Work Photo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
+
+        txtPhotoPath2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPhotoPath2KeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 230, -1));
+
+        btnBrowse1.setText("Browse");
+        btnBrowse1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrowse1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBrowse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 110, -1, -1));
+
+        lblPic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 400, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,6 +193,11 @@ public class DoctorWorkLog extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_lblIdPropertyChange
 
+    private void txtDiagnoseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiagnoseKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtDiagnoseKeyReleased
+
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
         String path = "/Users/yanyanchen/Desktop/";
@@ -165,9 +206,9 @@ public class DoctorWorkLog extends javax.swing.JFrame {
         String request=lblRequest.getText();
         String patientNumber=lblPatientNumber.getText();
         String date=lblDate.getText();
-//        userName,id,request,patientNumber,date
+        //        userName,id,request,patientNumber,date
         String diagnose=txtDiagnose.getText();
-        
+
         com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
         try{
             PdfWriter.getInstance(doc, new FileOutputStream(path+""+userName+"WorkLog"+".pdf"));
@@ -178,29 +219,57 @@ public class DoctorWorkLog extends javax.swing.JFrame {
             doc.add(stringLine);
             Paragraph paragraph = new Paragraph("\tRequest ID: "+id+"\nDate: "+date);
             doc.add(paragraph);
-            Paragraph paragraph1 = new Paragraph("\nRequest Name: "+request+"\tDoctor Name:"+userName);
+            Paragraph paragraph1 = new Paragraph("\nRequest Name: "+request+"\nDoctor Name:"+userName);
             doc.add(paragraph1);
-            Paragraph paragraph2 = new Paragraph("\tPatient Number: "+patientNumber+"\nDiagnose: "+diagnose);
+            Paragraph paragraph2 = new Paragraph("\nPatient Number: "+patientNumber+"\nDiagnose: "+diagnose);
             doc.add(paragraph2);
+
+            String path1="";
+            path1=txtPhotoPath2.getText();
+
+            Image image1 = Image.getInstance(path1);
+            image1.setAbsolutePosition(325f, 575f);
+            image1.scaleAbsolute(200, 200);
+            doc.add(image1);
+
             doc.add(stringLine);
+
             Paragraph thankMsg = new Paragraph("Thank you for your hard work!");
             doc.add(thankMsg);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DoctorWorkLog.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorWorkLog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
-            Logger.getLogger(DoctorWorkLog.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorWorkLog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(HotelWorkLog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         doc.close();
         setVisible(false);
-        
+
         new DoctorWorkArea(userName).setVisible(true);
-//        new DoctorWorkLog(userName,id,request,String patientNumber,String date).setVisible(true);
+        //        new DoctorWorkLog(userName,id,request,String patientNumber,String date).setVisible(true);
     }//GEN-LAST:event_btnPrintActionPerformed
 
-    private void txtDiagnoseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiagnoseKeyReleased
+    private void btnBrowse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowse1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter fnwf = new FileNameExtensionFilter("PNG JPG AND JPEG","png","jpeg","jpg");
+        fileChooser.addChoosableFileFilter(fnwf);
+        int load = fileChooser.showOpenDialog(null);
+        if(load == fileChooser.APPROVE_OPTION){
+            File f = fileChooser.getSelectedFile();
+            String path3 = f.getAbsolutePath();
+            txtPhotoPath2.setText(path3);
+            ImageIcon ii =new ImageIcon(path3);
+            java.awt.Image img =ii.getImage().getScaledInstance(400, 400,java.awt.Image.SCALE_SMOOTH);
+            lblPic.setIcon(new ImageIcon(img));
+        }
+    }//GEN-LAST:event_btnBrowse1ActionPerformed
+
+    private void txtPhotoPath2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhotoPath2KeyReleased
         // TODO add your handling code here:
         validateFields();
-    }//GEN-LAST:event_txtDiagnoseKeyReleased
+    }//GEN-LAST:event_txtPhotoPath2KeyReleased
 
     /**
      * @param args the command line arguments
@@ -238,10 +307,12 @@ public class DoctorWorkLog extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBrowse1;
     private javax.swing.JButton btnPrint;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -251,8 +322,10 @@ public class DoctorWorkLog extends javax.swing.JFrame {
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblPatientNumber;
     private javax.swing.JLabel lblPatientNumber1;
+    private javax.swing.JLabel lblPic;
     private javax.swing.JLabel lblRequest;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtDiagnose;
+    private javax.swing.JTextField txtPhotoPath2;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,13 +4,20 @@
  */
 package ui;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.log.Logger;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.System.Logger.Level;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -31,13 +38,15 @@ public class HotelWorkLog extends javax.swing.JFrame {
         lblDate.setText(date);
         
         btnPrint.setEnabled(false);
+        txtPhotoPath2.setEditable(false);
     }
     
     public void validateFields(){
         String diagnose = txtDiagnose.getText();
+        String photo=txtPhotoPath2.getText();
         
 //        &&!date.equals("--")&&!patientNumber.equals("--")&&!victim.equals("--")&&!location.equals("--")&&!descriiption.equals("--")
-        if(!diagnose.equals("")){
+        if(!diagnose.equals("")&&!photo.equals("")){
             btnPrint.setEnabled(true);
         }else{
             btnPrint.setEnabled(false);
@@ -54,62 +63,29 @@ public class HotelWorkLog extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        btnPrint = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lblVictim = new javax.swing.JLabel();
         lblRequest = new javax.swing.JLabel();
+        txtDiagnose = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         lblPatientNumber = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        btnPrint = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        lblVictim = new javax.swing.JLabel();
-        txtDiagnose = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtPhotoPath2 = new javax.swing.JTextField();
+        btnBrowse = new javax.swing.JButton();
+        lblPic = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Hotel Work Log");
-
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel8.setText("Hello,");
-
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel2.setText("Request Name:");
-
-        lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblRequest.setText("--");
-
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("Date:");
-
-        lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblDate.setText("--");
-
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel6.setText("Patient Number:");
-
-        lblPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblPatientNumber.setText("--");
-
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel11.setText("Request Log ID");
-
-        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblId.setText("--");
-        lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                lblIdPropertyChange(evt);
-            }
-        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnPrint.setText("Print Work Log");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -117,14 +93,34 @@ public class HotelWorkLog extends javax.swing.JFrame {
                 btnPrintActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel8.setText("Hello,");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 29, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Please add work result");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblUsername.setText("--");
+        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 29, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel5.setText("# of Potentially infected");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 153, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setText("Request Name:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
         lblVictim.setText("--");
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 153, -1, -1));
+
+        lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblRequest.setText("--");
+        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         txtDiagnose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,99 +132,64 @@ public class HotelWorkLog extends javax.swing.JFrame {
                 txtDiagnoseKeyReleased(evt);
             }
         });
+        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 252, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 701, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(210, 210, 210)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(440, 440, 440)
-                            .addComponent(jLabel8)
-                            .addGap(11, 11, 11)
-                            .addComponent(lblUsername))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
-                            .addComponent(jLabel11)
-                            .addGap(28, 28, 28)
-                            .addComponent(lblId)
-                            .addGap(176, 176, 176)
-                            .addComponent(jLabel2)
-                            .addGap(20, 20, 20)
-                            .addComponent(lblRequest))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addComponent(jLabel6)
-                            .addGap(32, 32, 32)
-                            .addComponent(lblPatientNumber)
-                            .addGap(256, 256, 256)
-                            .addComponent(jLabel4)
-                            .addGap(16, 16, 16)
-                            .addComponent(lblDate))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel5)
-                            .addGap(19, 19, 19)
-                            .addComponent(lblVictim))
-                        .addComponent(jLabel7)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
-                            .addComponent(txtDiagnose, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(480, 480, 480)
-                            .addComponent(btnPrint)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(13, 13, 13)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8)
-                        .addComponent(lblUsername))
-                    .addGap(37, 37, 37)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel11)
-                        .addComponent(lblId)
-                        .addComponent(jLabel2)
-                        .addComponent(lblRequest))
-                    .addGap(27, 27, 27)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6)
-                        .addComponent(lblPatientNumber)
-                        .addComponent(jLabel4)
-                        .addComponent(lblDate))
-                    .addGap(27, 27, 27)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5)
-                        .addComponent(lblVictim))
-                    .addGap(57, 57, 57)
-                    .addComponent(jLabel7)
-                    .addGap(37, 37, 37)
-                    .addComponent(txtDiagnose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)
-                    .addComponent(btnPrint)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setText("Date:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblDate.setText("--");
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel6.setText("Patient Number:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 118, -1, -1));
+
+        lblPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblPatientNumber.setText("--");
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 118, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel11.setText("Request Log ID");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 77, -1, -1));
+
+        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblId.setText("--");
+        lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lblIdPropertyChange(evt);
+            }
+        });
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 77, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setText("Hotel Work Log");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 15, 193, 37));
+
+        jLabel3.setText("Workd Photo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
+
+        txtPhotoPath2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPhotoPath2KeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 230, -1));
+
+        btnBrowse.setText("Browse");
+        btnBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrowseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBrowse, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, -1, -1));
+
+        lblPic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 400, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_lblIdPropertyChange
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
@@ -256,13 +217,25 @@ public class HotelWorkLog extends javax.swing.JFrame {
             doc.add(paragraph1);
             Paragraph paragraph2 = new Paragraph("\nPatient Number: "+patientNumber+"\nVictim: "+victim+"\nDiagnose: "+diagnose);
             doc.add(paragraph2);
+
+            String path1="";
+            path1=txtPhotoPath2.getText();
+
+            Image image1 = Image.getInstance(path1);
+            image1.setAbsolutePosition(325f, 575f);
+            image1.scaleAbsolute(200, 200);
+            doc.add(image1);
+
             doc.add(stringLine);
+
             Paragraph thankMsg = new Paragraph("Thank you for your hard work!");
             doc.add(thankMsg);
         } catch (FileNotFoundException ex) {
             java.util.logging.Logger.getLogger(DoctorWorkLog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             java.util.logging.Logger.getLogger(DoctorWorkLog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(HotelWorkLog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         doc.close();
         setVisible(false);
@@ -279,6 +252,32 @@ public class HotelWorkLog extends javax.swing.JFrame {
         // TODO add your handling code here:
         validateFields();
     }//GEN-LAST:event_txtDiagnoseKeyReleased
+
+    private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_lblIdPropertyChange
+
+    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter fnwf = new FileNameExtensionFilter("PNG JPG AND JPEG","png","jpeg","jpg");
+        fileChooser.addChoosableFileFilter(fnwf);
+        int load = fileChooser.showOpenDialog(null);
+        if(load == fileChooser.APPROVE_OPTION){
+            File f = fileChooser.getSelectedFile();
+            String path3 = f.getAbsolutePath();
+            txtPhotoPath2.setText(path3);
+            ImageIcon ii =new ImageIcon(path3);
+            java.awt.Image img =ii.getImage().getScaledInstance(400, 400,java.awt.Image.SCALE_SMOOTH);
+            lblPic.setIcon(new ImageIcon(img));
+        }
+    }//GEN-LAST:event_btnBrowseActionPerformed
+
+    private void txtPhotoPath2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhotoPath2KeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPhotoPath2KeyReleased
 
     /**
      * @param args the command line arguments
@@ -316,10 +315,12 @@ public class HotelWorkLog extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnPrint;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -328,9 +329,11 @@ public class HotelWorkLog extends javax.swing.JFrame {
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblPatientNumber;
+    private javax.swing.JLabel lblPic;
     private javax.swing.JLabel lblRequest;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblVictim;
     private javax.swing.JTextField txtDiagnose;
+    private javax.swing.JTextField txtPhotoPath2;
     // End of variables declaration//GEN-END:variables
 }

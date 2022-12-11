@@ -131,8 +131,9 @@ public class SystemAdminPage extends javax.swing.JFrame {
 
     private void btnReportingModuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportingModuleActionPerformed
         // TODO add your handling code here:
+        String name=lblUsername.getText();
         this.dispose();
-        ReportingModule in =new ReportingModule();
+        ReportingModule in =new ReportingModule(name);
         in.setVisible(true);
         
     }//GEN-LAST:event_btnReportingModuleActionPerformed
