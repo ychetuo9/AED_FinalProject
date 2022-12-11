@@ -16,6 +16,10 @@ In certain countries or regions, provide information management for COVID-19 eme
 
 The design of  the application includes 4 Enterprises, 6 Organizations, and 9 roles. System Administrator has the rights to manage organizations and city information, and all user information. Users of other roles can select roles and sign up their own accounts. After verifying by System Administrator, Users can use the corresponding functions of the application.
 
+
+
+### Players and their contributions
+
 **Hospital Operating Enterprise**: Manage hospital system information and treat patients in infectious disease events.
 
 - Hospital
@@ -40,7 +44,7 @@ The design of  the application includes 4 Enterprises, 6 Organizations, and 9 ro
 
 **Transportation Operating Enterprise**: Manage emergency transportation system information and transporting patients.
 
-- Emergency Vehicle![image](https://user-images.githubusercontent.com/117139088/206917898-c738ce2e-da11-4805-a59a-8987f7bb77a4.jpeg)
+- Emergency Vehicle
 
 
   -- Car Admin: Manage received community work requests, assign requests to driver, manage driver users
@@ -60,7 +64,8 @@ The design of  the application includes 4 Enterprises, 6 Organizations, and 9 ro
 
 **UML diagram**
 
-![UML2](https://user-images.githubusercontent.com/117139088/206830426-c4f508ec-a760-4772-a2ea-43dfbbf7b211.jpeg)
+<img width="763" alt="UML3" src="https://user-images.githubusercontent.com/117139088/206923743-201abed3-e919-4806-b50f-ae456d9c7773.png">
+
 
 
 
