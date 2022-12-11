@@ -274,7 +274,7 @@ public class PoliceHeadWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"accept",name);
                 setVisible(false);
-                new VaccinateHeadWorkArea(name).setVisible(true);
+                new PoliceHeadWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAcceptActionPerformed
@@ -303,7 +303,7 @@ public class PoliceHeadWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"process",name);
                 setVisible(false);
-                new VaccinateWorkLog(name,id,request1,patientNumber,victim,date).setVisible(true);
+                new PoliceWorkLog(name,id,request1,patientNumber,victim,date).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnProcessActionPerformed
@@ -329,7 +329,7 @@ public class PoliceHeadWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"reject",name);
                 setVisible(false);
-                new VaccinateHeadWorkArea(name).setVisible(true);
+                new PoliceHeadWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnRejectActionPerformed
@@ -361,7 +361,7 @@ public class PoliceHeadWorkArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"complete",name);
                 setVisible(false);
-                new VaccinateHeadWorkArea(name).setVisible(true);
+                new PoliceHeadWorkArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed

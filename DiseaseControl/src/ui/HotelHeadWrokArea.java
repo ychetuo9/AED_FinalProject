@@ -392,7 +392,7 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"complete",name);
                 setVisible(false);
-                new DriverWorkArea(name).setVisible(true);
+                new HotelHeadWrokArea(name).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnCompleteActionPerformed
@@ -450,14 +450,14 @@ public class HotelHeadWrokArea extends javax.swing.JFrame {
         Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(
             new SwingWaypoint("Request", frankfurt)));
 
-    // Set the overlay painter
-    WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-    swingWaypointPainter.setWaypoints(waypoints);
-    mapViewer.setOverlayPainter(swingWaypointPainter);
+        // Set the overlay painter
+        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+        swingWaypointPainter.setWaypoints(waypoints);
+        mapViewer.setOverlayPainter(swingWaypointPainter);
 
-    // Add the JButtons to the map viewer
-    for (SwingWaypoint w : waypoints) {
-        mapViewer.add(w.getButton());
+        // Add the JButtons to the map viewer
+        for (SwingWaypoint w : waypoints) {
+            mapViewer.add(w.getButton());
         }
 
         // Display the viewer in a JFrame
