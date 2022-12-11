@@ -56,7 +56,7 @@ import java.nio.file.Paths;
  * @author yanyanchen
  */
 public class SugnUp extends javax.swing.JFrame {
-    public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
+    public String emailPattern = "^\\w+([-+.]\\w+)*@\\w+([-.]\\ w+)*\\.\\w+([-.]\\ w+)*$";
     public String mobileNumberPattern="^[0-9]*$"; 
     public String namePattern="^\\w+$";
     

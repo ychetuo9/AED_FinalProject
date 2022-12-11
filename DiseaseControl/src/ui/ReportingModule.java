@@ -19,6 +19,13 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class ReportingModule extends javax.swing.JFrame {
     
+    double ratioHospital=UserDao.countUserFromHospital()*1.0/UserDao.countUser()*100;
+    double ratioCommunity=UserDao.countUserFromCommunity()*1.0/UserDao.countUser()*100;
+    double ratioPolice=UserDao.countUserFromPolice()*1.0/UserDao.countUser()*100;
+    double ratioHotel=UserDao.countUserFromHotel()*1.0/UserDao.countUser()*100;
+    double ratioVaccinateUnit=UserDao.countUserFromVaccinateUnit()*1.0/UserDao.countUser()*100;
+    double ratioCarCompany=UserDao.countUserFromCarCompany()*1.0/UserDao.countUser()*100;
+        
     
 
     /**
@@ -27,49 +34,22 @@ public class ReportingModule extends javax.swing.JFrame {
     public ReportingModule(String name) {
         initComponents();
         lblUsername.setText(name);
-        showPieChart();
+        showPieChart(ratioHospital,ratioVaccinateUnit,ratioPolice,ratioCommunity,ratioCarCompany,ratioHotel);
     }
     
     
     
-    public void showPieChart(){
-        
-        double a = 24.5;
-        double b = 48.7;
-        double c = 11.4;
-        double d = 5.4;
-        double e = 1.4;
-        double f = 8.6;
-        
-        String cityName="Boston";
-        
-        int count = 11;
-        
-//        int ratioHospital=UserDao.countUserFromHospital()/UserDao.countUser();
-//        int ratioCommunity=UserDao.countUserFromCommunity()/UserDao.countUser();
-//        int ratioPolice=UserDao.countUserFromPolice()/UserDao.countUser();
-//        int ratioHotel=UserDao.countUserFromHotel()/UserDao.countUser();
-//        int ratioVaccinateUnit=UserDao.countUserFromVaccinateUnit()/UserDao.countUser();
-//        int ratioCarCompany=UserDao.countUserFromCarCompany()/UserDao.countUser();
-        
+    public void showPieChart(double a,double b,double c,double d,double e,double f){
         
         //create dataset
       DefaultPieDataset barDataset = new DefaultPieDataset( );
       
-      
-//      barDataset.setValue( "Hospital" , new Double( ratioHospital ) );  
-//      barDataset.setValue( "Vaccinate Unit" , new Double( ratioVaccinateUnit ) );   
-//      barDataset.setValue( "Police" , new Double( ratioPolice ) );    
-//      barDataset.setValue( "Community" , new Double( ratioCommunity ) );
-//      barDataset.setValue( "Car Company" , new Double( ratioCarCompany ) );
-//      barDataset.setValue( "Hotel" , new Double( ratioHotel ) );
-
-        barDataset.setValue( "Hospital" , new Double( a ) );  
-        barDataset.setValue( "Vaccinate Unit" , new Double( b ) );   
-        barDataset.setValue( "Police" , new Double( c ) );    
-        barDataset.setValue( "Community" , new Double( d ) );
-        barDataset.setValue( "Car Company" , new Double( e ) );
-        barDataset.setValue( "Hotel" , new Double( f ) );
+        barDataset.setValue("Hospital" , Double.valueOf(a));  
+        barDataset.setValue("Vaccinate Unit" , Double.valueOf(b));   
+        barDataset.setValue("Police" , Double.valueOf(c));    
+        barDataset.setValue("Community" , Double.valueOf(d));
+        barDataset.setValue("Car Company" , Double.valueOf(e));
+        barDataset.setValue("Hotel" , Double.valueOf(f));
       
       //create chart
        JFreeChart piechart = ChartFactory.createPieChart("Role Type Proportion Of Users",barDataset, false,true,false);//explain

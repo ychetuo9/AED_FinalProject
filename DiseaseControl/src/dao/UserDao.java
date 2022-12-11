@@ -348,14 +348,44 @@ public static String findEmail(String name){
     
     public static int countUserFromHospital(){
         int num=0;
+        ArrayList<User> arrayListDoctor = new ArrayList<>();
+        ArrayList<User> arrayListHospital = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Doctor'");
-            rs0.last();   
-            int rowCountDoctor = rs0.getRow();
-            ResultSet rs1 = DbOperations.getData("select count(*) from user where role='Hospital Admin'");
-            rs1.last();   
-            int rowCountHospitalAdmin = rs1.getRow();
-            num=rowCountDoctor+rowCountHospitalAdmin;
+            ResultSet rs3 = DbOperations.getData("select *from user where role='Doctor'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+
+                arrayListDoctor.add(user);
+            }
+            ResultSet rs1 = DbOperations.getData("select *from user where role='Hospital Admin'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs1.getString("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setPassword(rs1.getString("password"));
+                user.setCity(rs1.getString("city"));
+                user.setOrganization(rs1.getString("organization"));
+                user.setRole(rs1.getString("role"));
+                user.setCarrier(rs1.getString("carrier"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setLocation(rs1.getString("location"));
+                user.setStatus(rs1.getString("status"));
+
+                arrayListHospital.add(user);
+            }
+            num=arrayListHospital.size()+arrayListDoctor.size();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -364,14 +394,44 @@ public static String findEmail(String name){
     
     public static int countUserFromCarCompany(){
         int num=0;
+        ArrayList<User> arrayListDriver = new ArrayList<>();
+        ArrayList<User> arrayListCar = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Car Admin'");
-            rs0.last();   
-            int rowCountCarAdmin = rs0.getRow();
-            ResultSet rs1 = DbOperations.getData("select count(*) from user where role='Driver'");
-            rs1.last();   
-            int rowCountDriver = rs1.getRow();
-            num=rowCountCarAdmin+rowCountDriver;
+            ResultSet rs3 = DbOperations.getData("select *from user where role='Driver'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+
+                arrayListDriver.add(user);
+            }
+            ResultSet rs1 = DbOperations.getData("select *from user where role='Car Admin'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs1.getString("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setPassword(rs1.getString("password"));
+                user.setCity(rs1.getString("city"));
+                user.setOrganization(rs1.getString("organization"));
+                user.setRole(rs1.getString("role"));
+                user.setCarrier(rs1.getString("carrier"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setLocation(rs1.getString("location"));
+                user.setStatus(rs1.getString("status"));
+
+                arrayListCar.add(user);
+            }
+            num=arrayListCar.size()+arrayListDriver.size();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -380,11 +440,26 @@ public static String findEmail(String name){
     
     public static int countUserFromHotel(){
         int num=0;
+        ArrayList<User> arrayListHotel = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Hotel Head'");
-            rs0.last();   
-            int rowCountHotel = rs0.getRow();
-            num = rowCountHotel;
+            ResultSet rs3 = DbOperations.getData("select *from user where role='Hotel Head'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+
+                arrayListHotel.add(user);
+            }
+            num=arrayListHotel.size();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -393,11 +468,26 @@ public static String findEmail(String name){
     
     public static int countUserFromCommunity(){
         int num=0;
+        ArrayList<User> arrayListCommunity = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Community Admin'");
-            rs0.last();
-            int rowCountCommunity = rs0.getRow();
-            num = rowCountCommunity;
+            ResultSet rs3 = DbOperations.getData("select *from user where role='Community Admin'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+
+                arrayListCommunity.add(user);
+            }
+            num=arrayListCommunity.size();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -406,11 +496,26 @@ public static String findEmail(String name){
     
     public static int countUserFromVaccinateUnit(){
         int num=0;
+        ArrayList<User> arrayListVaccinate = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Vaccinate Head'");
-            rs0.last();
-            int rowCountVaccinate = rs0.getRow();
-            num = rowCountVaccinate;
+            ResultSet rs3 = DbOperations.getData("select *from user where role='Vaccinate Head'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+
+                arrayListVaccinate.add(user);
+            }
+            num=arrayListVaccinate.size();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -419,11 +524,26 @@ public static String findEmail(String name){
     
     public static int countUserFromPolice(){
         int num=0;
+        ArrayList<User> arrayListPolice = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Police Head'");
-            rs0.last();
-            int rowCountPolice = rs0.getRow();
-            num = rowCountPolice;
+            ResultSet rs3 = DbOperations.getData("select *from user where role='Police Head'");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+
+                arrayListPolice.add(user);
+            }
+            num=arrayListPolice.size();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -432,11 +552,26 @@ public static String findEmail(String name){
     
     public static int countUser(){
         int num=0;
+        ArrayList<User> arrayListUser = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select count(*) from user");
-            rs0.last();
-            int rowCountPolice = rs0.getRow();
-            num = rowCountPolice;
+            ResultSet rs3 = DbOperations.getData("select *from user");
+            while (rs3.next()) {
+                User user = new User();
+                user.setId(rs3.getString("id"));
+                user.setName(rs3.getString("name"));
+                user.setEmail(rs3.getString("email"));
+                user.setPassword(rs3.getString("password"));
+                user.setCity(rs3.getString("city"));
+                user.setOrganization(rs3.getString("organization"));
+                user.setRole(rs3.getString("role"));
+                user.setCarrier(rs3.getString("carrier"));
+                user.setMobileNumber(rs3.getString("mobileNumber"));
+                user.setLocation(rs3.getString("location"));
+                user.setStatus(rs3.getString("status"));
+
+                arrayListUser.add(user);
+            }
+            num=arrayListUser.size();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
