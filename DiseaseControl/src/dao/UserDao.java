@@ -90,7 +90,7 @@ public class UserDao {
     public static ArrayList<User> getRequestObject() {
         ArrayList<User> arrayList = new ArrayList<>();
         try {
-            ResultSet rs0 = DbOperations.getData("select *from user where role='Car Admin' or role='Hospital Admin' or role='Hotel Head' or role='Vaccinate Head'");
+            ResultSet rs0 = DbOperations.getData("select *from user where role='Car Admin' or role='Hospital Admin' or role='Hotel Head' or role='Vaccinate Head' or role='Police Head'");
             while (rs0.next()) {
                 User user = new User();
                 user.setId(rs0.getString("id"));
