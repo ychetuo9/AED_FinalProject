@@ -105,7 +105,7 @@ public class ManageEnterprise extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 479, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("Add new Organization");
+        jLabel4.setText("Add new Enterprise");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 391, -1, -1));
 
         btnClear.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -202,7 +202,6 @@ public class ManageEnterprise extends javax.swing.JFrame {
             lblHint.setVisible(true);
         }else{
             lblHint.setVisible(false);
-
         }
     }//GEN-LAST:event_txtNameKeyReleased
 

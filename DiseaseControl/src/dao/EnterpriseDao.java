@@ -62,7 +62,7 @@ public class EnterpriseDao {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        if(arrayList!=null&&arrayList.size()==0){
+        if(arrayList!=null&&arrayList.size()!=0){
             flag=true;
         }
         return flag;
