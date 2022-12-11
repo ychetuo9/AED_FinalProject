@@ -69,6 +69,9 @@ public class SugnUp extends javax.swing.JFrame {
         lblRight.setVisible(false);
         lblRight1.setVisible(false);
         lblWrongHint.setVisible(false);
+        lblEmailHint.setVisible(false);
+        lblUserNameHint.setVisible(false);
+        btnSignUp.setEnabled(false);
     }
     
     public void validateFields(){
@@ -80,10 +83,13 @@ public class SugnUp extends javax.swing.JFrame {
         String organization=(String)cbbOrganization.getSelectedItem();
         String carrier=(String)cbbCarrier.getSelectedItem();
         String location=txtLocation.getText();
-        if(name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
+        if(!UserDao.nameIsExisted(name)&&!UserDao.emailIsExisted(email)&&name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals("")){
             lblHint.setVisible(true);
-        else
+            btnSignUp.setEnabled(true);
+        }else{
             lblHint.setVisible(false);
+            btnSignUp.setEnabled(false);
+        }
     }
     
     public void clear(){
@@ -129,6 +135,8 @@ public class SugnUp extends javax.swing.JFrame {
         btnSignUp = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblHint = new javax.swing.JLabel();
+        lblEmailHint = new javax.swing.JLabel();
+        lblUserNameHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -306,6 +314,12 @@ public class SugnUp extends javax.swing.JFrame {
         lblHint.setText("You are all set !!!");
         getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 150, -1));
 
+        lblEmailHint.setText("This email has already been uesd! Please change it!");
+        getContentPane().add(lblEmailHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 240, -1, -1));
+
+        lblUserNameHint.setText("The username has already existed! Please change it!");
+        getContentPane().add(lblUserNameHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,10 +327,15 @@ public class SugnUp extends javax.swing.JFrame {
         // TODO add your handling code here:
         validateFields();
         String email=txtEmail.getText();
-        if(email.matches(emailPattern)){
+        if(email.matches(emailPattern) && !UserDao.emailIsExisted(email)){
             lblRight.setVisible(true);
         }else{
             lblRight.setVisible(false);
+        }
+        if(UserDao.emailIsExisted(email)){
+            lblEmailHint.setVisible(true);
+        }else{
+            lblEmailHint.setVisible(false);
         }
     }//GEN-LAST:event_txtEmailKeyReleased
 
@@ -326,9 +345,15 @@ public class SugnUp extends javax.swing.JFrame {
         String name=txtName.getText();
         if(!name.matches(namePattern)){
             lblWrongHint.setVisible(true);
+            lblUserNameHint.setVisible(false);
             lblRight1.setVisible(false);
-        }else{
+        }else if(UserDao.nameIsExisted(name)){
             lblWrongHint.setVisible(false);
+            lblUserNameHint.setVisible(true);
+            lblRight1.setVisible(false);
+        }else if(!UserDao.nameIsExisted(name)&&name.matches(namePattern)){
+            lblWrongHint.setVisible(false);
+            lblUserNameHint.setVisible(false);
             lblRight1.setVisible(true);
         }
         
@@ -479,9 +504,11 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblEmailHint;
     private javax.swing.JLabel lblHint;
     private javax.swing.JLabel lblRight;
     private javax.swing.JLabel lblRight1;
+    private javax.swing.JLabel lblUserNameHint;
     private javax.swing.JLabel lblWrongHint;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLocation;

@@ -27,13 +27,14 @@ public class ManageEnterprise extends javax.swing.JFrame {
         initComponents();
         btnSave.setEnabled(false);
         lblUsername.setText(name);
+        lblHint.setVisible(false);
     }
     
     public void validateFields(){
         String name=txtName.getText();
         String city=(String)cbbCity.getSelectedItem();
         String type=(String)cbbType.getSelectedItem();
-        if(!name.equals("")&&!city.equals("")&&!type.equals(" "))
+        if(!name.equals("")&&!city.equals("")&&!type.equals(" ")&&!EnterpriseDao.isExisted(name))
             btnSave.setEnabled(true);
         else
             btnSave.setEnabled(false);
@@ -63,6 +64,7 @@ public class ManageEnterprise extends javax.swing.JFrame {
         cbbType = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
+        lblHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -126,7 +128,7 @@ public class ManageEnterprise extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/category.png"))); // NOI18N
-        jLabel1.setText("Manage Organization");
+        jLabel1.setText("Manage Enterprise");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 25, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
@@ -153,7 +155,7 @@ public class ManageEnterprise extends javax.swing.JFrame {
         jLabel7.setText("Type");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 566, -1, -1));
 
-        cbbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Hospital", "Vaccinate Unit", "Police", "Community", "Emergency Vehicle", "Emergency Shelter" }));
+        cbbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Hospital", "Vaccinate Unit", "Police", "Community", "Emergency Vehicle", "Emergency Shelter" }));
         cbbType.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbTypeItemStateChanged(evt);
@@ -168,6 +170,9 @@ public class ManageEnterprise extends javax.swing.JFrame {
         lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblUsername.setText("--");
         getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, -1));
+
+        lblHint.setText("This enterprise has already existed!");
+        getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -191,7 +196,14 @@ public class ManageEnterprise extends javax.swing.JFrame {
 
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
+        String enterpriseName=txtName.getText();
         validateFields();
+        if(EnterpriseDao.isExisted(enterpriseName)){
+            lblHint.setVisible(true);
+        }else{
+            lblHint.setVisible(false);
+
+        }
     }//GEN-LAST:event_txtNameKeyReleased
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -265,6 +277,7 @@ public class ManageEnterprise extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblHint;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="40540732-7aa4-4c45-bb7c-612ee93de3ce" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiseaseControl/src/map/SwingWaypoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiseaseControl/src/map/SwingWaypointOverlayPainter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/ManageDoctor.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/ManageDoctor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/ManageDriver.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/ManageDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/map2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/map3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/map4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/dao/ConnectionProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/dao/ConnectionProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/ui/SugnUp.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/build/classes/util/GmailUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/build/classes/util/GmailUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/dao/ConnectionProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/dao/ConnectionProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/CarAdminWorkArea.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/CarAdminWorkArea.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/CarAdminWorkArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/CarAdminWorkArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/CommunityWorkArea.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/CommunityWorkArea.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/CommunityWorkArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/CommunityWorkArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/DoctorWorkArea.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/DoctorWorkArea.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/DoctorWorkArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/DoctorWorkArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/DriverWorkArea.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/DriverWorkArea.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/DriverWorkArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/DriverWorkArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/HospitalAdminWorkArea.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/HospitalAdminWorkArea.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/HospitalAdminWorkArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/HospitalAdminWorkArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/HotelHeadWrokArea.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/HotelHeadWrokArea.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/HotelHeadWrokArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/HotelHeadWrokArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/SugnUp.form" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/SugnUp.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiseaseControl/src/ui/SugnUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/DiseaseControl/src/ui/SugnUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IeGinHxXpNkxJWJyRFKiVgWw5l" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="40540732-7aa4-4c45-bb7c-612ee93de3ce" name="Changes" comment="" />
+      <created>1670534766215</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670534766215</updated>
+      <workItem from="1670534769808" duration="780000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
