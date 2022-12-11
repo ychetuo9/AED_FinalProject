@@ -9,5 +9,17 @@ package model;
  * @author yanyanchen
  */
 public class CarCompany {
+    String name;
+
+    public CarCompany() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
 }

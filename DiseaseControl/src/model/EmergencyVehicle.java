@@ -21,6 +21,4 @@ public class EmergencyVehicle {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
 }
