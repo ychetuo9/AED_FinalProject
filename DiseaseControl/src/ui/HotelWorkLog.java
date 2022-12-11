@@ -167,8 +167,14 @@ public class HotelWorkLog extends javax.swing.JFrame {
         jLabel1.setText("Hotel Work Log");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 15, 193, 37));
 
-        jLabel3.setText("Photo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
+        jLabel3.setText("Workd Photo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
+
+        txtPhotoPath2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPhotoPath2KeyReleased(evt);
+            }
+        });
         getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 230, -1));
 
         btnBrowse.setText("Browse");
@@ -267,6 +273,11 @@ public class HotelWorkLog extends javax.swing.JFrame {
             lblPic.setIcon(new ImageIcon(img));
         }
     }//GEN-LAST:event_btnBrowseActionPerformed
+
+    private void txtPhotoPath2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhotoPath2KeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPhotoPath2KeyReleased
 
     /**
      * @param args the command line arguments

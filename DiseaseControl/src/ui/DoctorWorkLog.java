@@ -164,8 +164,14 @@ public class DoctorWorkLog extends javax.swing.JFrame {
         });
         getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 530, -1, -1));
 
-        jLabel3.setText("Photo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
+        jLabel3.setText("Work Photo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
+
+        txtPhotoPath2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPhotoPath2KeyReleased(evt);
+            }
+        });
         getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 230, -1));
 
         btnBrowse1.setText("Browse");
@@ -259,6 +265,11 @@ public class DoctorWorkLog extends javax.swing.JFrame {
             lblPic.setIcon(new ImageIcon(img));
         }
     }//GEN-LAST:event_btnBrowse1ActionPerformed
+
+    private void txtPhotoPath2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhotoPath2KeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPhotoPath2KeyReleased
 
     /**
      * @param args the command line arguments

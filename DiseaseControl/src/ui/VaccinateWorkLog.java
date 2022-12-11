@@ -85,40 +85,42 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnPrint.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         btnPrint.setText("Print Work Log");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, -1, -1));
+        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel8.setText("Hello,");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 29, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel7.setText("Please add work result");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblUsername.setText("--");
         getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 29, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel5.setText("# of Potentially infected");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 153, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel5.setText("# of Potentially infected:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel2.setText("Request Name:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
+        lblVictim.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 153, -1, -1));
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
-        lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblRequest.setText("--");
-        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
 
         txtDiagnose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,55 +132,65 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
                 txtDiagnoseKeyReleased(evt);
             }
         });
-        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 252, -1));
+        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 252, -1));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel4.setText("Date:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
 
-        lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel6.setText("Patient Number:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 118, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
-        lblPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 118, -1, -1));
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel11.setText("Request Log ID");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 77, -1, -1));
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel11.setText("Request Log ID:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
 
-        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblId.setText("--");
         lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 lblIdPropertyChange(evt);
             }
         });
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 77, -1, -1));
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setText("Vaccinate Work Log");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 15, 193, 37));
 
-        jLabel3.setText("Photo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
-        getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 230, -1));
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel3.setText("Work Photo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
 
+        txtPhotoPath2.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        txtPhotoPath2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPhotoPath2KeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 230, -1));
+
+        btnBrowse.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         btnBrowse.setText("Browse");
         btnBrowse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBrowseActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBrowse, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, -1, -1));
+        getContentPane().add(btnBrowse, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, -1, -1));
 
+        lblPic.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblPic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 400, 350));
+        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 400, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,6 +277,11 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
             lblPic.setIcon(new ImageIcon(img));
         }
     }//GEN-LAST:event_btnBrowseActionPerformed
+
+    private void txtPhotoPath2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhotoPath2KeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPhotoPath2KeyReleased
 
     /**
      * @param args the command line arguments

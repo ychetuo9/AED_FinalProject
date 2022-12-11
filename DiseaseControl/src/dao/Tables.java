@@ -14,7 +14,7 @@ import java.sql.*;
 public class Tables {
     public static void main(String[] args){
         try{
-            String userTable="create table user(id int AUTO_INCREMENT primary key,name varchar(200),email varchar(200),mobileNumber varchar(10),password varchar(200),city varchar(200),organization varchar(200),carrier varchar(200),location varchar(200),status varchar(20),role varchar(100),UNIQUE(email),UNIQUE(name))";
+            String userTable="create table user(id int AUTO_INCREMENT primary key,name varchar(200),email varchar(200),mobileNumber varchar(20),password varchar(200),city varchar(200),organization varchar(200),carrier varchar(200),location varchar(200),status varchar(200),role varchar(100),UNIQUE(email),UNIQUE(name))";
             DbOperations.setDataOrDelete(userTable, "User Table Created Successfully");
             
 //            added admin account information
@@ -43,7 +43,7 @@ public class Tables {
             
             
             
-            String requestTable="create table request(id int AUTO_INCREMENT primary key,name varchar(200),date varchar(200),patientNumber varchar(20),victim varchar(20),location varchar(200),description varchar(200),requestObject varchar(100),status varchar(20))";
+            String requestTable="create table request(id int AUTO_INCREMENT primary key,name varchar(200),date varchar(200),patientNumber varchar(20),victim varchar(20),location varchar(100),description varchar(200),requestObject varchar(100),status varchar(200))";
             DbOperations.setDataOrDelete(requestTable, "Request Table Created Successfully");
 
 
