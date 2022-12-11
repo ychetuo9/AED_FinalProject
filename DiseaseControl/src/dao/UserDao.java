@@ -310,7 +310,7 @@ public static String findEmail(String name){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        if(arrayList==null&&arrayList.size()!=0){
+        if(arrayList!=null&&arrayList.size()!=0){
             flag=true;
         }
         return flag;
@@ -340,7 +340,7 @@ public static String findEmail(String name){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        if(arrayList==null&&arrayList.size()!=0){
+        if(arrayList!=null&&arrayList.size()!=0){
             flag=true;
         }
         return flag;
