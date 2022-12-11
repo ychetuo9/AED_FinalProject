@@ -386,7 +386,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
             String dlocation = UserDao.getDetailInfo(doctorname).getLocation();
             double dlatitude = Double.parseDouble(dlocation.split(",")[0]);
             double dlongtitude = Double.parseDouble(dlocation.split(",")[1]);
-            doctorpos = new GeoPosition((int)dlatitude,  7, 0, (int)dlongtitude, 41, 0);
+            doctorpos = new GeoPosition((int) dlatitude, getMin(dlatitude), getSec(dlatitude), (int) dlongtitude, getMin(dlongtitude), getMin(dlongtitude));
         }
 
         // Set the focus
