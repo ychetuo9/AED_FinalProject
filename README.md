@@ -16,6 +16,10 @@ In certain countries or regions, provide information management for COVID-19 eme
 
 The design of  the application includes 4 Enterprises, 6 Organizations, and 9 roles. System Administrator has the rights to manage organizations and city information, and all user information. Users of other roles can select roles and sign up their own accounts. After verifying by System Administrator, Users can use the corresponding functions of the application.
 
+
+
+### Players and their contributions
+
 **Hospital Operating Enterprise**: Manage hospital system information and treat patients in infectious disease events.
 
 - Hospital
