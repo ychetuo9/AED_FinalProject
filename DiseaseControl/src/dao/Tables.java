@@ -24,16 +24,16 @@ public class Tables {
             String communityAdminDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('CommunityAdmin','communityadmin@gmail.com','1234567890','admin','true','Community Head','Boston','Happiness Community','Mint','12,1')";
             DbOperations.setDataOrDelete(communityAdminDetails, "Community Admin Detials Added Successfully");
             
-            String carAdminDetails = "insert into user(name,email,password,city,organization,role,carrier,mobileNumber,location,status) values('CarAdmin','caradmin@gmail.com','admin','Boston','Car Company','Car Admin','Mint','1234567890','12,1','true')";
+            String carAdminDetails = "insert into user(name,email,password,city,organization,role,carrier,mobileNumber,location,status) values('CarAdmin','thea.xiaoy@gmail.com','admin','Boston','Car Company','Car Admin','Mint','1234567890','12,1','true')";
             DbOperations.setDataOrDelete(carAdminDetails, "Car Admin Detials Added Successfully");
             
-            String hospitalAdminDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('HospitalAdmin','hospitaladmin@gmail.com','1234567890','admin','true','Hospital Admin','Boston','Boston Hospital','Mint','12,1')";
+            String hospitalAdminDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('HospitalAdmin','survirvor19yyc@outlook.com','1234567890','admin','true','Hospital Admin','Boston','Boston Hospital','Mint','12,1')";
             DbOperations.setDataOrDelete(hospitalAdminDetails, "Hospital Admin Detials Added Successfully");
             
-            String hotelHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('HotelHead','hotelhead@gmail.com','1234567890','admin','true','Hotel Head','Boston','Central Plaza','Mint','12,1')";
+            String hotelHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('HotelHead','815321302@qq.com','1234567890','admin','true','Hotel Head','Boston','Central Plaza','Mint','12,1')";
             DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
             
-            String policeHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('PoliceHead','policehead@gmail.com','1234567890','admin','true','Police Head','Boston','Boston Police','Mint','12,1')";
+            String policeHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('PoliceHead','yolandahxd@gmail.com','1234567890','admin','true','Police Head','Boston','Boston Police','Mint','12,1')";
             DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
             
             

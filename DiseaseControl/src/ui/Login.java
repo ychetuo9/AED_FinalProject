@@ -237,6 +237,10 @@ public class Login extends javax.swing.JFrame {
                 setVisible(false);
                 new CommunityWorkArea(name).setVisible(true);
             }
+            if(user.getStatus().equals("true")&&user.getRole().equals("Police Head")){
+                setVisible(false);
+                new PoliceHeadWorkArea(name).setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

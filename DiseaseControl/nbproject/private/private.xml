@@ -3,7 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/PoliceHeadWorkArea.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/VaccinateWorkLog.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/PoliceWorkLog.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/ManageDoctor.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/SugnUp.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/SystemAdminPage.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/model/AccommodationOperatingEnterprise.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/ReportingModule.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/DoctorWorkArea.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/CarAdminWorkArea.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/ManageCity.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/CommunityWorkArea.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/ManageEnterprise.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/HospitalAdminWorkArea.java</file>
             <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/model/Community.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/dao/DbOperations.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/ManageUser.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/ManageDriver.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/HotelHeadWrokArea.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/dao/Tables.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/DriverWorkArea.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/HotelWorkLog.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/VaccinateHeadWorkArea.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/DriverWorkLog.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/Login.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/ui/DoctorWorkLog.java</file>
+            <file>file:/Users/yanyanchen/Desktop/DiseaseControl/src/dao/UserDao.java</file>
         </group>
     </open-files>
 </project-private>
