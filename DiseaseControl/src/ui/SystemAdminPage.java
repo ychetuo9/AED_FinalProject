@@ -36,6 +36,7 @@ public class SystemAdminPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnReportingModule = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,6 +84,15 @@ public class SystemAdminPage extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 30, -1, -1));
 
+        btnReportingModule.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnReportingModule.setText("Reporting Module");
+        btnReportingModule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportingModuleActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnReportingModule, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, 340, 90));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -119,10 +129,19 @@ public class SystemAdminPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnReportingModuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportingModuleActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ReportingModule in =new ReportingModule();
+        in.setVisible(true);
+        
+    }//GEN-LAST:event_btnReportingModuleActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCityManage;
     private javax.swing.JButton btnEnterpriseManage;
+    private javax.swing.JButton btnReportingModule;
     private javax.swing.JButton btnUserManage;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

@@ -46,6 +46,4 @@ public class Enterprise {
         this.type = type;
     }
     
-    
-    
 }
