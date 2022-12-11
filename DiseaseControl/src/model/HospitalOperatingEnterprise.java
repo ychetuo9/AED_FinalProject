@@ -11,5 +11,21 @@ import java.util.ArrayList;
  * @author yanyanchen
  */
 public class HospitalOperatingEnterprise {
-    private ArrayList<Hotel> hotels;
+    private ArrayList<Hospital> hospitals;
+
+    public ArrayList<Hospital> getHospitals() {
+        return hospitals;
+    }
+
+    public void setHospitals(ArrayList<Hospital> hospitals) {
+        this.hospitals = hospitals;
+    }
+    
+    public void addHospital(Hospital hospital) {
+        this.hospitals.add(hospital);
+    }
+    
+    public void deleteHospital(Hospital hospital) {
+        this.hospitals.remove(hospital);
+    }
 }

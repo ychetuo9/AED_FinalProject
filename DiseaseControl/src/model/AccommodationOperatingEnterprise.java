@@ -21,4 +21,11 @@ public class AccommodationOperatingEnterprise {
         this.hotels = hotels;
     }
     
+    public void addHotel(Hotel hotel) {
+        this.hotels.add(hotel);
+    }
+    
+    public void deleteHotel(Hotel hotel) {
+        this.hotels.remove(hotel);
+    }
 }
