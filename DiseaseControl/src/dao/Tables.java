@@ -33,6 +33,9 @@ public class Tables {
             String hotelHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('HotelHead','hotelhead@gmail.com','1234567890','admin','true','Hotel Head','Boston','Central Plaza','Mint','12,1')";
             DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
             
+            String policeHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('PoliceHead','policehead@gmail.com','1234567890','admin','true','Police Head','Boston','Boston Police','Mint','12,1')";
+            DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
+            
             
             
             

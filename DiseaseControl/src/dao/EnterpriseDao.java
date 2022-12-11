@@ -43,4 +43,28 @@ public class EnterpriseDao {
         String query ="delete from enterprise where id='"+id+"'";
         DbOperations.setDataOrDelete(query, "Enterprise Deleted Successfully!");
     }
+    
+    public static boolean isExisted(String name){
+        boolean flag=false;
+        ArrayList<Enterprise> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs = DbOperations.getData("select *from enterprise where name='"+name+"'");
+            while(rs.next()){
+                Enterprise enterprise = new Enterprise();
+                enterprise.setId(rs.getString("id"));
+                enterprise.setName(rs.getString("name"));
+                enterprise.setCity(rs.getString("city"));
+                enterprise.setType(rs.getString("type"));
+
+                arrayList.add(enterprise);
+                
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        if(arrayList!=null&&arrayList.size()==0){
+            flag=true;
+        }
+        return flag;
+    }
 }

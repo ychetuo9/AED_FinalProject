@@ -302,7 +302,7 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         if(a==0){
             CommunityRequestDao.assignTo(id,assignedObject);
             setVisible(false);
-            new CarAdminWorkArea(name).setVisible(true);
+            new HospitalAdminWorkArea(name).setVisible(true);
         }
         
         String nameofemail = cbbAssignedObject.getSelectedItem().toString();

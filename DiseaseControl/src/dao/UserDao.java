@@ -284,4 +284,162 @@ public static String findEmail(String name){
         }
         return user.getEmail();
     }
+
+
+    public static boolean emailIsExisted(String email){
+        boolean flag=false;
+        ArrayList<User> arrayList = new ArrayList<>();
+        try {
+            ResultSet rs0 = DbOperations.getData("select *from user where email='"+email+"'");
+            while (rs0.next()) {
+                User user = new User();
+                user.setId(rs0.getString("id"));
+                user.setName(rs0.getString("name"));
+                user.setEmail(rs0.getString("email"));
+                user.setPassword(rs0.getString("password"));
+                user.setCity(rs0.getString("city"));
+                user.setOrganization(rs0.getString("organization"));
+                user.setRole(rs0.getString("role"));
+                user.setCarrier(rs0.getString("carrier"));
+                user.setMobileNumber(rs0.getString("mobileNumber"));
+                user.setLocation(rs0.getString("location"));
+                user.setStatus(rs0.getString("status"));
+
+                arrayList.add(user);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        if(arrayList!=null&&arrayList.size()!=0){
+            flag=true;
+        }
+        return flag;
+    }
+    
+    public static boolean nameIsExisted(String name){
+        boolean flag=false;
+        ArrayList<User> arrayList = new ArrayList<>();
+        try {
+            ResultSet rs0 = DbOperations.getData("select *from user where name='"+name+"'");
+            while (rs0.next()) {
+                User user = new User();
+                user.setId(rs0.getString("id"));
+                user.setName(rs0.getString("name"));
+                user.setEmail(rs0.getString("email"));
+                user.setPassword(rs0.getString("password"));
+                user.setCity(rs0.getString("city"));
+                user.setOrganization(rs0.getString("organization"));
+                user.setRole(rs0.getString("role"));
+                user.setCarrier(rs0.getString("carrier"));
+                user.setMobileNumber(rs0.getString("mobileNumber"));
+                user.setLocation(rs0.getString("location"));
+                user.setStatus(rs0.getString("status"));
+
+                arrayList.add(user);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        if(arrayList!=null&&arrayList.size()!=0){
+            flag=true;
+        }
+        return flag;
+    }
+    
+    public static int countUserFromHospital(){
+        int num=0;
+        try {
+            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Doctor'");
+            rs0.last();   
+            int rowCountDoctor = rs0.getRow();
+            ResultSet rs1 = DbOperations.getData("select count(*) from user where role='Hospital Admin'");
+            rs1.last();   
+            int rowCountHospitalAdmin = rs1.getRow();
+            num=rowCountDoctor+rowCountHospitalAdmin;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return num;
+    }
+    
+    public static int countUserFromCarCompany(){
+        int num=0;
+        try {
+            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Car Admin'");
+            rs0.last();   
+            int rowCountCarAdmin = rs0.getRow();
+            ResultSet rs1 = DbOperations.getData("select count(*) from user where role='Driver'");
+            rs1.last();   
+            int rowCountDriver = rs1.getRow();
+            num=rowCountCarAdmin+rowCountDriver;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return num;
+    }
+    
+    public static int countUserFromHotel(){
+        int num=0;
+        try {
+            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Hotel Head'");
+            rs0.last();   
+            int rowCountHotel = rs0.getRow();
+            num = rowCountHotel;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return num;
+    }
+    
+    public static int countUserFromCommunity(){
+        int num=0;
+        try {
+            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Community Admin'");
+            rs0.last();
+            int rowCountCommunity = rs0.getRow();
+            num = rowCountCommunity;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return num;
+    }
+    
+    public static int countUserFromVaccinateUnit(){
+        int num=0;
+        try {
+            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Vaccinate Head'");
+            rs0.last();
+            int rowCountVaccinate = rs0.getRow();
+            num = rowCountVaccinate;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return num;
+    }
+    
+    public static int countUserFromPolice(){
+        int num=0;
+        try {
+            ResultSet rs0 = DbOperations.getData("select count(*) from user where role='Police Head'");
+            rs0.last();
+            int rowCountPolice = rs0.getRow();
+            num = rowCountPolice;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return num;
+    }
+    
+    public static int countUser(){
+        int num=0;
+        try {
+            ResultSet rs0 = DbOperations.getData("select count(*) from user");
+            rs0.last();
+            int rowCountPolice = rs0.getRow();
+            num = rowCountPolice;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return num;
+    }
 }

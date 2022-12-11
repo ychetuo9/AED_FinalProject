@@ -257,6 +257,8 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         lblUsername.setText("--");
         getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1084, 39, -1, -1));
 
+        dataChooser1.setDateFormatString("yyyy-MM-dd");
+        dataChooser1.setMaxSelectableDate(new java.util.Date(1670907599000L));
         dataChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 dataChooser1KeyReleased(evt);

@@ -39,4 +39,24 @@ public class CityDao {
         String query ="delete from city where id='"+id+"'";
         DbOperations.setDataOrDelete(query, "City Deleted Successfully!");
     }
+    
+    public static boolean isExisted(String name){
+        boolean flag=false;
+        ArrayList<City> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs = DbOperations.getData("select *from city where name='"+name+"'");
+            while(rs.next()){
+                City city = new City();
+                city.setId(rs.getString("id"));
+                city.setName(rs.getString("name"));
+                arrayList.add(city);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        if(arrayList!=null && arrayList.size()>=0){
+            flag=true;
+        }
+        return flag;
+    }
 }

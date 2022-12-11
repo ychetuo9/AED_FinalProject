@@ -5,6 +5,7 @@
 package ui;
 
 import dao.CityDao;
+import static dao.CityDao.isExisted;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -25,11 +26,12 @@ public class ManageCity extends javax.swing.JFrame {
         initComponents();
         btnSave.setEnabled(false);
         lblUsername.setText(name);
+        lblHint.setVisible(false);
     }
     
     public void validateFields(){
         String name=txtName.getText();
-        if(!name.equals(""))
+        if(!name.equals("")&&!CityDao.isExisted(name))
             btnSave.setEnabled(true);
         else
             btnSave.setEnabled(false);
@@ -55,6 +57,7 @@ public class ManageCity extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
+        lblHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -137,6 +140,9 @@ public class ManageCity extends javax.swing.JFrame {
         lblUsername.setText("--");
         getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 30, -1, -1));
 
+        lblHint.setText("This city has already existed!");
+        getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,7 +163,13 @@ public class ManageCity extends javax.swing.JFrame {
 
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
+        String cityName=txtName.getText();
         validateFields();
+        if(CityDao.isExisted(cityName)){
+            lblHint.setVisible(true);
+        }else{
+            lblHint.setVisible(false);
+        }
     }//GEN-LAST:event_txtNameKeyReleased
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -208,6 +220,7 @@ public class ManageCity extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblHint;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
