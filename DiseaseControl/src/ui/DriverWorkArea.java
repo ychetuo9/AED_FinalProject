@@ -376,13 +376,8 @@ public class DriverWorkArea extends javax.swing.JFrame {
         } else {
             int a = JOptionPane.showConfirmDialog(null, "Do you want to reject this request?", "Select", JOptionPane.YES_NO_OPTION);
             if (a == 0) {
-                CommunityRequestDao.changeStatus(id, "reject", name);
-                User user=UserDao.getDetailInfo(name);
-                
-                ArrayList<String> carsAdmin=UserDao.getAllAssociatedCar(user.getOrganization());
-                for(int i=0;i<carsAdmin.size();i++){
-                    CommunityRequestDao.rejectRequest(id,carsAdmin.get(i));
-                }
+                CommunityRequestDao.changeStatus(id,"reject",name);
+                CommunityRequestDao.rejectRequest(id,"CarAdmin");
                 
                 setVisible(false);
                 new DriverWorkArea(name).setVisible(true);

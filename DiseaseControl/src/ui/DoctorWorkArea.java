@@ -377,15 +377,11 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"reject",name);
-                User user=UserDao.getDetailInfo(name);
+                CommunityRequestDao.rejectRequest(id,"HospitalAdmin");
                 
-                ArrayList<String> hospitalsAdmin=UserDao.getAllAssociatedHospital(user.getOrganization());
-                for(int i=0;i<hospitalsAdmin.size();i++){
-                    CommunityRequestDao.rejectRequest(id,hospitalsAdmin.get(i));
-                }
                 setVisible(false);
                 new DoctorWorkArea(name).setVisible(true);
-            }
+            }   
         }
     }//GEN-LAST:event_btnRejectActionPerformed
 
