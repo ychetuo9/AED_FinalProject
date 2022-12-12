@@ -69,7 +69,6 @@ public class SugnUp extends javax.swing.JFrame {
         lblRight.setVisible(false);
         lblRight1.setVisible(false);
         lblWrongHint.setVisible(false);
-        lblEmailHint.setVisible(false);
         lblUserNameHint.setVisible(false);
         btnSignUp.setEnabled(false);
     }
@@ -83,7 +82,7 @@ public class SugnUp extends javax.swing.JFrame {
         String organization=(String)cbbOrganization.getSelectedItem();
         String carrier=(String)cbbCarrier.getSelectedItem();
         String location=txtLocation.getText();
-        if(!UserDao.nameIsExisted(name)&&!UserDao.emailIsExisted(email)&&name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals("")){
+        if(!UserDao.nameIsExisted(name)&&name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals("")){
             lblHint.setVisible(true);
             btnSignUp.setEnabled(true);
         }else{
@@ -135,7 +134,6 @@ public class SugnUp extends javax.swing.JFrame {
         btnSignUp = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblHint = new javax.swing.JLabel();
-        lblEmailHint = new javax.swing.JLabel();
         lblUserNameHint = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -314,9 +312,6 @@ public class SugnUp extends javax.swing.JFrame {
         lblHint.setText("You are all set !!!");
         getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 670, 150, -1));
 
-        lblEmailHint.setText("This email has already been uesd! Please change it!");
-        getContentPane().add(lblEmailHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, -1, 20));
-
         lblUserNameHint.setText("The username has already existed! Please change!");
         getContentPane().add(lblUserNameHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
 
@@ -327,15 +322,8 @@ public class SugnUp extends javax.swing.JFrame {
         // TODO add your handling code here:
         validateFields();
         String email=txtEmail.getText();
-        if(email.matches(emailPattern) && !UserDao.emailIsExisted(email)){
+        if(email.matches(emailPattern)){
             lblRight.setVisible(true);
-        }else{
-            lblRight.setVisible(false);
-        }
-        if(UserDao.emailIsExisted(email)){
-            lblEmailHint.setVisible(true);
-        }else{
-            lblEmailHint.setVisible(false);
         }
     }//GEN-LAST:event_txtEmailKeyReleased
 
@@ -504,7 +492,6 @@ public class SugnUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblEmailHint;
     private javax.swing.JLabel lblHint;
     private javax.swing.JLabel lblRight;
     private javax.swing.JLabel lblRight1;
