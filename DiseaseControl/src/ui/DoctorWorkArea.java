@@ -219,7 +219,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
         lblPatientNumber.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, -1, 10));
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, -1, 30));
 
         lblRequestName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblRequestName.setText("--");
@@ -232,7 +232,7 @@ public class DoctorWorkArea extends javax.swing.JFrame {
 
         lblDate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, -1, 30));
 
         lblVictim.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblVictim.setText("--");

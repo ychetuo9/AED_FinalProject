@@ -34,10 +34,10 @@ public class Tables {
             DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
             
             String policeHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('PoliceHead','ychetuo9@gmail.com','1234567890','admin','true','Police Head','Boston','Boston Police','Mint','12,1')";
-            DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
+            DbOperations.setDataOrDelete(policeHeadDetails, "Hotel Head Detials Added Successfully");
             
             String vaccinateHeadDetails = "insert into user(name,email,mobileNumber,password,status,role,city,organization,carrier,location) values('VaccinateHead','ychetuo9@gmail.com','1234567890','admin','true','Vaccinate Head','Boston','Boston Vaccinate','Mint','12,1')";
-            DbOperations.setDataOrDelete(hotelHeadDetails, "Hotel Head Detials Added Successfully");
+            DbOperations.setDataOrDelete(vaccinateHeadDetails, "Hotel Head Detials Added Successfully");
             
             
             

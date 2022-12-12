@@ -82,7 +82,7 @@ public class SugnUp extends javax.swing.JFrame {
         String organization=(String)cbbOrganization.getSelectedItem();
         String carrier=(String)cbbCarrier.getSelectedItem();
         String location=txtLocation.getText();
-        if(!UserDao.nameIsExisted(name)&&name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals("")){
+        if(name.matches(namePattern)&&!name.equals("")&&!email.equals("")&&!mobileNumber.equals("")&&!city.equals("")&&!organization.equals("")&&!carrier.equals("")&&!location.equals("")&& email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals("")){
             lblHint.setVisible(true);
             btnSignUp.setEnabled(true);
         }else{

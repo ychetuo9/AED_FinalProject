@@ -66,9 +66,7 @@ public class DoctorWorkLog extends javax.swing.JFrame {
 
         btnPrint = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lblVictim = new javax.swing.JLabel();
         lblRequest = new javax.swing.JLabel();
         txtDiagnose = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -100,23 +98,15 @@ public class DoctorWorkLog extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Please add work result");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel5.setText("# of Potentially infected:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Request Name:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
-
-        lblVictim.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
         lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRequest.setText("--");
-        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, -1));
 
         txtDiagnose.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtDiagnose.addActionListener(new java.awt.event.ActionListener() {
@@ -129,15 +119,15 @@ public class DoctorWorkLog extends javax.swing.JFrame {
                 txtDiagnoseKeyReleased(evt);
             }
         });
-        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 252, -1));
+        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 252, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("Date:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Patient Number:");
@@ -337,7 +327,6 @@ public class DoctorWorkLog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -348,7 +337,6 @@ public class DoctorWorkLog extends javax.swing.JFrame {
     private javax.swing.JLabel lblPic;
     private javax.swing.JLabel lblRequest;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JLabel lblVictim;
     private javax.swing.JTextField txtDiagnose;
     private javax.swing.JTextField txtPhotoPath2;
     // End of variables declaration//GEN-END:variables
