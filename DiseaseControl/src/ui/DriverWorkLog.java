@@ -228,7 +228,7 @@ public class DriverWorkLog extends javax.swing.JFrame {
             doc.add(stringLine);
             Paragraph paragraph = new Paragraph("\tRequest ID: "+id+"\nDate: "+date);
             doc.add(paragraph);
-            Paragraph paragraph1 = new Paragraph("\nRequest Name: "+request+"\nDoctor Name:"+userName);
+            Paragraph paragraph1 = new Paragraph("\nRequest Name: "+request+"\nDriver Name:"+userName);
             doc.add(paragraph1);
             Paragraph paragraph2 = new Paragraph("\nPatient Number: "+patientNumber+"\nVictim: "+victim+"\nCondition: "+diagnose);
             doc.add(paragraph2);
