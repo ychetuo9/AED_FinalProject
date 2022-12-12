@@ -14,7 +14,7 @@ In certain countries or regions, provide information management for COVID-19 eme
 
 ### Design overview
 
-The design of  the application includes 4 Enterprises, 6 Organizations, and 9 roles. System Administrator has the rights to manage organizations and city information, and all user information. Users of other roles can select roles and sign up their own accounts. After verifying by System Administrator, Users can use the corresponding functions of the application.
+The design of  the application includes 4 Enterprises, 6 Organizations, and 9 Roles. System Administrator has the rights to manage organizations and city information, and all user information. It can also see the report of the application. Users of other roles can select roles and sign up their own accounts. After verifying by System Administrator, Users can use the corresponding functions of the application.
 
 
 
@@ -32,15 +32,15 @@ The design of  the application includes 4 Enterprises, 6 Organizations, and 9 ro
 
 - Community
 
-  -- Community Head: Manage received community work requests and Accept, Reject, Process, and Complete requests
+  -- Community Head: Manage requests, creat and send requests to all different units
 
 - Police
 
-  -- Police Head: Manage received community work requests and Accept, Reject, Process, and Complete requests
+  -- Police Head: Manage received community work requests and Accept, Reject, Process, Complete requests
 
 - Vaccinate Unit
 
-  -- Vaccinate Head:  Manage received community work requests and Accept, Reject, Process, and Complete requests
+  -- Vaccinate Head:  Manage received community work requests and Accept, Reject, Process, Complete requests
 
 **Transportation Operating Enterprise**: Manage emergency transportation system information and transporting patients.
 
@@ -55,19 +55,18 @@ The design of  the application includes 4 Enterprises, 6 Organizations, and 9 ro
 
 - Emergency Shelter
 
-  -- Hotel Head
-
+  -- Hotel Head：Manage received community work requests and Accept, Reject, Process, Complete requests
+  
   
 
 ![design1](https://user-images.githubusercontent.com/117139088/206917848-3d2f6369-6e3b-43b4-894a-6dd2e7260804.jpeg)
 
 
-**UML diagram**
+### UML diagram
 
 <img width="763" alt="UML3" src="https://user-images.githubusercontent.com/117139088/206923743-201abed3-e919-4806-b50f-ae456d9c7773.png">  
 
-
-**UML diagram**  
+ 
 
 ![Sequence Diagram - 5100 final project](https://user-images.githubusercontent.com/98193797/206948621-a6381cdb-bc5d-4eb7-b6b0-04c58188626d.png)  
 
