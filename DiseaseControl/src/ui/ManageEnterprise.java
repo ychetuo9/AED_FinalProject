@@ -56,15 +56,16 @@ public class ManageEnterprise extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         cbbCity = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         cbbType = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
         lblHint = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -105,7 +106,7 @@ public class ManageEnterprise extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 479, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("Add new Enterprise");
+        jLabel4.setText("Add new Organization");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 391, -1, -1));
 
         btnClear.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -125,11 +126,6 @@ public class ManageEnterprise extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 671, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/category.png"))); // NOI18N
-        jLabel1.setText("Manage Enterprise");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 25, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -163,16 +159,27 @@ public class ManageEnterprise extends javax.swing.JFrame {
         });
         getContentPane().add(cbbType, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 568, 246, -1));
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel2.setText("Hello,");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, -1));
-
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 30, -1, -1));
-
         lblHint.setText("This enterprise has already existed!");
         getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/category.png"))); // NOI18N
+        jLabel1.setText("Manage Organization");
+        jPanel1.add(jLabel1);
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
+        jLabel8.setText("Hello,");
+        jPanel1.add(jLabel8);
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblUsername.setText("--");
+        jPanel1.add(lblUsername);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -269,11 +276,12 @@ public class ManageEnterprise extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbType;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblHint;
