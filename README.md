@@ -64,7 +64,13 @@ The design of  the application includes 4 Enterprises, 6 Organizations, and 9 ro
 
 **UML diagram**
 
-<img width="763" alt="UML3" src="https://user-images.githubusercontent.com/117139088/206923743-201abed3-e919-4806-b50f-ae456d9c7773.png">
+<img width="763" alt="UML3" src="https://user-images.githubusercontent.com/117139088/206923743-201abed3-e919-4806-b50f-ae456d9c7773.png">  
+
+
+**UML diagram**  
+
+![Sequence Diagram - 5100 final project](https://user-images.githubusercontent.com/98193797/206948621-a6381cdb-bc5d-4eb7-b6b0-04c58188626d.png)  
+
 
 
 
@@ -75,21 +81,21 @@ Java, MySQL, Google Map API, Email Verification, HTML, Junit test
 
 **Required .jar**
 
-commons-logging-1.2.jar
-itextpdf-5.4.0.jar
-jakarta.activation-1.2.1.jar
-jakarta.mail-1.6.7.jar
-jcalendar-1.4.jar
-jcommon-1.0.23.jar
-jfreechart-1.0.19.jar
-jxbrowser-7.28.1.jar
-jxbrowser-javafx-7.28.1.jar
-jxbrowser-mac-7.28.1.jar
-jxbrowser-mac-arm-7.28.1.jar
-jxbrowser-swing-7.28.1.jar
-jxbrowser-swt-7.28.1.jar
-jxmapviewer2-2.6.jar
-mysql-connector-java-8.0.30.jar
+commons-logging-1.2.jar  
+itextpdf-5.4.0.jar  
+jakarta.activation-1.2.1.jar  
+jakarta.mail-1.6.7.jar  
+jcalendar-1.4.jar  
+jcommon-1.0.23.jar  
+jfreechart-1.0.19.jar  
+jxbrowser-7.28.1.jar  
+jxbrowser-javafx-7.28.1.jar  
+jxbrowser-mac-7.28.1.jar  
+jxbrowser-mac-arm-7.28.1.jar  
+jxbrowser-swing-7.28.1.jar  
+jxbrowser-swt-7.28.1.jar  
+jxmapviewer2-2.6.jar  
+mysql-connector-java-8.0.30.jar  
 
 
 
@@ -99,4 +105,4 @@ Yanyan Chen (002799697): The entire model design and implementation, the coding 
 
 Xiaoya Geng (002749444): The email verification of sign up and assignments design and implementation, the police related workflow, the design documents description, the UML class diagram drawing, and bug testing
 
-Xiaodi Huang(002922334): The google maps for signup design and implementation, the map view of request and assigning user design and implementation, the Junit tests design and implementation, the database view and operation for admins with enterprise employees implementation, the models, and bug testing
+Xiaodi Huang(002922334): The google maps for signup design and implementation, the map view of request and assigning user design and implementation, the Junit tests design and implementation, the database view and operation for admins with enterprise employees implementation, the models, the sequence diagram drawing, and bug testing
