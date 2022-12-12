@@ -73,3 +73,30 @@ The design of  the application includes 4 Enterprises, 6 Organizations, and 9 ro
 
 Java, MySQL, Google Map API, Email Verification, HTML, Junit test
 
+**Required .jar**
+
+commons-logging-1.2.jar
+itextpdf-5.4.0.jar
+jakarta.activation-1.2.1.jar
+jakarta.mail-1.6.7.jar
+jcalendar-1.4.jar
+jcommon-1.0.23.jar
+jfreechart-1.0.19.jar
+jxbrowser-7.28.1.jar
+jxbrowser-javafx-7.28.1.jar
+jxbrowser-mac-7.28.1.jar
+jxbrowser-mac-arm-7.28.1.jar
+jxbrowser-swing-7.28.1.jar
+jxbrowser-swt-7.28.1.jar
+jxmapviewer2-2.6.jar
+mysql-connector-java-8.0.30.jar
+
+
+
+### Contributors
+
+Yanyan Chen (002799697): The entire model design and implementation, the coding of all six workflows, the design of all databases, the output stream of pdf files, and the overall data statistics panel
+
+Xiaoya Geng (002749444): The email verification of sign up and assignments design and implementation, the police related workflow, the design documents description, the UML class diagram drawing, and bug testing
+
+Xiaodi Huang(002922334): The google maps for signup design and implementation, the map view of request and assigning user design and implementation, the Junit tests design and implementation, the database view and operation for admins with enterprise employees implementation, the models, and bug testing
