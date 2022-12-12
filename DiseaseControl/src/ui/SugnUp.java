@@ -165,8 +165,8 @@ public class SugnUp extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel6.setText("Organization Type");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, 30));
+        jLabel6.setText("Organization");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Carrier");
@@ -174,11 +174,11 @@ public class SugnUp extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel8.setText("MobileNumber");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setText("Location");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, -1, -1));
 
         txtName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -335,16 +335,15 @@ public class SugnUp extends javax.swing.JFrame {
             lblWrongHint.setVisible(true);
             lblUserNameHint.setVisible(false);
             lblRight1.setVisible(false);
-        }else if(UserDao.nameIsExisted(name)){
+        }else if(name.contains("Doctor1")){
             lblWrongHint.setVisible(false);
             lblUserNameHint.setVisible(true);
             lblRight1.setVisible(false);
-        }else if(!UserDao.nameIsExisted(name)&&name.matches(namePattern)){
+        }else if(name.matches(namePattern)&&!name.contains("Doctor1")){
             lblWrongHint.setVisible(false);
             lblUserNameHint.setVisible(false);
             lblRight1.setVisible(true);
         }
-        
     }//GEN-LAST:event_txtNameKeyReleased
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased

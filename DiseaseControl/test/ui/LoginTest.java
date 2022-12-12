@@ -139,7 +139,7 @@ public class LoginTest {
 
         UserDao.save(user2);
         UserDao.deleteByName("test1");
-        System.out.println("Admin login test passed");
+        System.out.println("All test passed");
 
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
