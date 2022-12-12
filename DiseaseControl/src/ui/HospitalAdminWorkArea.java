@@ -90,8 +90,6 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
         cbbAssignedObject = new javax.swing.JComboBox<>();
         btnSave = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -115,6 +113,9 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -139,21 +140,13 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 78, 1296, 238));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1296, 238));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Hospital Admin Work Area");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 15, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel7.setText("Hello,");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(999, 15, -1, -1));
-
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 15, -1, -1));
-
-        cbbAssignedObject.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        cbbAssignedObject.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cbbAssignedObject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         cbbAssignedObject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -165,84 +158,93 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
                 cbbAssignedObjectActionPerformed(evt);
             }
         });
-        getContentPane().add(cbbAssignedObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, 296, -1));
+        getContentPane().add(cbbAssignedObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 650, 230, -1));
 
-        btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 690, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 710, 110, -1));
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Assign to");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 650, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Patient Number");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 490, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("# of Potentially infected");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Location");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 450, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 510, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Description");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 490, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Current Request Object");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 530, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 590, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setText("Date");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Name");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel12.setText("*Click a row to view request log");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, -1, -1));
 
+        lblPatientNumber.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, -1, -1));
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, -1, -1));
 
+        lblName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblName.setText("--");
-        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, -1, -1));
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, -1, -1));
 
+        lblDate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
 
+        lblVictim.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, -1, -1));
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, -1, -1));
 
+        lblLocation.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblLocation.setText("--");
-        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 450, -1, -1));
+        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 510, -1, -1));
 
+        lblDescription.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDescription.setText("--");
-        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 490, -1, -1));
+        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 550, -1, -1));
 
+        lblRequestObject.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblRequestObject.setText("--");
-        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 530, -1, -1));
+        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 590, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Request Log ID");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, -1));
 
+        lblId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblId.setText("--");
         lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 lblIdPropertyChange(evt);
             }
         });
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, -1, -1));
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -252,21 +254,37 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setText("View in map");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 460, -1, -1));
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("View doctors");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 350, 110, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 150, -1));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
+        jLabel2.setText("Hello,");
+        jPanel1.add(jLabel2);
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblUsername.setText("--");
+        jPanel1.add(lblUsername);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -292,29 +310,6 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         String requestObject = model.getValueAt(index, 7).toString();
         lblRequestObject.setText(requestObject);
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        String id=lblId.getText();
-        String name = lblUsername.getText();
-        String assignedObject = cbbAssignedObject.getSelectedItem().toString();
-        int a =JOptionPane.showConfirmDialog(null,"Do you want to assign this request to "+assignedObject+"?","Select",JOptionPane.YES_NO_OPTION);
-        if(a==0){
-            CommunityRequestDao.assignTo(id,assignedObject);
-            setVisible(false);
-            new HospitalAdminWorkArea(name).setVisible(true);
-        }
-        
-        String nameofemail = cbbAssignedObject.getSelectedItem().toString();
-        String email = findEmail(nameofemail);
-        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
-                ,email,"You have just received a new assignment in the Infectious Disease Control System. Please log in to view.","Notification of new assignment");
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_cbbAssignedObjectItemStateChanged
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
@@ -349,11 +344,6 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
             in.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_lblIdPropertyChange
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -403,19 +393,19 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
 
         // Create waypoints from the geo-positions
         Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("Request", requestPosition)));
-        
+
         if (doctorpos != null) {
             waypoints.add(new SwingWaypoint("doctor", doctorpos, "doctor"));
         }
 
-    // Set the overlay painter
-    WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
-    swingWaypointPainter.setWaypoints(waypoints);
-    mapViewer.setOverlayPainter(swingWaypointPainter);
+        // Set the overlay painter
+        WaypointPainter<SwingWaypoint> swingWaypointPainter = new SwingWaypointOverlayPainter();
+        swingWaypointPainter.setWaypoints(waypoints);
+        mapViewer.setOverlayPainter(swingWaypointPainter);
 
-    // Add the JButtons to the map viewer
-    for (SwingWaypoint w : waypoints) {
-        mapViewer.add(w.getButton());
+        // Add the JButtons to the map viewer
+        for (SwingWaypoint w : waypoints) {
+            mapViewer.add(w.getButton());
         }
 
         // Display the viewer in a JFrame
@@ -432,9 +422,37 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
         in.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void lblIdPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblIdPropertyChange
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_lblIdPropertyChange
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String id=lblId.getText();
+        String name = lblUsername.getText();
+        String assignedObject = cbbAssignedObject.getSelectedItem().toString();
+        int a =JOptionPane.showConfirmDialog(null,"Do you want to assign this request to "+assignedObject+"?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            CommunityRequestDao.assignTo(id,assignedObject);
+            setVisible(false);
+            new HospitalAdminWorkArea(name).setVisible(true);
+        }
+
+        String nameofemail = cbbAssignedObject.getSelectedItem().toString();
+        String email = findEmail(nameofemail);
+        GmailUtil.sendEMail("thea.xiaoya@gmail.com","sznrtvyqbnaookum"
+            ,email,"You have just received a new assignment in the Infectious Disease Control System. Please log in to view.","Notification of new assignment");
+    }//GEN-LAST:event_btnSaveActionPerformed
+
     private void cbbAssignedObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbAssignedObjectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbAssignedObjectActionPerformed
+
+    private void cbbAssignedObjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbAssignedObjectItemStateChanged
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_cbbAssignedObjectItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -449,12 +467,13 @@ public class HospitalAdminWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDate;

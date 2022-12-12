@@ -62,9 +62,7 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
     private void initComponents() {
 
         btnPrint = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblVictim = new javax.swing.JLabel();
@@ -76,11 +74,14 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
         lblPatientNumber = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPhotoPath2 = new javax.swing.JTextField();
         btnBrowse = new javax.swing.JButton();
         lblPic = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -92,36 +93,29 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
                 btnPrintActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, -1, -1));
+        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel8.setText("Hello,");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 29, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Please add work result");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 29, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel5.setText("# of Potentially infected:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Request Name:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-        lblVictim.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblVictim.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
 
-        lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRequest.setText("--");
-        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
 
+        txtDiagnose.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtDiagnose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDiagnoseActionPerformed(evt);
@@ -132,40 +126,36 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
                 txtDiagnoseKeyReleased(evt);
             }
         });
-        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 252, -1));
+        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 252, -1));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("Date:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
-        lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Patient Number:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
-        lblPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel11.setText("Request Log ID:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
-        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblId.setText("--");
         lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 lblIdPropertyChange(evt);
             }
         });
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Vaccinate Work Log");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 15, 193, 37));
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel3.setText("Work Photo");
@@ -190,7 +180,26 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
 
         lblPic.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblPic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 400, 350));
+        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 400, 350));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setBackground(new java.awt.Color(0, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setText("Vaccinate Work Log");
+        jPanel1.add(jLabel1);
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
+        jLabel9.setText("Hello,");
+        jPanel1.add(jLabel9);
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblUsername.setText("--");
+        jPanel1.add(lblUsername);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,7 +228,7 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
             doc.add(paragraph);
             Paragraph paragraph1 = new Paragraph("\nRequest Name: "+request+"\nDoctor Name:"+userName);
             doc.add(paragraph1);
-            Paragraph paragraph2 = new Paragraph("\nPatient Number: "+patientNumber+"\nVictim: "+victim+"\nDiagnose: "+diagnose);
+            Paragraph paragraph2 = new Paragraph("\nPatient Number: "+patientNumber+"\nVictim: "+victim+"\nCondition: "+diagnose);
             doc.add(paragraph2);
             
             String path1="";
@@ -329,7 +338,8 @@ public class VaccinateWorkLog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblPatientNumber;

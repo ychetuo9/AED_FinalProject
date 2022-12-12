@@ -146,41 +146,41 @@ public class SugnUp extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Organization Registration");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setText("Organization User Registration");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("User Name");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel3.setText("Email");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("Password");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel5.setText("City");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel6.setText("Enterprise");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, 30));
+        jLabel6.setText("Organization Type");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Carrier");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel8.setText("MobileNumber");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setText("Location");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 550, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, -1, -1));
 
         txtName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -188,7 +188,7 @@ public class SugnUp extends javax.swing.JFrame {
                 txtNameKeyReleased(evt);
             }
         });
-        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 280, -1));
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 280, -1));
 
         txtEmail.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -196,7 +196,7 @@ public class SugnUp extends javax.swing.JFrame {
                 txtEmailKeyReleased(evt);
             }
         });
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 280, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 280, -1));
 
         cbbOrganization.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
@@ -205,7 +205,7 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbOrganizationItemStateChanged(evt);
             }
         });
-        getContentPane().add(cbbOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 280, -1));
+        getContentPane().add(cbbOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 280, -1));
 
         cbbCarrier.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCarrier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AT&T", "Verizon", "T-Mobile" }));
@@ -214,7 +214,7 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbCarrierItemStateChanged(evt);
             }
         });
-        getContentPane().add(cbbCarrier, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 280, -1));
+        getContentPane().add(cbbCarrier, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, 280, -1));
 
         txtMobileNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtMobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -222,7 +222,7 @@ public class SugnUp extends javax.swing.JFrame {
                 txtMobileNumberKeyReleased(evt);
             }
         });
-        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 280, -1));
+        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 280, -1));
 
         txtLocation.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtLocation.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -230,7 +230,7 @@ public class SugnUp extends javax.swing.JFrame {
                 txtLocationKeyReleased(evt);
             }
         });
-        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, 280, -1));
+        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 570, 280, -1));
 
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton1.setText("Set Location");
@@ -239,7 +239,7 @@ public class SugnUp extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, -1, -1));
 
         cbbCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
@@ -248,11 +248,11 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbCityItemStateChanged(evt);
             }
         });
-        getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 280, -1));
+        getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 280, -1));
 
         lblRight.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
-        getContentPane().add(lblRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 230, -1, -1));
+        getContentPane().add(lblRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, -1, -1));
 
         txtPassword.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -260,11 +260,11 @@ public class SugnUp extends javax.swing.JFrame {
                 txtPasswordKeyReleased(evt);
             }
         });
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 280, -1));
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 280, -1));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel10.setText("Role");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
 
         cbbRole.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Car Admin", "Hospital Admin", "Hotel Head", "Vaccinate Head", "Driver", "Doctor", "Community Head", "Police Head" }));
@@ -278,7 +278,7 @@ public class SugnUp extends javax.swing.JFrame {
                 cbbRoleActionPerformed(evt);
             }
         });
-        getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 280, -1));
+        getContentPane().add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 280, -1));
 
         lblRight1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRight1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right.png"))); // NOI18N
@@ -287,11 +287,11 @@ public class SugnUp extends javax.swing.JFrame {
                 lblRight1ComponentShown(evt);
             }
         });
-        getContentPane().add(lblRight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, -1, -1));
+        getContentPane().add(lblRight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
-        lblWrongHint.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        lblWrongHint.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblWrongHint.setText("Your input should consist of numbers, letters or underscores ");
-        getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, -1, 20));
+        getContentPane().add(lblWrongHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, -1, 20));
 
         btnSignUp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnSignUp.setText("Sign Up");
@@ -300,7 +300,7 @@ public class SugnUp extends javax.swing.JFrame {
                 btnSignUpActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 610, 280, -1));
+        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 620, 280, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -312,13 +312,13 @@ public class SugnUp extends javax.swing.JFrame {
 
         lblHint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblHint.setText("You are all set !!!");
-        getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 150, -1));
+        getContentPane().add(lblHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 670, 150, -1));
 
         lblEmailHint.setText("This email has already been uesd! Please change it!");
-        getContentPane().add(lblEmailHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 240, -1, -1));
+        getContentPane().add(lblEmailHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, -1, 20));
 
-        lblUserNameHint.setText("The username has already existed! Please change it!");
-        getContentPane().add(lblUserNameHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, -1, -1));
+        lblUserNameHint.setText("The username has already existed! Please change!");
+        getContentPane().add(lblUserNameHint, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

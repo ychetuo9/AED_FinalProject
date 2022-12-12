@@ -5,6 +5,7 @@
 package ui;
 
 import dao.CommunityRequestDao;
+import dao.UserDao;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import javax.swing.table.TableModel;
 import map.SwingWaypoint;
 import map.SwingWaypointOverlayPainter;
 import model.Request;
+import model.User;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.cache.FileBasedLocalCache;
@@ -93,8 +95,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel8 = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -120,6 +120,9 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         lblId = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -128,14 +131,6 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel8.setText("Hello,");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(937, 0, -1, -1));
-
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(998, 0, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,108 +147,121 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 63, 1296, 238));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1296, 238));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Doctor Work Area");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 0, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
+        btnAccept.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAccept.setText("Accept");
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 600, -1, -1));
+        getContentPane().add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, -1, -1));
 
+        btnReject.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnReject.setText("Reject");
         btnReject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRejectActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, -1, -1));
+        getContentPane().add(btnReject, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 640, -1, -1));
 
+        btnProcess.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnProcess.setText("Process");
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessActionPerformed(evt);
             }
         });
-        getContentPane().add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, -1, -1));
+        getContentPane().add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 640, -1, -1));
 
+        btnComplete.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnComplete.setText("Complete");
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 600, -1, -1));
+        getContentPane().add(btnComplete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 640, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Patient Number");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("# of Potentially infected");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Location");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 460, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Description");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 540, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Current Request Object");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 540, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 580, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setText("Date");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Name");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, -1, -1));
 
+        lblPatientNumber.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, -1, -1));
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, -1, 10));
 
+        lblRequestName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblRequestName.setText("--");
         lblRequestName.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 lblRequestNamePropertyChange(evt);
             }
         });
-        getContentPane().add(lblRequestName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
+        getContentPane().add(lblRequestName, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, -1));
 
+        lblDate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, -1, -1));
 
+        lblVictim.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, -1, -1));
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, -1, -1));
 
+        lblLocation.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblLocation.setText("--");
-        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 460, -1, -1));
+        getContentPane().add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 500, -1, -1));
 
+        lblDescription.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDescription.setText("--");
-        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 500, -1, -1));
+        getContentPane().add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 540, -1, -1));
 
+        lblRequestObject.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblRequestObject.setText("--");
-        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 540, -1, -1));
+        getContentPane().add(lblRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 580, -1, -1));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Request Log ID");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, -1, -1));
 
+        lblId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblId.setText("--");
         lblId.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 lblIdPropertyChange(evt);
             }
         });
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -263,13 +271,28 @@ public class DoctorWorkArea extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setText("View in map");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
+        jLabel2.setText("Hello,");
+        jPanel1.add(jLabel2);
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblUsername.setText("--");
+        jPanel1.add(lblUsername);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -354,7 +377,12 @@ public class DoctorWorkArea extends javax.swing.JFrame {
             int a =JOptionPane.showConfirmDialog(null,"Do you want to reject this request?","Select",JOptionPane.YES_NO_OPTION);
             if(a==0){
                 CommunityRequestDao.changeStatus(id,"reject",name);
-                CommunityRequestDao.rejectRequest(id,"HospitalAdmin");
+                User user=UserDao.getDetailInfo(name);
+                
+                ArrayList<String> hospitalsAdmin=UserDao.getAllAssociatedHospital(user.getOrganization());
+                for(int i=0;i<hospitalsAdmin.size();i++){
+                    CommunityRequestDao.rejectRequest(id,hospitalsAdmin.get(i));
+                }
                 setVisible(false);
                 new DoctorWorkArea(name).setVisible(true);
             }
@@ -498,11 +526,12 @@ public class DoctorWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDate;

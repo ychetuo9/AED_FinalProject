@@ -130,8 +130,6 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
         dataChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel17 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -139,6 +137,9 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -148,78 +149,78 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtPatientNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPatientNumberKeyReleased(evt);
             }
         });
-        getContentPane().add(txtPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 296, -1));
+        getContentPane().add(txtPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, 296, -1));
 
-        txtVictim.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtVictim.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtVictim.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtVictimKeyReleased(evt);
             }
         });
-        getContentPane().add(txtVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 296, -1));
+        getContentPane().add(txtVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 296, -1));
 
-        txtLocation.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtLocation.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtLocation.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtLocationKeyReleased(evt);
             }
         });
-        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 450, 296, -1));
+        getContentPane().add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 520, 296, -1));
 
-        txtDescription.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtDescription.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtDescription.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDescriptionKeyReleased(evt);
             }
         });
-        getContentPane().add(txtDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 520, 296, -1));
+        getContentPane().add(txtDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, 296, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         jLabel1.setText("Community Admin Work Area");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 21, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Patient Number");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel3.setText("# of Potentially infected");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("Location");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel5.setText("Description");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 520, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 580, -1, -1));
 
-        cbbRequestObject.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        cbbRequestObject.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cbbRequestObject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbRequestObjectActionPerformed(evt);
             }
         });
-        getContentPane().add(cbbRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 580, 296, -1));
+        getContentPane().add(cbbRequestObject, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 620, 296, -1));
 
-        btnSave.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 650, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 680, 120, -1));
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Request Object");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 620, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -247,40 +248,33 @@ public class CommunityWorkArea extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(8).setHeaderValue("Status");
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1296, 140));
-
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel7.setText("Hello,");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1023, 39, -1, -1));
-
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1084, 39, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 1296, 140));
 
         dataChooser1.setDateFormatString("yyyy-MM-dd");
+        dataChooser1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         dataChooser1.setMaxSelectableDate(new java.util.Date(1670907599000L));
         dataChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 dataChooser1KeyReleased(evt);
             }
         });
-        getContentPane().add(dataChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 300, -1));
+        getContentPane().add(dataChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 300, -1));
 
-        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel17.setText("Date");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
 
-        txtName.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNameKeyReleased(evt);
             }
         });
-        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 296, -1));
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 296, -1));
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel8.setText("Name");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -290,22 +284,37 @@ public class CommunityWorkArea extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 20, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton2.setText("Set Location");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 450, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 520, -1, -1));
 
+        jButton3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton3.setText("View in map");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 580, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 620, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
+        jLabel9.setText("Hello,");
+        jPanel1.add(jLabel9);
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblUsername.setText("--");
+        jPanel1.add(lblUsername);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -541,8 +550,9 @@ public class CommunityWorkArea extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblUsername;

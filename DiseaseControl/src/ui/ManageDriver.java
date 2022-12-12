@@ -87,7 +87,7 @@ public class ManageDriver extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jLabel1.setText("View Doctors");
+        jLabel1.setText("View Driver");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 30, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
@@ -172,7 +172,6 @@ public class ManageDriver extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        
         getAllRecords("");
     }//GEN-LAST:event_formComponentShown
 

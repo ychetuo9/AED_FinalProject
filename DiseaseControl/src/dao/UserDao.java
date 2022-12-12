@@ -260,7 +260,7 @@ public class UserDao {
     }
     
     //email
-public static String findEmail(String name){
+    public static String findEmail(String name){
         User user=null;
         try{
             ResultSet rs = DbOperations.getData("select *from user where name='"+name+"'");
@@ -577,4 +577,67 @@ public static String findEmail(String name){
         }
         return num;
     }
+    
+    public static ArrayList<String> getAllAssociatedHospital(String organization) {
+        ArrayList<User> arrayList = new ArrayList<>();
+        try {
+            ResultSet rs1 = DbOperations.getData("select *from user where role='Hospital Admin' and organization='" + organization + "'");
+            while (rs1.next()) {
+                User user = new User();
+                user.setId(rs1.getString("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setPassword(rs1.getString("password"));
+                user.setCity(rs1.getString("city"));
+                user.setOrganization(rs1.getString("organization"));
+                user.setRole(rs1.getString("role"));
+                user.setCarrier(rs1.getString("carrier"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setLocation(rs1.getString("location"));
+                user.setStatus(rs1.getString("status"));
+
+                arrayList.add(user);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        ArrayList<String> names = null;
+        for(int i=0;i<arrayList.size();i++){
+            names.add(arrayList.get(i).getName());
+        }
+        return names;
+    }
+    
+    public static ArrayList<String> getAllAssociatedCar(String organization) {
+        ArrayList<User> arrayList = new ArrayList<>();
+        try {
+            ResultSet rs1 = DbOperations.getData("select *from user where role='Car Admin' and organization='" + organization + "'");
+            while (rs1.next()) {
+                User user = new User();
+                user.setId(rs1.getString("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setPassword(rs1.getString("password"));
+                user.setCity(rs1.getString("city"));
+                user.setOrganization(rs1.getString("organization"));
+                user.setRole(rs1.getString("role"));
+                user.setCarrier(rs1.getString("carrier"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setLocation(rs1.getString("location"));
+                user.setStatus(rs1.getString("status"));
+
+                arrayList.add(user);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        ArrayList<String> names = null;
+        for(int i=0;i<arrayList.size();i++){
+            names.add(arrayList.get(i).getName());
+        }
+        return names;
+    }
+    
+    
+    
 }

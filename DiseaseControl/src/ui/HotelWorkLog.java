@@ -64,9 +64,7 @@ public class HotelWorkLog extends javax.swing.JFrame {
     private void initComponents() {
 
         btnPrint = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblVictim = new javax.swing.JLabel();
@@ -78,50 +76,48 @@ public class HotelWorkLog extends javax.swing.JFrame {
         lblPatientNumber = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPhotoPath2 = new javax.swing.JTextField();
         btnBrowse = new javax.swing.JButton();
         lblPic = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnPrint.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnPrint.setText("Print Work Log");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel8.setText("Hello,");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 29, -1, -1));
+        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Please add work result");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
-
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 29, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel5.setText("# of Potentially infected");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 153, -1, -1));
+        jLabel5.setText("# of Potentially infected:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("Request Name:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
+        lblVictim.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblVictim.setText("--");
-        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 153, -1, -1));
+        getContentPane().add(lblVictim, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
 
         lblRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblRequest.setText("--");
-        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        getContentPane().add(lblRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
 
+        txtDiagnose.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtDiagnose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDiagnoseActionPerformed(evt);
@@ -132,27 +128,27 @@ public class HotelWorkLog extends javax.swing.JFrame {
                 txtDiagnoseKeyReleased(evt);
             }
         });
-        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 252, -1));
+        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 252, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("Date:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         lblDate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblDate.setText("--");
-        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel6.setText("Patient Number:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 118, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         lblPatientNumber.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblPatientNumber.setText("--");
-        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 118, -1, -1));
+        getContentPane().add(lblPatientNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel11.setText("Request Log ID");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 77, -1, -1));
+        jLabel11.setText("Request Log ID:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblId.setText("--");
@@ -161,32 +157,51 @@ public class HotelWorkLog extends javax.swing.JFrame {
                 lblIdPropertyChange(evt);
             }
         });
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 77, -1, -1));
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Hotel Work Log");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 15, 193, 37));
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel3.setText("Work Photo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
 
-        jLabel3.setText("Workd Photo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
-
+        txtPhotoPath2.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         txtPhotoPath2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPhotoPath2KeyReleased(evt);
             }
         });
-        getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 230, -1));
+        getContentPane().add(txtPhotoPath2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 230, -1));
 
+        btnBrowse.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         btnBrowse.setText("Browse");
         btnBrowse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBrowseActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBrowse, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, -1, -1));
+        getContentPane().add(btnBrowse, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, -1, -1));
 
+        lblPic.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblPic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 400, 350));
+        getContentPane().add(lblPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 400, 350));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setBackground(new java.awt.Color(0, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setText("Hotel Work Log");
+        jPanel1.add(jLabel1);
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
+        jLabel9.setText("Hello,");
+        jPanel1.add(jLabel9);
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblUsername.setText("--");
+        jPanel1.add(lblUsername);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -258,6 +273,11 @@ public class HotelWorkLog extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_lblIdPropertyChange
 
+    private void txtPhotoPath2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhotoPath2KeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPhotoPath2KeyReleased
+
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
@@ -273,11 +293,6 @@ public class HotelWorkLog extends javax.swing.JFrame {
             lblPic.setIcon(new ImageIcon(img));
         }
     }//GEN-LAST:event_btnBrowseActionPerformed
-
-    private void txtPhotoPath2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhotoPath2KeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_txtPhotoPath2KeyReleased
 
     /**
      * @param args the command line arguments
@@ -325,7 +340,8 @@ public class HotelWorkLog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblPatientNumber;

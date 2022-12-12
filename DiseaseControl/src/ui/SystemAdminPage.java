@@ -33,10 +33,11 @@ public class SystemAdminPage extends javax.swing.JFrame {
         btnCityManage = new javax.swing.JButton();
         btnEnterpriseManage = new javax.swing.JButton();
         btnUserManage = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btnReportingModule = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -48,16 +49,16 @@ public class SystemAdminPage extends javax.swing.JFrame {
                 btnCityManageActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCityManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 61, 353, 76));
+        getContentPane().add(btnCityManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 350, 76));
 
         btnEnterpriseManage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnEnterpriseManage.setText("Manage Enterprise");
+        btnEnterpriseManage.setText("Manage Organization");
         btnEnterpriseManage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnterpriseManageActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnterpriseManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 198, 353, 76));
+        getContentPane().add(btnEnterpriseManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 350, 76));
 
         btnUserManage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnUserManage.setText("Manage User");
@@ -66,15 +67,7 @@ public class SystemAdminPage extends javax.swing.JFrame {
                 btnUserManageActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUserManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 335, 353, 76));
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Hello,");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(867, 61, -1, -1));
-
-        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblUsername.setText("--");
-        getContentPane().add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(928, 61, -1, -1));
+        getContentPane().add(btnUserManage, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 350, 76));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +75,7 @@ public class SystemAdminPage extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 30, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, -1, -1));
 
         btnReportingModule.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnReportingModule.setText("Reporting Module");
@@ -91,7 +84,21 @@ public class SystemAdminPage extends javax.swing.JFrame {
                 btnReportingModuleActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReportingModule, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, 340, 90));
+        getContentPane().add(btnReportingModule, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 520, 340, 90));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
+        jLabel6.setText("Hello,");
+        jPanel1.add(jLabel6);
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblUsername.setText("--");
+        jPanel1.add(lblUsername);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,7 +152,8 @@ public class SystemAdminPage extends javax.swing.JFrame {
     private javax.swing.JButton btnReportingModule;
     private javax.swing.JButton btnUserManage;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
 }
